@@ -599,16 +599,19 @@
                         <p><a href="http://designmodo.com/startup/?u=787">Startup Framework</a> is a website builder for professionals. Startup Framework contains components and complex blocks (PSD+HTML Bootstrap themes and templates) which can easily be integrated into almost any design. All of these components are made in the same style, and can easily be integrated into projects, allowing you to create hundreds of solutions for your future projects.</p>
                         <p>You can preview Startup Framework <a href="http://designmodo.com/startup/?u=787">here</a>.</p>
                         -->
-                        <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-2">
-                    <p>For List</p><p>For List</p><p>For List</p><p>For List</p><p>For List</p><p>For List</p><p>For List</p><p>For List</p>
+                    <div class="modal-body">
+                        <p>For List</p><p>For List</p><p>For List</p><p>For List</p><p>For List</p><p>For List</p><p>For List</p><p>For List</p>
+                    </div>
                 </div>
                 <div class="col-lg-4">
-                    <p>For Map</p><p>For Map</p><p>For Map</p><p>For Map</p><p>For Map</p><p>For Map</p><p>For Map</p><p>For Map</p><p>For Map</p>
+                    <div class="modal-body">
+                        <p>For Map</p><p>For Map</p><p>For Map</p><p>For Map</p><p>For Map</p><p>For Map</p><p>For Map</p><p>For Map</p><p>For Map</p>
+                    </div>
                 </div>
             </div>
         </div>
