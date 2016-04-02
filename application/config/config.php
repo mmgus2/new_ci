@@ -24,8 +24,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //$config['base_url'] = '';
-//$config['base_url'] = 'http://xploreforest.azurewebsites.net/';
-$config['base_url'] = 'http://localhost/new_ci/';
+$config['base_url'] = 'http://xploreforest.azurewebsites.net/';
+//$config['base_url'] = 'http://localhost/new_ci/';
 /*
 |--------------------------------------------------------------------------
 | Index File
