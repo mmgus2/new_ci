@@ -64,7 +64,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href="#page-top">XploreForest</a>
+            <a class="navbar-brand page-scroll" href="Home">XploreForest</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -97,11 +97,12 @@
     <!-- /.container-fluid -->
 </nav>
 
-<section id="portfolio" class="bg-light-gray">
-    <div class="container">
+<section id="portfolio">
+    <div class="container modal-content">
         <div class="row">
             <div class="col-lg-4"></div>
             <div class="col-lg-6">
+                <br />
                 <h4>Search Location by Distance</h4>
                 <form class="form-inline" role="form">
                     <div class="form-group">
@@ -123,13 +124,14 @@
         </div>
         <br />
         <div class="row">
-            <div class="col-lg-4 col-lg-offset-2">
-                <div id="controls"></div>
+            <div class="col-lg-4 col-lg-offset-1">
+                <ul id="controls" style="height: 400px; overflow: scroll;"></ul>
             </div>
             <div class="col-lg-6">
                 <div id="map" style="width: 100%; height: 400px;"></div>
             </div>
         </div>
+        <br /><br />
     </div>
 </section>
 
@@ -164,8 +166,6 @@
 <!-- jQuery -->
 <script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/jquery.js"); ?>"></script>
 <!--custom script -->
-<!--script src="<?//php echo base_url("assets/js/gmaps.js"); ?>"></script-->
-<!--script src="<?//php echo base_url("assets/js/googlemap.js"); ?>"></script-->
 <script src="<?php echo base_url("assets/js/ajax.js"); ?>"></script>
 
 <!-- Bootstrap Core JavaScript -->
