@@ -125,10 +125,10 @@
         <br />
         <div class="row">
             <div class="col-lg-4 col-lg-offset-1">
-                <ul id="controls" style="height: 400px; overflow: scroll;"></ul>
+                <ul id="controls" style="max-height: 200px; overflow: scroll;"></ul>
             </div>
             <div class="col-lg-6">
-                <div id="map" style="width: 100%; height: 400px;"></div>
+                <div id="map" style="width: 100%; height: 300px;"></div>
             </div>
         </div>
         <br /><br />
