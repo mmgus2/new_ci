@@ -31,7 +31,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link href="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/carousel.css"); ?>" rel="stylesheet">
-
 </head>
 
 <body id="page-top" class="index">
@@ -580,27 +579,21 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="modal-body">
                         <h2>Search Location by Distance</h2>
-                        <form class="form-inline" role="form" method="post" action="">
+                        <form class="form-inline" role="form">
                             <div class="form-group">
                                 <label for="distance">Max Distance</label>
-                                <input type="number" class="form-control" name="distance" />
+                                <input type="text" class="form-control" id="distance" />
                             </div>
                             <div class="form-group">
-                                <select class="form-control" name="unit">
+                                <select class="form-control" id="unit">
                                     <option value="K" selected>Kilometers</option>
                                     <option value="M">Miles</option>
                                 </select>
                             </div>
-                            <button type="submit" name="submit" class="btn btn-default">Apply</button>
+                            <input type="hidden" id="latitude" />
+                            <input type="hidden" id="longitude" />
+                            <button type="button" class="btn btn-default" id="apply">Apply</button>
                         </form>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <p>For List</p><p>For List</p><p>For List</p><p>For List</p><p>For List</p><p>For List</p><p>For List</p><p>For List</p>
-                            </div>
-                            <div class="col-lg-4">
-                                <p>For Map</p><p>For Map</p><p>For Map</p><p>For Map</p><p>For Map</p><p>For Map</p><p>For Map</p><p>For Map</p><p>For Map</p>
-                            </div>
-                        </div>
                         <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
                     </div>
                 </div>
@@ -638,6 +631,9 @@
 
 <!-- jQuery -->
 <script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/jquery.js"); ?>"></script>
+
+<!--custom script -->
+<script src="<?php echo base_url("assets/js/ajax.js"); ?>"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/bootstrap.min.js"); ?>" ></script>

@@ -1,7 +1,13 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: gusis
+ * Date: 4/3/2016
+ * Time: 3:58 PM
+ */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Database extends CI_Controller {
+class Distance extends CI_Controller {
 
     /**
      * Index Page for this controller.
@@ -18,24 +24,8 @@ class Database extends CI_Controller {
      * map to /index.php/welcome/<method_name>
      * @see http://codeigniter.com/user_guide/general/urls.html
      */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->load->model('Database_model');
-        $this->model = $this->Database_model;
-    }
-
     public function index()
     {
-        $this->read();
-    }
-
-    /**
-     *
-     */
-    public function read()
-    {
-        $data["data"] = $this->model->read();
-        $this->load->view('database_view', $data);
+        $this->load->view('distance-view');
     }
 }
