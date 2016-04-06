@@ -10,7 +10,7 @@ class Database_model extends CI_Model {
 
     public function read()
     {
-        $sql = "SELECT * FROM location";
+        $sql = "SELECT * FROM forest ORDER BY forest_name";
         $query = $this->db->query($sql);
         return $query->result_array();
     }

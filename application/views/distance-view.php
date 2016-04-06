@@ -15,7 +15,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>XploreForest</title>
 
     <!-- Bootstrap Core CSS -->
@@ -38,17 +37,12 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!--for google map-->
-    <script src="http://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+
     <!--end maplace.js-->
-    <link href="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/carousel.css"); ?>" rel="stylesheet">
+
 
 </head>
-
-<style>
-    #mapPlaceholder {
-        height: 400px;
-        width: 700px;
-</style>
 
 <body id="page-top" class="index">
 
@@ -98,7 +92,7 @@
 </nav>
 
 <section id="portfolio">
-    <div class="container modal-content">
+    <div class="container">
         <div class="row">
             <div class="col-lg-4"></div>
             <div class="col-lg-6">
@@ -123,12 +117,27 @@
             <div class="col-lg-2"></div>
         </div>
         <br />
+        <input type='hidden' id='f_current_page' />
         <div class="row">
             <div class="col-lg-4 col-lg-offset-1">
-                <ul id="controls" style="max-height: 200px; overflow: scroll;"></ul>
+                <div class="fa-border">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Forest</th>
+                            <th>Km</th>
+                            <th>Recreation</th>
+                            <th>Map</th>
+                        </tr>
+                        </thead>
+                        <tbody id="forest_list">
+                        </tbody>
+                    </table>
+                    <div id="f_pagination"></div>
+                </div>
             </div>
-            <div class="col-lg-6">
-                <div id="map" style="width: 100%; height: 300px;"></div>
+            <div class="col-lg-6 fa-border">
+                <div id="map" style="width: 100%; height: 400px;"></div>
             </div>
         </div>
         <br /><br />
@@ -165,11 +174,13 @@
 
 <!-- jQuery -->
 <script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/jquery.js"); ?>"></script>
-<!--custom script -->
-<script src="<?php echo base_url("assets/js/ajax.js"); ?>"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/bootstrap.min.js"); ?>" ></script>
+<link href="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/carousel.css"); ?>" rel="stylesheet">
+
+<!--custom script -->
+<script src="<?php echo base_url("assets/js/ajax.js"); ?>"></script>
 
 <!-- Plugin JavaScript -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
