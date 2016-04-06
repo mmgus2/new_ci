@@ -102,7 +102,7 @@
                     <div class="form-group">
                         <select class="form-control" id="unit">
                             <option value="K" selected>Km</option>
-                            <option value="M">Mile</option>
+                            <option value="M" disabled>Mile</option>
                         </select>
                     </div>
                     <input type="hidden" id="latitude" />

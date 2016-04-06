@@ -29,7 +29,6 @@ $(document).ready(function() {
     window.forestLocate = function (i) {
         google.maps.event.trigger(markers[i], 'click');
         map.setZoom(15);
-        map.setCenter(markers[i].getPosition());
     };
 
     //function to add marker on the map and also add html menu
@@ -45,7 +44,7 @@ $(document).ready(function() {
         });
         markers.push(marker);
         html_placeholder.push('<tr><td>' + menuTitle + '</td>' +
-            '<td>' + parseInt(distance) + '</td><td><a href="javascript:getSites(\'' + forestID + '\');">detail</td>' +
+            '<td>' + parseInt(distance) + '</td><td><a href="javascript:getSites(' + forestID + ')">details</td>' +
             '<td><a href="javascript:forestLocate(' + (markers.length - 1) + ')">' +
             '<img src="http://maps.google.com/mapfiles/ms/icons/green.png" /></a></td></tr>');
 
@@ -115,10 +114,15 @@ $(document).ready(function() {
 
         //get the data from the form post
         var distance = $("input#distance").val();
+        if(isNaN(distance) || distance <= 0 || !(distance % 1 === 0))
+        {
+            alert("Invalid input, please enter whole number greater than zero.");
+            return;
+        }
         var unit = $("select#unit option:selected").val();
         var latitude = $("input#latitude").val();
         var longitude = $("input#longitude").val();
-
+        getMaxDistance();
         //get the data from controller
         jQuery.ajax({
             type: "POST",
@@ -143,12 +147,12 @@ $(document).ready(function() {
                     //create circle marker
                     maxDistance = parseInt(maxDistance);
                     maxDistance = 1000 * maxDistance; //convert to meter
-                    var setRadius = null;
-                    if (distance > maxDistance) {
+                    setRadius = 0;
+                    if (parseInt(distance) > maxDistance) {
                         setRadius = maxDistance;
                     }
                     else {
-                        setRadius = distance;
+                        setRadius = parseInt(distance);
                     }
                     var theRadius = new google.maps.Circle({
                         center: new google.maps.LatLng(latitude, longitude),
