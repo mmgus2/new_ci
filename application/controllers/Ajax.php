@@ -55,6 +55,31 @@ class Ajax extends CI_Controller {
     }
     public function get_sites()
     {
+        $forest_id = $this->input->post('forest_id');
+        $this->record = $this->model->read_site($forest_id);
+        for ($i=0; $i < sizeof($this->record); $i++)
+        {
+            $sites[$i]["site_name"] = $this->record[$i]["site_name"];
+            $sites[$i]["latitude"] = floatval($this->record[$i]["latitude"]);
+            $sites[$i]["longitude"] = floatval($this->record[$i]["longitude"]);
+        }
+    }
 
+    public function get_max_distances()
+    {
+        $init_lat = $this->input->post('latitude');
+        $init_lon = $this->input->post('longitude');
+        $max_distance = 0;
+        for ($i=0; $i < sizeof($this->record); $i++)
+        {
+            $site_distance = distance(floatval($init_lat), floatval($init_lon),
+                floatval($this->record[$i]["latitude"]), floatval($this->record[$i]["longitude"]), 'K');
+            if ($site_distance > $max_distance)
+            {
+                $max_distance = $site_distance;
+            }
+        }
+        //send the data inform of clear text
+        echo $max_distance;
     }
 }

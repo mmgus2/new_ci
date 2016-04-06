@@ -17,9 +17,11 @@
     <meta name="author" content="">
     <title>XploreForest</title>
 
+    <!-- jQuery -->
+    <script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/jquery.js"); ?>"></script>
+
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/css/bootstrap.min.css"); ?>" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/css/agency.css"); ?>" rel="stylesheet">
 
@@ -36,10 +38,10 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link href="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/carousel.css"); ?>" rel="stylesheet">
     <!--for google map-->
     <script src="http://maps.googleapis.com/maps/api/js"></script>
-
-    <!--end maplace.js-->
+    <!--end google map-->
 
 
 </head>
@@ -67,22 +69,17 @@
                 <li class="hidden">
                     <a href="#page-top"></a>
                 </li>
-                <!--
                 <li>
-                    <a class="page-scroll" href="#services">Search</a>
-                </li>
-                -->
-                <li>
-                    <a class="page-scroll" href="#portfolio">Explore</a>
+                    <a class="page-scroll" href="Home#portfolio">Explore</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#about">About</a>
+                    <a class="page-scroll" href="Home#about">About</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#team">Team</a>
+                    <a class="page-scroll" href="Home#team">Team</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#contact">Contact</a>
+                    <a class="page-scroll" href="Home#contact">Contact</a>
                 </li>
             </ul>
         </div>
@@ -94,32 +91,34 @@
 <section id="portfolio">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4"></div>
-            <div class="col-lg-6">
-                <br />
-                <h4>Search Location by Distance</h4>
-                <form class="form-inline" role="form">
+            <div class="col-md-4"></div>
+            <div class="col-md-6">
+                <h3>How far would you explore?</h3>
+                <Form class="form-inline" role="form">
                     <div class="form-group">
-                        <label for="distance">Max Distance</label>
+                        <!--label for="distance">How far?</label-->
                         <input type="text" class="form-control" id="distance" />
                     </div>
                     <div class="form-group">
                         <select class="form-control" id="unit">
-                            <option value="K" selected>Kilometers</option>
-                            <option value="M">Miles</option>
+                            <option value="K" selected>Km</option>
+                            <option value="M">Mile</option>
                         </select>
                     </div>
                     <input type="hidden" id="latitude" />
                     <input type="hidden" id="longitude" />
                     <button type="button" class="btn btn-default" id="apply">Apply</button>
+                    <input type="hidden" id="latitude" />
+                    <input type="hidden" id="longitude" />
                 </form>
             </div>
-            <div class="col-lg-2"></div>
+            <div class="col-md-2"></div>
         </div>
         <br />
         <input type='hidden' id='f_current_page' />
+        <input type='hidden' id='s_current_page' />
         <div class="row">
-            <div class="col-lg-4 col-lg-offset-1">
+            <div class="col-md-5 col-md-offset-1">
                 <div class="fa-border">
                     <table class="table table-hover">
                         <thead>
@@ -135,9 +134,24 @@
                     </table>
                     <div id="f_pagination"></div>
                 </div>
+                <div class="fa-border" id="site_div" hidden="true">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Site</th>
+                            <th>Site name</th>
+                        </tr>
+                        </thead>
+                        <tbody id="site_list">
+                        </tbody>
+                    </table>
+                    <div id="s_pagination"></div>
+                </div>
+
             </div>
-            <div class="col-lg-6 fa-border">
-                <div id="map" style="width: 100%; height: 400px;"></div>
+            <br />
+            <div class="col-md-5">
+                <div class="fa-border" id="map" style="width: 100%; height: 400px;"></div>
             </div>
         </div>
         <br /><br />
@@ -172,12 +186,8 @@
     </div>
 </footer>
 
-<!-- jQuery -->
-<script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/jquery.js"); ?>"></script>
-
 <!-- Bootstrap Core JavaScript -->
 <script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/bootstrap.min.js"); ?>" ></script>
-<link href="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/carousel.css"); ?>" rel="stylesheet">
 
 <!--custom script -->
 <script src="<?php echo base_url("assets/js/ajax.js"); ?>"></script>

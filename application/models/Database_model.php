@@ -14,4 +14,11 @@ class Database_model extends CI_Model {
         $query = $this->db->query($sql);
         return $query->result_array();
     }
+
+    public function read_site($forestID)
+    {
+        $sql = "SELECT * FROM site WHERE forest_id = '". $forestID ."' ORDER BY site_name";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
 }

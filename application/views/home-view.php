@@ -31,6 +31,9 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link href="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/carousel.css"); ?>" rel="stylesheet">
+    <!--for google map-->
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <!--end google map-->
 </head>
 
 <body id="page-top" class="index">
@@ -55,11 +58,6 @@
                 <li class="hidden">
                     <a href="#page-top"></a>
                 </li>
-                <!--
-                <li>
-                    <a class="page-scroll" href="#services">Search</a>
-                </li>
-                -->
                 <li>
                     <a class="page-scroll" href="#portfolio">Explore</a>
                 </li>
@@ -79,17 +77,6 @@
     <!-- /.container-fluid -->
 </nav>
 
-<!-- Header -->
-<!--<header>
-    <--<div class="container">
-        <div class="intro-text">
-            <div class="intro-lead-in">Welcome To Our Studio!</div>
-            <div class="intro-heading">It's Nice To Meet You</div>
-            <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
-        </div>
-    </div>
-</header>-->
-
 <!-- Carousel
 ================================================== -->
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -106,7 +93,7 @@
                 <div class="carousel-caption">
                     <h1>State Forests of Victoria</h1>
                     <p>Search for the nearest State Forests.Explore the Greenery,peace and adventures.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Explore</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="#portfolio" role="button">Explore</a></p>
                 </div>
             </div>
         </div>
@@ -116,7 +103,7 @@
                 <div class="carousel-caption">
                     <h1>Indulge in Adventure</h1>
                     <p>Know about the different kind of Activities that can be done in state Forests.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Activities</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="#portfolio" role="button">Activities</a></p>
                 </div>
             </div>
         </div>
@@ -126,7 +113,7 @@
                 <div class="carousel-caption">
                     <h1>Give us your Feedback</h1>
                     <p>Tell us your opinion about places,activities and more.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Feedback</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="#contact" role="button">Feedback</a></p>
                 </div>
             </div>
         </div>
@@ -140,38 +127,6 @@
         <span class="sr-only">Next</span>
     </a>
 </div><!-- /.carousel -->
-
-<!-- Services Section -->
-<!--<section id="services">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Search</h2>
-                <h3 class="section-subheading text-muted">Explore your way to Forests of Victoria</h3>
-            </div>
-        </div>
-        <div class="row text-center">
-            <div class="col-md-4">
-            <img class="img-circle" src="img/search/location.jpg" alt="Generic placeholder image" width="150" height="150">
-                <h4 class="service-heading">Search Me</h4>
-                <p class="text-muted">This feature will let you explore the forests around your location and give you the important information about the forests,tips and locations.</p>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div>
-            <div class="col-md-4">
-                <img class="img-circle" src="img/search/activities.jpg" alt="Generic placeholder image" width="150" height="150">
-                <h4 class="service-heading">Activities</h4>
-                <p class="text-muted">Explore the forests based on the activities you want to do.This will guide you to do favourite activities on perfect spot.</p>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div>
-            <div class="col-md-4">
-                <img class="img-circle" src="img/search/weather.jpg" alt="Generic placeholder image" width="150" height="150">
-                <h4 class="service-heading">Travel Info</h4>
-                <p class="text-muted">Get to know the weather forecasts,weather emergency or any related information about the forests.</p>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div>
-        </div>
-    </div>
-</section>-->
 
 <!-- Portfolio Grid Section -->
 <section id="portfolio" class="bg-light-gray">
@@ -225,50 +180,6 @@
                     <p class="text-muted">Explore the Activities for the Forest</p>
                 </div>
             </div>
-            <!--
-            <div class="col-md-4 col-sm-6 portfolio-item">
-                <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <i class="fa fa-tree"></i>
-                        </div>
-                    </div>
-                    <img src="img/portfolio/weather.jpg" class="img-responsive" alt="">
-                </a>
-                <div class="portfolio-caption">
-                    <h4>TravelInfo</h4>
-                    <p class="text-muted">Travel requirements</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 portfolio-item">
-                <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <i class="fa fa-tree"></i>
-                        </div>
-                    </div>
-                    <img src="img/portfolio/gallery.jpg" class="img-responsive" alt="">
-                </a>
-                <div class="portfolio-caption">
-                    <h4>Gallery</h4>
-                    <p class="text-muted">Pictures of your favourite forest</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 portfolio-item">
-                <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <i class="fa fa-tree"></i>
-                        </div>
-                    </div>
-                    <img src="img/portfolio/feedback.jpg" class="img-responsive" alt="">
-                </a>
-                <div class="portfolio-caption">
-                    <h4>Feedback</h4>
-                    <p class="text-muted">Give us your feedback</p>
-                </div>
-            </div>
-            -->
         </div>
     </div>
 </section>
@@ -576,26 +487,54 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <div class="modal-body">
-                        <h2>Search Location by Distance</h2>
-                        <form class="form-inline" role="form">
-                            <div class="form-group">
-                                <label for="distance">Max Distance</label>
-                                <input type="text" class="form-control" id="distance" />
-                            </div>
-                            <div class="form-group">
-                                <select class="form-control" id="unit">
-                                    <option value="K" selected>Kilometers</option>
-                                    <option value="M">Miles</option>
-                                </select>
-                            </div>
-                            <input type="hidden" id="latitude" />
-                            <input type="hidden" id="longitude" />
-                            <button type="button" class="btn btn-default" id="apply">Apply</button>
-                        </form>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                <div class="col-md-4"></div>
+                <div class="col-md-6">
+                    <br />
+                    <h3>How far would you explore?</h3>
+                    <Form class="form-inline" role="form">
+                        <div class="form-group">
+                            <label for="distance">How far?</label>
+                            <input type="text" class="form-control" id="distance" />
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" id="unit">
+                                <option value="K" selected>Km</option>
+                                <option value="M">Mile</option>
+                            </select>
+                        </div>
+                        <input type="hidden" id="latitude" />
+                        <input type="hidden" id="longitude" />
+                        <button type="button" class="btn btn-default" id="apply">Apply</button>
+                        <input type="hidden" id="latitude" />
+                        <input type="hidden" id="longitude" />
+                        <!--input type="range" id="distance" onchange="updateMap()" /><output id="distanceVal"></output-->
+                    </form>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <br />
+            <input type='hidden' id='f_current_page' />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="fa-border">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Forest</th>
+                                <th>Km</th>
+                                <th>Recreation</th>
+                                <th>Map</th>
+                            </tr>
+                            </thead>
+                            <tbody id="forest_list">
+                            </tbody>
+                        </table>
+                        <div id="f_pagination"></div>
                     </div>
+                </div>
+                <br />
+                <div class="col-md-6">
+                    <div class="fa-border" id="map" style="width: 100%; height: 400px;"></div>
                 </div>
             </div>
         </div>
