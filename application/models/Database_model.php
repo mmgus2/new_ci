@@ -10,15 +10,19 @@ class Database_model extends CI_Model {
 
     public function read()
     {
-        $sql = "SELECT * FROM forest ORDER BY forest_name";
-        $query = $this->db->query($sql);
+        //$sql = "SELECT * FROM forest ORDER BY forest_name";
+        $sql = "SELECT * FROM forest ORDER BY ?";
+        //$query = $this->db->query($sql);
+        $query = $this->db->query($sql,'forest_name');
         return $query->result_array();
     }
 
     public function read_site($forestID)
     {
-        $sql = "SELECT * FROM site WHERE forest_id = ". $forestID ." ORDER BY site_name";
-        $query = $this->db->query($sql);
+        //$sql = "SELECT * FROM site WHERE forest_id = ". $forestID ." ORDER BY site_name";
+        $sql = "SELECT * FROM site WHERE forest_id = ? ORDER BY ?";
+        //$query = $this->db->query($sql);
+        $query = $this->db->query($sql,$forestID,'site_name');
         return $query->result_array();
     }
 }
