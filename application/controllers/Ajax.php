@@ -26,32 +26,32 @@ class Ajax extends CI_Controller {
         $this->load->model('Database_model');
         $this->model = $this->Database_model;
         $this->load->helper('geodistance');
-        $this->record = $this->model->read();
     }
 
     public function get_forests()
     {
+        $this->record = $this->model->read();
         $max_distance = $this->input->post('distance');
         $unit = $this->input->post('unit');
         $init_lat = $this->input->post('latitude');
         $init_lon = $this->input->post('longitude');
         //echo json_encode($record, JSON_PRETTY_PRINT);
-        $sites = NULL;
+        $forests = NULL;
         for ($i=0; $i < sizeof($this->record); $i++)
         {
-            $site_distance = distance(floatval($init_lat), floatval($init_lon),
+            $forest_distance = distance(floatval($init_lat), floatval($init_lon),
                 floatval($this->record[$i]["latitude"]), floatval($this->record[$i]["longitude"]), $unit);
-            if ( $site_distance <= $max_distance)
+            if ( $forest_distance <= $max_distance)
             {
-                $sites[$i]["forest_id"] = $this->record[$i]["forest_id"];
-                $sites[$i]["forest_name"] = $this->record[$i]["forest_name"];
-                $sites[$i]["latitude"] = floatval($this->record[$i]["latitude"]);
-                $sites[$i]["longitude"] = floatval($this->record[$i]["longitude"]);
-                $sites[$i]["distance"] = $site_distance;
-                //$sites[]["max_distance"] = $max_distance;
+                $forests[$i]["forest_id"] = $this->record[$i]["forest_id"];
+                $forests[$i]["forest_name"] = $this->record[$i]["forest_name"];
+                $forests[$i]["latitude"] = floatval($this->record[$i]["latitude"]);
+                $forests[$i]["longitude"] = floatval($this->record[$i]["longitude"]);
+                $forests[$i]["distance"] = intval($forest_distance);
+                //$forests[]["max_distance"] = $max_distance;
             }
         }
-        echo json_encode($sites, JSON_PRETTY_PRINT);
+        echo json_encode($forests, JSON_PRETTY_PRINT);
     }
     public function get_sites()
     {
@@ -67,19 +67,20 @@ class Ajax extends CI_Controller {
 
     public function get_max_distances()
     {
+        $this->record = $this->model->read();
         $init_lat = $this->input->post('latitude');
         $init_lon = $this->input->post('longitude');
-        $max_distance = 0;
+        $unit = "" . $this->input->post('unit');
+        $maxDistance = 0;
         for ($i=0; $i < sizeof($this->record); $i++)
         {
             $site_distance = distance(floatval($init_lat), floatval($init_lon),
-                floatval($this->record[$i]["latitude"]), floatval($this->record[$i]["longitude"]), 'K');
-            if ($site_distance > $max_distance)
+                floatval($this->record[$i]["latitude"]), floatval($this->record[$i]["longitude"]), $unit);
+            if ($site_distance > $maxDistance)
             {
-                $max_distance = $site_distance;
+                $maxDistance = $site_distance;
             }
         }
-        //send the data inform of clear text
-        echo $max_distance;
+        echo ceil($maxDistance);
     }
 }

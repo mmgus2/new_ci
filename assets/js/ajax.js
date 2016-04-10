@@ -2,33 +2,108 @@
  * Created by gusis on 4/2/2016.
  */
 $(document).ready(function() {
-    //detect user current location
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(setPosition);
-    }
-    else {
-        alert("Geolocation API not supported.");
-    }
-
-    function setPosition(position) {
-        document.getElementById("latitude").value = position.coords.latitude;
-        latitude = position.coords.latitude;
-        document.getElementById("longitude").value = position.coords.longitude;
-        longitude = position.coords.longitude;
-        getMaxDistance(latitude, longitude);
-    }
+    //initialise base url for ajax request
+    var url = "http://xploreforest.azurewebsites.net/Ajax/";
+    //var url = "http://localhost/new_ci/index.php/Ajax/";
 
     //variables initialisation to create map and marker(s)
     var map = null;
     var markers = [];
-    var site_markers = [];
-    var html_placeholder = [];
+    var forestDataSet = [];
     var infoWindow = new google.maps.InfoWindow();
+    var site_markers = [];
+
+    //detect user current location
+    $.geolocation.get({
+        success: initialSetup,
+        error: askForPosition
+    });
+
+    //initial setup for the page
+    function initialSetup(position)
+    {
+        $("#latitude").val(position.coords.latitude);
+        $("#longitude").val(position.coords.longitude);
+        initialise(position.coords.latitude, position.coords.longitude);
+        $.ajax({
+            type: "POST",
+            url: url + "get_max_distances",
+            dataType: 'text',
+            data: {latitude: position.coords.latitude, longitude: position.coords.longitude,
+                unit: $("select#unit option:selected").val()},
+            success: function (data) {
+                if (data) {
+                    initRangeSlider(data);
+                }
+                else {
+                    return initRangeSlider(0);
+                }
+            }
+        });
+    }
+    //function to initialise the map
+    function initialise(initLat, initLong) {
+        var mapInit = {
+            zoom: 15,
+            center: new google.maps.LatLng(initLat, initLong)
+        };
+        map = new google.maps.Map(document.getElementById("map"), mapInit);
+
+        google.maps.event.addListener(map, 'click', function () {
+            infoWindow.close();
+        });
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(initLat, initLong)
+            //icon: 'http://maps.google.com/mapfiles/ms/icons/green.png'
+        });
+        marker.setMap(map);
+        google.maps.event.addListener(marker, 'click', function () {
+            infoWindow.setContent('<b>You are here!</b>');
+            infoWindow.open(map, marker);
+        });
+        $('#f_table_container').html('<table id="f_table" class="table table-striped table-bordered"' +
+            'cellspacing="0" width="100%"></table>');
+        $("#f_table").html('<tr><td colspan="4"><div class="alert-warning">No forest within 0 ' +
+            $("select#unit option:selected").text() + '</div></td></tr>');
+    }
+
+    //initialise range slider
+    function initRangeSlider(maxValue)
+    {
+        var $r = $('input[type=range]');
+        var $handle;
+        $r.attr({"max": maxValue});
+        $r.rangeslider({
+            polyfill: false,
+            onInit: function () {
+                $handle = $('.rangeslider__handle', this.$range);
+                updateHandle($handle[0], this.value)
+            },
+            onSlide: function(){
+                updateHandle($handle[0], this.value);
+            },
+            onSlideEnd: function(){
+                displayData(this.value);
+            }
+        });
+    }
+
+    function updateHandle(el, val){
+        el.textContent = val;
+    }
+
+    function askForPosition(error)
+    {
+        alert("Couldn't detect the position");
+    }
+
+
 
     //function to respond to user click
     window.forestLocate = function (i) {
         google.maps.event.trigger(markers[i], 'click');
-        map.setZoom(15);
+        map.setZoom(12);
+        map.setCenter(markers[i].getPosition());
     };
 
     //function to add marker on the map and also add html menu
@@ -43,98 +118,62 @@ $(document).ready(function() {
             infoWindow.open(map, marker);
         });
         markers.push(marker);
-        html_placeholder.push('<tr><td>' + menuTitle + '</td>' +
-            '<td>' + parseInt(distance) + '</td><td><a href="javascript:getSites(' + forestID + ')">details</td>' +
-            '<td><a href="javascript:forestLocate(' + (markers.length - 1) + ')">' +
-            '<img src="http://maps.google.com/mapfiles/ms/icons/green.png" /></a></td></tr>');
+        forestDataSet.push([menuTitle, distance, '<a href="javascript:getSites(' + forestID + ')">details</a>',
+            '<a onclick="javascript:forestLocate(' + (markers.length - 1) + ')" href="Distance#map">' +
+            '<img src="http://maps.google.com/mapfiles/ms/icons/green.png" /></a>']);
 
         //document.getElementById("forest_list").innerHTML = html_placeholder;
     }
-
-    //function to initialise the map
-    function initialise() {
-        var mapInit = {
-            zoom: 15,
-            center: new google.maps.LatLng(latitude, longitude)
-        };
-        map = new google.maps.Map(document.getElementById("map"), mapInit);
-
-        google.maps.event.addListener(map, 'click', function () {
-            infoWindow.close();
-        });
-        var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(latitude, longitude)
-            //icon: 'http://maps.google.com/mapfiles/ms/icons/green.png'
-        });
-        marker.setMap(map);
-        google.maps.event.addListener(marker, 'click', function () {
-            infoWindow.setContent('<b>You are here!</b>');
-            infoWindow.open(map, marker);
-        });
-        //html_placeholder.push('<tr class="warning"><td colspan="4">No forest within 0 km</div></td></tr>');
-        document.getElementById("forest_list").innerHTML = '<tr class="warning"><td colspan="4">No forest within 0 km</div></td></tr>';
-    }
-
-    //function to load map on the page
-    google.maps.event.addDomListener(window, 'load', initialise);
-
-    //function to get max distance from database (in km)
-    var maxDistance;
-
-    function getMaxDistance(latitude, longitude) {
-        //var latitude = $("input#latitude").val();
-        //var longitude = $("input#longitude").val();
-        jQuery.ajax({
+    $("select#unit").change(function () {
+        markers = [];
+        forestDataSet = [];
+        var latitude = $("#latitude").val();
+        var longitude = $("#longitude").val();
+        initialise(latitude, longitude);
+        $.ajax({
             type: "POST",
-            url: "http://xploreforest.azurewebsites.net/Ajax/get_sites",
-            //url: "http://localhost/new_ci/index.php/Ajax/get_max_distances",
+            url: url + "get_max_distances",
             dataType: 'text',
-            data: {latitude: latitude, longitude: longitude},
+            data: {latitude: latitude, longitude: longitude,
+                unit: $("select#unit option:selected").val()},
             success: function (data) {
                 if (data) {
-                    maxDistance = data;
+                    updateRangeSlider(data);
+                }
+                else {
+                    return updateRangeSlider(0);
                 }
             }
-        })
+        });
+    });
+
+    function updateRangeSlider(maxValue) {
+        var $r = $('input[type=range]');
+        $r[0].value = 0;
+        $r.attr({"max": maxValue});
+
+        $r.rangeslider('update', true);
     }
 
-    //array divider function for pagination
-    function divideArray(array, dataPerSet) {
-        var multiArray = [];
-        for (var i = 0; i < array.length; i += dataPerSet) {
-            multiArray.push(array.slice(i, i + dataPerSet));
-        }
-        return multiArray;
-    }
 
-
-    //respond when user click apply button
-    $("button#apply").click(function (event) {
-        event.preventDefault();
-
-        //get the data from the form post
-        var distance = $("input#distance").val();
-        if(isNaN(distance) || distance <= 0 || !(distance % 1 === 0))
-        {
-            alert("Invalid input, please enter whole number greater than zero.");
-            return;
-        }
+    //respond to side bar
+    function displayData(distance)
+    {
         var unit = $("select#unit option:selected").val();
+        var unitText = $("select#unit option:selected").text();
         var latitude = $("input#latitude").val();
         var longitude = $("input#longitude").val();
-        getMaxDistance();
         //get the data from controller
         jQuery.ajax({
             type: "POST",
-            url: "http://xploreforest.azurewebsites.net/Ajax/get_forests",
-            //url: "http://localhost/new_ci/index.php/Ajax/get_forests",
+            url: url + "get_forests",
             dataType: 'json',
             data: {distance: distance, unit: unit, latitude: latitude, longitude: longitude},
             success: function (data) {
                 if (data) {
                     markers = [];
-                    html_placeholder = [];
-                    document.getElementById("forest_list").innerHTML = '';
+                    forestDataSet = [];
+                    //document.getElementById("forest_list").innerHTML = '';
                     var mapInit = {
                         zoom: 15,
                         center: new google.maps.LatLng(latitude, longitude)
@@ -145,15 +184,29 @@ $(document).ready(function() {
                         infoWindow.close();
                     });
                     //create circle marker
-                    maxDistance = parseInt(maxDistance);
-                    maxDistance = 1000 * maxDistance; //convert to meter
-                    setRadius = 0;
-                    if (parseInt(distance) > maxDistance) {
-                        setRadius = maxDistance;
+                    var $r = $('input[type=range]');
+                    var boundary = 0;
+                    var maxBoundary = 0;
+                    if (unit == 'K')
+                    {
+                        boundary = 1000 * $r[0].value; //convert to meter
+                        maxBoundary = 1000 * $r.attr('max'); //convert to meter
+                    }
+                    if (unit == 'M')
+                    {
+                        boundary = 1.60934 * 1000 * $r[0].value; //convert to meter
+                        maxBoundary = 1.60934 * 1000 * $r.attr('max'); //convert to meter
+                    }
+
+                    //alert('boundary: ' + boundary + " ; maxBoundary: " + maxBoundary);
+                    var setRadius = 0;
+                    if (boundary > maxBoundary) {
+                        setRadius = maxBoundary;
                     }
                     else {
-                        setRadius = parseInt(distance);
+                        setRadius = boundary;
                     }
+                    setRadius = parseInt(setRadius);
                     var theRadius = new google.maps.Circle({
                         center: new google.maps.LatLng(latitude, longitude),
                         radius: setRadius,
@@ -161,7 +214,6 @@ $(document).ready(function() {
                         strokeWeight: 1,
                         fillOpacity: 0.4
                     });
-                    //theRadius.radius = setRadius;
                     theRadius.setMap(map);
 
                     var marker = new google.maps.Marker({
@@ -182,18 +234,22 @@ $(document).ready(function() {
                             oneRecord.forest_name, oneRecord.forest_name, oneRecord.distance, oneRecord.forest_id);
                         map.fitBounds(bounds);
                     });
-                    //array for forest list pagination (5 items per page)
-                    forest_page = divideArray(html_placeholder, 5);
-                    //initialise first page
-                    document.getElementById("f_current_page").value = 0;
-                    //display the first 5 items
-                    document.getElementById("forest_list").innerHTML = "";
-                    for (var i = 0; i < forest_page[0].length; i++) {
-                        document.getElementById("forest_list").innerHTML += forest_page[0][i];
-                    }
-                    //add page link
-                    document.getElementById("f_pagination").innerHTML = '<button = "btn btn-default" onclick="f_prev();">PREV&nbsp;</button>' +
-                        ' 1 of ' + forest_page.length + ' <button ="btn btn-default" onclick="f_next();">&nbsp;NEXT</button>';
+                    $('#f_table').DataTable({
+                        destroy: true,
+                        data: forestDataSet,
+                        columns: [
+                            {title: "Forest Name"},
+                            {title: 'Distance (' + unitText + ')'},
+                            {title: "Recreation sites"},
+                            {title: "Map"}
+                        ],
+                        "columnDefs": [
+                            { "orderable": false, "targets": 2 },
+                            { "orderable": false, "targets": 3 },
+                        ],
+                        "pagingType": "simple",
+                        "lengthMenu": [5, 10]
+                    });
                 }
                 else {
                     //html_placeholder = [];
@@ -215,46 +271,13 @@ $(document).ready(function() {
                         infoWindow.setContent('<b>You are here!</b>');
                         infoWindow.open(map, marker);
                     });
-                    //html_placeholder += '<tr class="warning"><td colspan="4">No forest within ' + distance +' km</div></td></tr>';
-                    document.getElementById("forest_list").innerHTML =
-                        '<tr class="warning"><td colspan="4">No forest within ' + distance + ' km</div></td></tr>';
+                    $('#f_table_container').html('<table id="f_table" class="table table-striped table-bordered"' +
+                    'cellspacing="0" width="100%"></table>');
+                    $("#f_table").html('<tr><td colspan="4"><div class="alert-warning">No forest within ' +
+                        distance + ' ' + $("select#unit option:selected").text() + '</div></td></tr>');
                 }
             }
         });
-    });
-    //previous button for forest data
-    window.f_prev = function () {
-        var current_page = parseInt(document.getElementById("f_current_page").value);
-        if (current_page > 0) {
-            document.getElementById("forest_list").innerHTML = "";
-            current_page--;
-            //initialise new page
-            document.getElementById("f_current_page").value = current_page;
-            //display the new 5 item
-            for (var i = 0; i < forest_page[current_page].length; i++) {
-                document.getElementById("forest_list").innerHTML += forest_page[current_page][i];
-            }
-            //add page link
-            document.getElementById("f_pagination").innerHTML = '<button = "btn btn-default" onclick="f_prev();">PREV&nbsp;</button>' +
-                (current_page + 1) + ' of ' + forest_page.length + ' <button ="btn btn-default" onclick="f_next();">&nbsp;NEXT</button>';
-        }
-    }
-    //next button for forest data
-    window.f_next = function () {
-        var current_page = parseInt(document.getElementById("f_current_page").value);
-        if (current_page < forest_page.length - 1) {
-            document.getElementById("forest_list").innerHTML = "";
-            current_page++;
-            //initialise new page
-            document.getElementById("f_current_page").value = current_page;
-            //display the new 5 item
-            for (var i = 0; i < forest_page[current_page].length; i++) {
-                document.getElementById("forest_list").innerHTML += forest_page[current_page][i];
-            }
-            //add page link
-            document.getElementById("f_pagination").innerHTML = '<button = "btn btn-default" onclick="f_prev();">PREV&nbsp;</button>' +
-                (current_page + 1) + ' of ' + forest_page.length + ' <button ="btn btn-default" onclick="f_next();">&nbsp;NEXT</button>';
-        }
     }
     function addSiteMarker(latitude, longitude, markerTitle, menuTitle) {
         var marker = new google.maps.Marker({
@@ -275,10 +298,9 @@ $(document).ready(function() {
     }
     //accepting forest ID to get sites
     window.getSites = function (forestID) {
-        jQuery.ajax({
+        /*jQuery.ajax({
             type: "POST",
-            url: "http://xploreforest.azurewebsites.net/Ajax/get_forests",
-            //url: "http://localhost/new_ci/index.php/Ajax/get_sites",
+            url: url + "get_sites",
             dataType: 'json',
             data: {forest_id: forestID},
             success: function (data) {
@@ -311,40 +333,6 @@ $(document).ready(function() {
                     $('#site_div').innerHTML ='<div class="warning">No sites available.</div>';
                 }
             }
-        });
-    }
-    //previous button for sites data
-    window.s_prev = function () {
-        var current_page = parseInt(document.getElementById("s_current_page").value);
-        if (current_page > 0) {
-            document.getElementById("site_list").innerHTML = "";
-            current_page--;
-            //initialise new page
-            document.getElementById("s_current_page").value = current_page;
-            //display the new 5 item
-            for (var i = 0; i < site_page[current_page].length; i++) {
-                document.getElementById("site_list").innerHTML += site_page[current_page][i];
-            }
-            //add page link
-            document.getElementById("s_pagination").innerHTML = '<button = "btn btn-default" onclick="s_prev();">PREV&nbsp;</button>' +
-                (current_page + 1) + ' of ' + site_page.length + ' <button ="btn btn-default" onclick="s_next();">&nbsp;NEXT</button>';
-        }
-    }
-    //next button for sites data
-    window.s_next = function () {
-        var current_page = parseInt(document.getElementById("s_current_page").value);
-        if (current_page < site_page.length - 1) {
-            document.getElementById("site_list").innerHTML = "";
-            current_page++;
-            //initialise new page
-            document.getElementById("s_current_page").value = current_page;
-            //display the new 5 item
-            for (var i = 0; i < site_page[current_page].length; i++) {
-                document.getElementById("site_list").innerHTML += site_page[current_page][i];
-            }
-            //add page link
-            document.getElementById("s_pagination").innerHTML = '<button = "btn btn-default" onclick="s_prev();">PREV&nbsp;</button>' +
-                (current_page + 1) + ' of ' + site_page.length + ' <button ="btn btn-default" onclick="s_next();">&nbsp;NEXT</button>';
-        }
+        });*/
     }
 });
