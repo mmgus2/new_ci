@@ -7,7 +7,7 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Coming_soon extends CI_Controller {
+class Coming extends CI_Controller {
 
     /**
      * Index Page for this controller.
@@ -29,7 +29,7 @@ class Coming_soon extends CI_Controller {
 
         $this->load->view('header');
         $this->load->view('menu');
-        $this->load->view('coming_soon-view');
+        $this->load->view('coming-view');
         $this->load->view('footer');
     }
 }
