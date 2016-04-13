@@ -1,4 +1,4 @@
-<section id="portfolio">
+<section id="portfolio" class="bg-light-gray">
     <div class="container">
         <input type="hidden" id="latitude" />
         <input type="hidden" id="longitude" />
@@ -13,13 +13,13 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-10 col-lg-offset-2">
+            <div class="col-md-12">
                 <input type="range" value="0" min="0" step="1">
             </div>
         </div>
         <br />
         <div class="row">
-            <div class="col-sm-2 col-lg-offset-2">
+            <div class="col-sm-2">
                 <select class="form-control" id="unit">
                     <option value="K" selected>Km</option>
                     <option value="M">Mile</option>
@@ -28,11 +28,11 @@
         </div>
         <br />
         <div class="row">
-            <div class="col-md-5 col-md-offset-2">
-                <div class="fa-border" id="map" style="width: 100%; height: 400px;"></div>
+            <div class="col-md-6">
+                <div class="fa-border" id="map" style="width: 100%; height: 500px;"></div>
             </div>
             <br />
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div id="f_table_container">
                     <table id="f_table" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     </table>
