@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="item">
-            <img class="second-slide" src="<?php echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/Header/HeaderImage-2.jpg"); ?>" alt="Second slide">
+            <img class="second-slide" src="../../assets/theme/startbootstrap-agency-1.0.6/img/Header/HeaderImage-2.jpg" alt="Second slide">
             <div class="container">
                 <div class="carousel-caption">
                     <h1>Indulge in Adventure</h1>
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="item">
-            <img class="third-slide" src="<?php echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/Header/HeaderImage-1.jpg"); ?>" alt="Third slide">
+            <img class="third-slide" src="../../assets/theme/startbootstrap-agency-1.0.6/img/Header/HeaderImage-1.jpg" alt="Third slide">
             <div class="container">
                 <div class="carousel-caption">
                     <h1>Give us your Feedback</h1>
@@ -66,7 +66,7 @@
                             <i class="fa fa-tree"></i>
                         </div>
                     </div>
-                    <img src="<?php echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/portfolio/KnowyourForest.jpg"); ?>" class="img-responsive" alt="">
+                    <img src="../../assets/theme/startbootstrap-agency-1.0.6/img/portfolio/KnowyourForest.jpg" class="img-responsive" alt="">
                 </a>
                 <div class="portfolio-caption">
                     <h4>Know Your Forest</h4>
@@ -80,7 +80,7 @@
                             <i class="fa fa-tree"></i>
                         </div>
                     </div>
-                    <img src="<?php echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/portfolio/location.jpg"); ?>" class="img-responsive" alt="">
+                    <img src="../../assets/theme/startbootstrap-agency-1.0.6/img/portfolio/location.jpg" class="img-responsive" alt="">
                 </a>
                 <div class="portfolio-caption">
                     <h4>Search the Location</h4>
@@ -94,7 +94,7 @@
                             <i class="fa fa-tree"></i>
                         </div>
                     </div>
-                    <img src="<?php echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/portfolio/activities.jpg"); ?>" class="img-responsive" alt="">
+                    <img src="../../assets/theme/startbootstrap-agency-1.0.6/img/portfolio/activities.jpg" class="img-responsive" alt="">
                 </a>
                 <div class="portfolio-caption">
                     <h4>Activities</h4>
@@ -119,7 +119,7 @@
                 <ul class="timeline">
                     <li>
                         <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="<?php echo site_url("assets/img/beginnings.jpg"); ?>" alt="">
+                            <img class="img-circle img-responsive" src="../../assets/img/beginnings.jpg" alt="">
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -133,7 +133,7 @@
                     </li>
                     <li class="timeline-inverted">
                         <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="<?php echo site_url("assets/img/ExploreForest.jpg"); ?>" alt="">
+                            <img class="img-circle img-responsive" src="../../assets/img/ExploreForest.jpg" alt="">
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -285,12 +285,12 @@
             </div-->
             <div class="col-md-4 col-md-offset-2">
                 <a href="#">
-                    <img src="<?php echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/logos/deltasolutions.png"); ?>" class="img-responsive img-centered" alt="">
+                    <img src="../../assets/theme/startbootstrap-agency-1.0.6/img/logos/deltasolutions.png" class="img-responsive img-centered" alt="">
                 </a>
             </div>
             <div class="col-md-4">
                 <a href="#">
-                    <img src="<?php echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/logos/monash.jpg"); ?>" class="img-responsive img-centered" alt="">
+                    <img src="../../assets/theme/startbootstrap-agency-1.0.6/img/logos/monash.jpg" class="img-responsive img-centered" alt="">
                 </a>
             </div>
         </div>

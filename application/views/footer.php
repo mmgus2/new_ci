@@ -27,26 +27,26 @@
 </footer>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/bootstrap.min.js"); ?>" ></script>
+<script src="../../assets/theme/startbootstrap-agency-1.0.6/js/bootstrap.min.js" ></script>
 
 <!--custom script -->
-<script src="<?php echo base_url("assets/js/jquery.geolocation.min.js"); ?>"></script>
-<script src="<?php echo base_url("assets/js/rangeslider.min.js"); ?>"></script>
-<script src="<?php echo base_url("assets/js/jquery.dataTables.min.js"); ?>"></script>
-<script src="<?php echo base_url("assets/js/dataTables.bootstrap.min.js"); ?>"></script>
-<script src="<?php echo base_url("assets/js/ajax.js"); ?>"></script>
+<script src="../../assets/js/jquery.geolocation.min.js"></script>
+<script src="../../assets/js/rangeslider.min.js"></script>
+<script src="../../assets/js/jquery.dataTables.min.js"></script>
+<script src="../../assets/js/dataTables.bootstrap.min.js"></script>
+<script src="../../assets/js/ajax.js"></script>
 
 <!-- Plugin JavaScript -->
 <!--script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script-->
-<script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/classie.js"); ?>"></script>
-<script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/cbpAnimatedHeader.js"); ?>"></script>
+<script src="../../assets/theme/startbootstrap-agency-1.0.6/js/classie.js"></script>
+<script src="../../assets/theme/startbootstrap-agency-1.0.6/js/cbpAnimatedHeader.js"></script>
 
 <!-- Contact Form JavaScript -->
-<script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/jqBootstrapValidation.js"); ?>"></script>
-<script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/contact_me.js"); ?>"></script>
+<script src="../../assets/theme/startbootstrap-agency-1.0.6/js/jqBootstrapValidation.js"></script>
+<script src="../../assets/theme/startbootstrap-agency-1.0.6/js/contact_me.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/agency.js"); ?>"></script>
+<script src="../../assets/theme/startbootstrap-agency-1.0.6/js/agency.js"></script>
 
 </body>
 

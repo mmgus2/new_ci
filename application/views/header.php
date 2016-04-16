@@ -12,12 +12,12 @@
 
     <!-- jQuery -->
     <!--script src="<?//php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/jquery.js"); ?>"></script-->
-    <script src="<?php echo base_url("assets/js/jquery-1.12.2.min.js"); ?>"></script>
+    <script src="../../assets/js/jquery-1.12.2.min.js"></script>
 
     <!-- Bootstrap Core CSS -->
-    <link href="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/css/bootstrap.min.css"); ?>" rel="stylesheet">
+    <link href="../../assets/theme/startbootstrap-agency-1.0.6/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/css/agency.css"); ?>" rel="stylesheet">
+    <link href="../../assets/theme/startbootstrap-agency-1.0.6/css/agency.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -27,8 +27,8 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Custom stylesheet -->
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/rangeslider.css"); ?>">
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/dataTables.bootstrap.min.css"); ?>">
+    <link rel="stylesheet" href="../../assets/css/rangeslider.css">
+    <link rel="stylesheet" href="../../assets/css/dataTables.bootstrap.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,7 +36,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link href="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/carousel.css"); ?>" rel="stylesheet">
+    <link href="../../assets/theme/startbootstrap-agency-1.0.6/carousel.css" rel="stylesheet">
 
     <!--for google map-->
     <script src="http://maps.googleapis.com/maps/api/js"></script>
