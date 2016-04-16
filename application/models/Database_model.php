@@ -13,7 +13,7 @@ class Database_model extends CI_Model {
         //$sql = "SELECT * FROM forest ORDER BY forest_name";
         $sql = "SELECT * FROM forest ORDER BY ?";
         //$query = $this->db->query($sql);
-        $query = $this->db->query($sql,'forest_name');
+        $query = $this->db->query($sql,array('forest_name'));
         return $query->result_array();
     }
 
@@ -22,7 +22,7 @@ class Database_model extends CI_Model {
         //$sql = "SELECT * FROM site WHERE forest_id = ". $forestID ." ORDER BY site_name";
         $sql = "SELECT * FROM site WHERE forest_id = ? ORDER BY ?";
         //$query = $this->db->query($sql);
-        $query = $this->db->query($sql,$forestID,'site_name');
+        $query = $this->db->query($sql, array($forestID,'site_name'));
         return $query->result_array();
     }
 }
