@@ -39,7 +39,7 @@
     <link href="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/carousel.css"); ?>" rel="stylesheet">
 
     <!--for google map-->
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD9Di7SmEVoXJ9NuLjN1kSSskhJONoI5OQ"></script>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
 
     <!--custom style for handle bar in distance-->
     <style>

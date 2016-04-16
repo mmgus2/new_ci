@@ -3,21 +3,30 @@
  */
 $(document).ready(function() {
     //initialise base url for ajax request
-    var url = "http://xploreforest.azurewebsites.net/Ajax/";
+    //var url = "http://xploreforest.azurewebsites.net/Ajax/";
+    var url = window.location.protocol + "//" + window.location.host + "/Ajax/";
     //var url = "http://localhost/new_ci/index.php/Ajax/";
+
+    //variables to store data
+    var forestData = [];
 
     //variables initialisation to create map and marker(s)
     var map = null;
+    var site_map = null;
+    
     var markers = [];
-    var forestDataSet = [];
-    var infoWindow = new google.maps.InfoWindow();
     var site_markers = [];
+    
+    var forestTableData = [];
+    var infoWindow = new google.maps.InfoWindow();
 
     //detect user current location
-    $.geolocation.get({
-        success: initialSetup,
-        error: askForPosition
-    });
+    window.detectLocation = function(){
+        $.geolocation.get({
+                success: initialSetup,
+                error: askForPosition
+        })
+    }
 
     //initial setup for the page
     function initialSetup(position)
@@ -57,15 +66,28 @@ $(document).ready(function() {
             //icon: 'http://maps.google.com/mapfiles/ms/icons/green.png'
         });
         marker.setMap(map);
+        marker.addListener('click', function () {
+            infoWindow.setContent('<b>You are here!</b>');
+            infoWindow.open(map, marker);
+        });
+        /*
         google.maps.event.addListener(marker, 'click', function () {
             infoWindow.setContent('<b>You are here!</b>');
             infoWindow.open(map, marker);
         });
+        */
         $('#f_table_container').html('<table id="f_table" class="table table-striped table-bordered"' +
             'cellspacing="0" width="100%"></table>');
         $("#f_table").html('<tr><td colspan="4"><div class="alert-warning">No forest within 0 ' +
             $("select#unit option:selected").text() + '</div></td></tr>');
     }
+
+    //function to respond to user click
+    window.forestLocate = function (i) {
+        google.maps.event.trigger(markers[i], 'click');
+        map.setZoom(12);
+        map.setCenter(markers[i].getPosition());
+    };
 
     //initialise range slider
     function initRangeSlider(maxValue)
@@ -97,15 +119,6 @@ $(document).ready(function() {
         alert("Couldn't detect the position");
     }
 
-
-
-    //function to respond to user click
-    window.forestLocate = function (i) {
-        google.maps.event.trigger(markers[i], 'click');
-        map.setZoom(12);
-        map.setCenter(markers[i].getPosition());
-    };
-
     //function to add marker on the map and also add html menu
     function addMarker(latitude, longitude, markerTitle, menuTitle, distance, forestID) {
         var marker = new google.maps.Marker({
@@ -113,12 +126,17 @@ $(document).ready(function() {
             icon: 'http://maps.google.com/mapfiles/ms/icons/green.png'
         });
         marker.setMap(map);
-        google.maps.event.addListener(marker, 'click', function () {
+        marker.addListener('click', function () {
             infoWindow.setContent('<b>' + markerTitle + '</b>');
             infoWindow.open(map, marker);
         });
+        /*
+        google.maps.event.addListener(marker, 'click', function () {
+            infoWindow.setContent('<b>' + markerTitle + '</b>');
+            infoWindow.open(map, marker);
+        });*/
         markers.push(marker);
-        forestDataSet.push([menuTitle, distance, '<a href="javascript:getSites(' + forestID + ')">details</a>',
+        forestTableData.push([menuTitle, distance, '<a href="javascript:getSites(' + forestID + ',' + (markers.length - 1) + ')">details</a>',
             '<a onclick="javascript:forestLocate(' + (markers.length - 1) + ')" href="Distance#map">' +
             '<img src="http://maps.google.com/mapfiles/ms/icons/green.png" /></a>']);
 
@@ -126,7 +144,7 @@ $(document).ready(function() {
     }
     $("select#unit").change(function () {
         markers = [];
-        forestDataSet = [];
+        forestTableData = [];
         var latitude = $("#latitude").val();
         var longitude = $("#longitude").val();
         initialise(latitude, longitude);
@@ -172,7 +190,7 @@ $(document).ready(function() {
             success: function (data) {
                 if (data) {
                     markers = [];
-                    forestDataSet = [];
+                    forestTableData = [];
                     //document.getElementById("forest_list").innerHTML = '';
                     var mapInit = {
                         zoom: 15,
@@ -232,11 +250,13 @@ $(document).ready(function() {
                         bounds.extend(new google.maps.LatLng(oneRecord.latitude, oneRecord.longitude));
                         addMarker(oneRecord.latitude, oneRecord.longitude,
                             oneRecord.forest_name, oneRecord.forest_name, oneRecord.distance, oneRecord.forest_id);
+                        forestData.push([oneRecord.forest_id, oneRecord.forest_name,
+                                         oneRecord.latitude, oneRecord.longitude, oneRecord.distance]);
                         map.fitBounds(bounds);
                     });
                     $('#f_table').DataTable({
                         destroy: true,
-                        data: forestDataSet,
+                        data: forestTableData,
                         columns: [
                             {title: "Forest Name"},
                             {title: 'Distance (' + unitText + ')'},
@@ -279,6 +299,7 @@ $(document).ready(function() {
             }
         });
     }
+
     function addSiteMarker(latitude, longitude, markerTitle, menuTitle) {
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(latitude, longitude),
@@ -297,7 +318,8 @@ $(document).ready(function() {
         //document.getElementById("forest_list").innerHTML = html_placeholder;
     }
     //accepting forest ID to get sites
-    window.getSites = function (forestID) {
+    window.getSites = function (forestID,i) {
+        //alert("getSites() function is called")
         /*jQuery.ajax({
             type: "POST",
             url: url + "get_sites",

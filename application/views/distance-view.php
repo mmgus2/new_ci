@@ -1,4 +1,10 @@
-<section id="portfolio" class="bg-light-gray">
+<script>
+    $(this).load(function() {
+        detectLocation();
+    });
+</script>
+
+<section id="loc_distance" class="bg-light-gray">
     <div class="container">
         <input type="hidden" id="latitude" />
         <input type="hidden" id="longitude" />
@@ -33,22 +39,15 @@
             </div>
             <br />
             <div class="col-md-6">
+                <div id="aforest_container" hidden="true">
+                </div>
                 <div id="f_table_container">
                     <table id="f_table" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     </table>
                 </div>
-                <div class="fa-border" id="site_div" hidden="true">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>Site</th>
-                            <th>Site name</th>
-                        </tr>
-                        </thead>
-                        <tbody id="site_list">
-                        </tbody>
+                <div id="s_table_container" hidden="true">
+                    <table id="f_table" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     </table>
-                    <div id="s_pagination"></div>
                 </div>
 
             </div>

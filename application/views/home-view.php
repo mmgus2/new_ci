@@ -9,7 +9,7 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img class="first-slide" src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/Header/HeaderImage-3.jpg"); ?>" alt="First slide">
+            <img class="first-slide" src="<?php echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/Header/HeaderImage-3.jpg"); ?>" alt="First slide">
             <div class="container">
                 <div class="carousel-caption">
                     <h1>State Forests of Victoria</h1>
@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="item">
-            <img class="second-slide" src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/Header/HeaderImage-2.jpg"); ?>" alt="Second slide">
+            <img class="second-slide" src="<?php echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/Header/HeaderImage-2.jpg"); ?>" alt="Second slide">
             <div class="container">
                 <div class="carousel-caption">
                     <h1>Indulge in Adventure</h1>
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="item">
-            <img class="third-slide" src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/Header/HeaderImage-1.jpg"); ?>" alt="Third slide">
+            <img class="third-slide" src="<?php echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/Header/HeaderImage-1.jpg"); ?>" alt="Third slide">
             <div class="container">
                 <div class="carousel-caption">
                     <h1>Give us your Feedback</h1>
@@ -66,7 +66,7 @@
                             <i class="fa fa-tree"></i>
                         </div>
                     </div>
-                    <img src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/portfolio/KnowyourForest.jpg"); ?>" class="img-responsive" alt="">
+                    <img src="<?php echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/portfolio/KnowyourForest.jpg"); ?>" class="img-responsive" alt="">
                 </a>
                 <div class="portfolio-caption">
                     <h4>Know Your Forest</h4>
@@ -80,7 +80,7 @@
                             <i class="fa fa-tree"></i>
                         </div>
                     </div>
-                    <img src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/portfolio/location.jpg"); ?>" class="img-responsive" alt="">
+                    <img src="<?php echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/portfolio/location.jpg"); ?>" class="img-responsive" alt="">
                 </a>
                 <div class="portfolio-caption">
                     <h4>Search the Location</h4>
@@ -94,7 +94,7 @@
                             <i class="fa fa-tree"></i>
                         </div>
                     </div>
-                    <img src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/portfolio/activities.jpg"); ?>" class="img-responsive" alt="">
+                    <img src="<?php echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/portfolio/activities.jpg"); ?>" class="img-responsive" alt="">
                 </a>
                 <div class="portfolio-caption">
                     <h4>Activities</h4>
@@ -119,7 +119,7 @@
                 <ul class="timeline">
                     <li>
                         <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/about/1.jpg"); ?>" alt="">
+                            <img class="img-circle img-responsive" src="<?php echo site_url("assets/img/beginnings.jpg"); ?>" alt="">
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -133,7 +133,7 @@
                     </li>
                     <li class="timeline-inverted">
                         <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/about/2.jpg"); ?>" alt="">
+                            <img class="img-circle img-responsive" src="<?php echo site_url("assets/img/ExploreForest.jpg"); ?>" alt="">
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -147,7 +147,9 @@
                     </li>
                     <li>
                         <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/about/3.jpg"); ?>" alt="">
+                            <h4>Coming
+                                <br>Soon!!
+                            </h4>
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -161,7 +163,9 @@
                     </li>
                     <li class="timeline-inverted">
                         <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/about/4.jpg"); ?>" alt="">
+                            <h4>Coming
+                                <br>Soon!!
+                            </h4>
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -173,20 +177,25 @@
                             </div>
                         </div>
                     </li>
-                    <li class="timeline-inverted">
-                        <div class="timeline-image">
-                            <h4>Be Part
-                                <br>Of Our
-                                <br>Story!</h4>
+                    <li  class="timeline-inverted">
+
+                        <div
+                            class="timeline-image">
+                            <a href = "AboutUs.html"><h4>Click
+                                    <br> to
+                                    <br>Know more!!<h4></a>
+
                         </div>
-                    </li>
-                </ul>
+
             </div>
+            </li>
+            </ul>
         </div>
+    </div>
     </div>
 </section>
 
-<!-- Team Section -->
+<!-- Team Section>
 <section id="team" class="bg-light-gray">
     <div class="container">
         <div class="row">
@@ -198,7 +207,7 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="team-member">
-                    <img src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/team/navjot.jpg"); ?>" class="img-responsive img-circle" alt="">
+                    <img src="<?php //echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/team/navjot.jpg"); ?>" class="img-responsive img-circle" alt="">
                     <h4>Navjot Kaur</h4>
                     <p class="text-muted">Lead Designer</p>
                     <ul class="list-inline social-buttons">
@@ -213,7 +222,7 @@
             </div>
             <div class="col-sm-3">
                 <div class="team-member">
-                    <img src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/team/gus.jpg"); ?>" class="img-responsive img-circle" alt="">
+                    <img src="<?php //echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/team/gus.jpg"); ?>" class="img-responsive img-circle" alt="">
                     <h4>Gus</h4>
                     <p class="text-muted">Lead Developer</p>
                     <ul class="list-inline social-buttons">
@@ -228,7 +237,7 @@
             </div>
             <div class="col-sm-3">
                 <div class="team-member">
-                    <img src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/team/wade.jpg"); ?>" class="img-responsive img-circle" alt="">
+                    <img src="<?php //echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/team/wade.jpg"); ?>" class="img-responsive img-circle" alt="">
                     <h4>Wade</h4>
                     <p class="text-muted">Database Expert</p>
                     <ul class="list-inline social-buttons">
@@ -243,7 +252,7 @@
             </div>
             <div class="col-sm-3">
                 <div class="team-member">
-                    <img src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/team/frank.jpg"); ?>" class="img-responsive img-circle" alt="">
+                    <img src="<?php //echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/team/frank.jpg"); ?>" class="img-responsive img-circle" alt="">
                     <h4>Frank</h4>
                     <p class="text-muted">Data and Stastical Analyst</p>
                     <ul class="list-inline social-buttons">
@@ -265,30 +274,30 @@
     </div>
 </section>
 
-<!-- Clients Aside -->
+<!-- Clients Aside-->
 <aside class="clients">
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
+            <!--div class="col-md-4">
                 <a href="#">
-                    <img src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/logos/pwc.png"); ?>" class="img-responsive img-centered" alt="">
+                    <img src="<?php //echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/logos/pwc.png"); ?>" class="img-responsive img-centered" alt="">
+                </a>
+            </div-->
+            <div class="col-md-4 col-md-offset-2">
+                <a href="#">
+                    <img src="<?php echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/logos/deltasolutions.png"); ?>" class="img-responsive img-centered" alt="">
                 </a>
             </div>
             <div class="col-md-4">
                 <a href="#">
-                    <img src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/logos/deltasolutions.png"); ?>" class="img-responsive img-centered" alt="">
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="#">
-                    <img src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/logos/monash.jpg"); ?>" class="img-responsive img-centered" alt="">
+                    <img src="<?php echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/logos/monash.jpg"); ?>" class="img-responsive img-centered" alt="">
                 </a>
             </div>
         </div>
     </div>
 </aside>
 
-<!-- Contact Section -->
+<!-- Contact Section>
 <section id="contact">
     <div class="container">
         <div class="row">
@@ -336,7 +345,7 @@
 <!-- Portfolio Modals -->
 <!-- Use the modals below to showcase details about your portfolio projects! -->
 
-<!-- Portfolio Modal 1 -->
+<!-- Portfolio Modal 1>
 <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content">
         <div class="close-modal" data-dismiss="modal">
@@ -349,10 +358,10 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="modal-body">
-                        <!-- Project Details Go Here -->
+                        <!-- Project Details Go Here>
                         <h2>Explore the Forests</h2>
                         <p class="item-intro text-muted">Seelect various forests to get the information</p>
-                        <img class="img-responsive img-centered" src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/portfolio/roundicons-free.png"); ?>" alt="">
+                        <img class="img-responsive img-centered" src="<?php// echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/portfolio/roundicons-free.png"); ?>" alt="">
                         <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                         <p>
                             <strong>Want these icons in this portfolio item sample?</strong>You can download 60 of them for free, courtesy of <a href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">RoundIcons.com</a>, or you can purchase the 1500 icon set <a href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">here</a>.</p>
@@ -369,7 +378,7 @@
     </div>
 </div>
 
-<!-- Portfolio Modal 2 -->
+<!-- Portfolio Modal 2>
 <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content">
         <div class="close-modal" data-dismiss="modal">
@@ -400,7 +409,7 @@
                         <button type="button" class="btn btn-default" id="apply">Apply</button>
                         <input type="hidden" id="latitude" />
                         <input type="hidden" id="longitude" />
-                        <!--input type="range" id="distance" onchange="updateMap()" /><output id="distanceVal"></output-->
+                        <!--input type="range" id="distance" onchange="updateMap()" /><output id="distanceVal"></output>
                     </form>
                 </div>
                 <div class="col-md-2"></div>
@@ -434,7 +443,7 @@
     </div>
 </div>
 
-<!-- Portfolio Modal 3 -->
+<!-- Portfolio Modal 3>
 <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content">
         <div class="close-modal" data-dismiss="modal">
@@ -447,10 +456,10 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="modal-body">
-                        <!-- Project Details Go Here -->
+                        <!-- Project Details Go Here>
                         <h2>Project Name</h2>
                         <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                        <img class="img-responsive img-centered" src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/img/portfolio/treehouse-preview.png"); ?>" alt="">
+                        <img class="img-responsive img-centered" src="<?php //echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/portfolio/treehouse-preview.png"); ?>" alt="">
                         <p>Treehouse is a free PSD web template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. This is bright and spacious design perfect for people or startup companies looking to showcase their apps or other projects.</p>
                         <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/treehouse-free-psd-web-template/">FreebiesXpress.com</a>.</p>
                         <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
@@ -459,29 +468,4 @@
             </div>
         </div>
     </div>
-</div>
-
-<!-- jQuery -->
-<script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/jquery.js"); ?>"></script>
-
-<!--custom script -->
-<script src="<?php echo base_url("assets/js/ajax.js"); ?>"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/bootstrap.min.js"); ?>" ></script>
-
-<!-- Plugin JavaScript -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/classie.js"); ?>"></script>
-<script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/cbpAnimatedHeader.js"); ?>"></script>
-
-<!-- Contact Form JavaScript -->
-<script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/jqBootstrapValidation.js"); ?>"></script>
-<script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/contact_me.js"); ?>"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="<?php echo base_url("assets/theme/startbootstrap-agency-1.0.6/js/agency.js"); ?>"></script>
-
-</body>
-
-</html>
+</div-->
