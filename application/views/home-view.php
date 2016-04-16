@@ -9,7 +9,7 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img class="first-slide" src="<?php echo site_url("assets/theme/startbootstrap-agency-1.0.6/img/Header/HeaderImage-3.jpg"); ?>" alt="First slide">
+            <img class="first-slide" src="../../assets/theme/startbootstrap-agency-1.0.6/img/Header/HeaderImage-3.jpg" alt="First slide">
             <div class="container">
                 <div class="carousel-caption">
                     <h1>State Forests of Victoria</h1>
