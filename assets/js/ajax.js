@@ -3,8 +3,8 @@
  */
 $(document).ready(function() {
     //initialise base url for ajax request
-    //var url = window.location.protocol + "//" + window.location.host + "/Ajax/";
-    var url = "http://localhost/index.php/Ajax/";
+    var url = window.location.protocol + "//" + window.location.host + "/Ajax/";
+    //var url = "http://localhost/index.php/Ajax/";
 
     //variables to store forest data
     var forestData = [];
