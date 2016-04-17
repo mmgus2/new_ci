@@ -19,8 +19,7 @@
             </div>
         </div>
         <br />
-        <div class="row">
-                <div class="col-md-1"></div>
-                <div id="activity_button_list"></div>
+        <div class="row" id="activity_button_list">
+            <div class="col-sm-1"></div>
         </div>
         <br />

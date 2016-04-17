@@ -3,8 +3,8 @@
  */
 $(document).ready(function() {
     //initialise base url for ajax request
-    var url = window.location.protocol + "//" + window.location.host + "/Ajax/";
-    //var url = "http://localhost/index.php/Ajax/";
+    //var url = window.location.protocol + "//" + window.location.host + "/Ajax/";
+    var url = "http://localhost/index.php/Ajax/";
 
     //variable to check whether it is in distance mode or activity mode
     var displayMode = $('#display_mode').val();
@@ -65,7 +65,7 @@ $(document).ready(function() {
                 success: function (data) {
                     if (data) {
                         $.each(data, function (index, oneRecord){
-                            $('#activity_button_list').append('<div class="col-md-1"><img src="../../assets/img/buttons/' +
+                            $('#activity_button_list').append('<div class="col-sm-1"><img src="../../assets/img/buttons/' +
                                 oneRecord.activity_id +'.png" alt="' + oneRecord.activity_name +
                                 '" onclick="displayDataActivity(this)"' +
                                 'height="50" width="50" class="activity_button" id="' +
