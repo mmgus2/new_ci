@@ -19,9 +19,19 @@
                 <li class="hidden">
                     <a href="#page-top"></a>
                 </li>
-                <li>
-                    <a class="page-scroll" href="Home#portfolio">Explore</a>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Explore <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Distance">By Distance</a></li>
+                        <li><a href="Activity">By Activities</a></li>
+                        <!--li><a href="#">By Name</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Other Info</a></li-->
+                    </ul>
                 </li>
+                <!--li>
+                    <a class="page-scroll" href="Home#portfolio">Explore</a>
+                </li-->
                 <li>
                     <a class="page-scroll" href="Coming">Information</a>
                 </li>

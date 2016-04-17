@@ -848,3 +848,54 @@ img::-moz-selection {
 body {
     webkit-tap-highlight-color: #7CC37C
 }
+
+.location {
+    background-image: url(../img/header/location.jpg);
+    text-align: center;
+    color: #fff;
+	height: 250px;
+}
+
+.location .intro-text {
+    padding-top: 30px;
+    padding-bottom: 15px
+}
+
+.location .intro-text .intro-lead-in {
+    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 22px;
+    margin-bottom: 25px
+}
+
+.location .intro-text .intro-heading {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 50px;
+    margin-bottom: 25px
+}
+
+@media (min-width:768px) {
+    .location .intro-text {
+        padding-top: 100px;
+        padding-bottom: 100px
+    }
+    .location .intro-text .intro-lead-in {
+        font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-style: italic;
+        font-size: 40px;
+        line-height: 40px;
+        margin-bottom: 25px
+    }
+    .location .intro-text .intro-heading {
+        font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 75px;
+        line-height: 75px;
+        margin-bottom: 50px
+    }
+}

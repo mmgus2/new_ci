@@ -2,12 +2,12 @@
 /**
  * Created by PhpStorm.
  * User: gusis
- * Date: 4/3/2016
- * Time: 3:58 PM
+ * Date: 4/17/2016
+ * Time: 6:02 PM
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Distance extends CI_Controller {
+class Activity extends CI_Controller {
 
     /**
      * Index Page for this controller.
@@ -26,10 +26,9 @@ class Distance extends CI_Controller {
      */
     public function index()
     {
-
         $this->load->view('header');
         $this->load->view('menu');
-        $this->load->view('distance-view');
+        $this->load->view('activity-view');
         $this->load->view('maptable-view');
         $this->load->view('footer');
     }

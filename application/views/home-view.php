@@ -14,7 +14,7 @@
                 <div class="carousel-caption">
                     <h1>State Forests of Victoria</h1>
                     <p>Search for the nearest State Forests.Explore the Greenery,peace and adventures.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#portfolio" role="button">Explore</a></p>
+                    <!--p><a class="btn btn-lg btn-primary" href="#portfolio" role="button">Explore</a></p-->
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 <div class="carousel-caption">
                     <h1>Indulge in Adventure</h1>
                     <p>Know about the different kind of Activities that can be done in state Forests.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#portfolio" role="button">Activities</a></p>
+                    <!--p><a class="btn btn-lg btn-primary" href="#portfolio" role="button">Activities</a></p-->
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
                 <div class="carousel-caption">
                     <h1>Give us your Feedback</h1>
                     <p>Tell us your opinion about places,activities and more.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#contact" role="button">Feedback</a></p>
+                    <!--p><a class="btn btn-lg btn-primary" href="#contact" role="button">Feedback</a></p-->
                 </div>
             </div>
         </div>
@@ -88,7 +88,7 @@
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 portfolio-item">
-                <a href="Coming" class="portfolio-link">
+                <a href="Activity" class="portfolio-link">
                     <div class="portfolio-hover">
                         <div class="portfolio-hover-content">
                             <i class="fa fa-tree"></i>

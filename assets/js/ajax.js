@@ -6,6 +6,9 @@ $(document).ready(function() {
     var url = window.location.protocol + "//" + window.location.host + "/Ajax/";
     //var url = "http://localhost/index.php/Ajax/";
 
+    //variable to check whether it is in distance mode or activity mode
+    var displayMode = $('#display_mode').val();
+
     //variables to store forest data
     var forestData = [];
     var forestDataTable = [];
@@ -33,21 +36,50 @@ $(document).ready(function() {
         $("#latitude").val(position.coords.latitude);
         $("#longitude").val(position.coords.longitude);
         initialise(position.coords.latitude, position.coords.longitude);
-        $.ajax({
-            type: "POST",
-            url: url + "get_max_distances",
-            dataType: 'text',
-            data: {latitude: position.coords.latitude, longitude: position.coords.longitude,
-                unit: $("select#unit option:selected").val()},
-            success: function (data) {
-                if (data) {
-                    initRangeSlider(data);
+        if (displayMode == 'distance')
+        {
+            //initialise slider
+            $.ajax({
+                type: "POST",
+                url: url + "get_max_distances",
+                dataType: 'text',
+                data: {latitude: position.coords.latitude, longitude: position.coords.longitude,
+                    unit: $("select#unit option:selected").val()},
+                success: function (data) {
+                    if (data) {
+                        initRangeSlider(data);
+                    }
+                    else {
+                        initRangeSlider(0);
+                    }
                 }
-                else {
-                    return initRangeSlider(0);
+            });
+        }
+        else if (displayMode == 'activity')
+        {
+            //initalise activity buttons
+            $.ajax({
+                type: "POST",
+                url: url + "get_activities",
+                dataType: 'json',
+                success: function (data) {
+                    if (data) {
+                        $.each(data, function (index, oneRecord){
+                            $('#activity_button_list').append('<div class="col-md-1"><img src="../../assets/img/buttons/' +
+                                oneRecord.activity_id +'.png" alt="' + oneRecord.activity_name +
+                                '" onclick="displayDataActivity(this)"' +
+                                'height="50" width="50" class="activity_button" id="' +
+                                oneRecord.activity_id + '" /><br />' + oneRecord.activity_name + '</div>');
+                            //$('#activity_button_list').innerHTML = "Kunaon atuh";
+                            //alert(oneRecord.activity_id + ";" + oneRecord.activity_name);
+                        });
+                    }
+                    else {
+                        $('#activity_button_list').innerHTML = "Button icons cannot be displayed!";
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     //function to initialise map with event listener
@@ -103,8 +135,16 @@ $(document).ready(function() {
 
         $('#f_table_container').html('<table id="f_table" class="table table-striped table-bordered"' +
             'cellspacing="0" width="100%"></table>');
-        $("#f_table").html('<tr><td colspan="4"><div class="alert-warning">No forest within 0 ' +
-            $("select#unit option:selected").text() + '</div></td></tr>');
+        if(displayMode == 'distance')
+        {
+            $("#f_table").html('<tr><td colspan="4"><div class="alert-warning">No forest within 0 ' +
+                $("select#unit option:selected").text() + '</div></td></tr>');
+        }
+        else if(displayMode == 'activity')
+        {
+            $("#f_table").html('<tr><td colspan="4"><div class="alert-warning">' +
+                'There are no activities selected.</div></td></tr>');
+        }
     }
 
     //function to respond to user click
@@ -130,7 +170,7 @@ $(document).ready(function() {
                 updateHandle($handle[0], this.value);
             },
             onSlideEnd: function(){
-                displayData(this.value);
+                displayDataDistance(this.value);
             }
         });
     }
@@ -177,7 +217,7 @@ $(document).ready(function() {
 
 
     //respond to side bar
-    function displayData(distance)
+    function displayDataDistance(distance)
     {
         var unit = $("select#unit option:selected").val();
         var unitText = $("select#unit option:selected").text();
@@ -186,7 +226,7 @@ $(document).ready(function() {
         //get the data from controller
         $.ajax({
             type: "POST",
-            url: url + "get_forests",
+            url: url + "get_forests/distance",
             dataType: 'json',
             data: {distance: distance, unit: unit, latitude: latitude, longitude: longitude},
             success: function (data) {
@@ -248,7 +288,7 @@ $(document).ready(function() {
 
                         forestDataTable.push([oneRecord.forest_name, oneRecord.distance, '<a href="javascript:getSites(' +
                         (markers.length - 1) + ')">details</a>','<a onclick="javascript:mapLocate(' +
-                        (markers.length - 1) + ')" href="Distance#map">' +
+                        (markers.length - 1) + ')" href="#map">' +
                             '<img src="http://maps.google.com/mapfiles/ms/icons/green.png" /></a>']);
 
                         forestData.push({id: oneRecord.forest_id, name: oneRecord.forest_name,
@@ -298,19 +338,35 @@ $(document).ready(function() {
         map.setCenter(markers[i].getPosition());
 
         //console.log("index: " + i);
-        //disable slider
-        var $r = $('input[type=range]');
-        $r.prop('disabled', true);
-        $r.rangeslider('update',true);
+        var unit = '';
+        var unitText = '';
+        if(displayMode == 'distance')
+        {
+            //disable slider
+            var $r = $('input[type=range]');
+            $r.prop('disabled', true);
+            $r.rangeslider('update',true);
 
-        //disable unit dropdown (km or mile)
-        $('#unit').prop('disabled', true);
+            //disable unit dropdown (km or mile)
+            $('#unit').prop('disabled', true);
 
-        var unit = $("select#unit option:selected").text();
+            unit = $("select#unit option:selected").val();
+            unitText = $("select#unit option:selected").text();
+        }
+
+        if(displayMode == 'activity')
+        {
+            //disable activity buttons
+            $('#activity_button_list').css('pointer-events','none');
+            $('#activity_button_list').css('color','grey');
+
+            unit = 'K';
+            unitText = 'Km';
+        }
         var htmlContent = '<h6><b>' + forestData[i].name + '</b>' +
-                '<i>&nbsp;(distance: ' + forestData[i].distance + ' ' + unit + ')</i></h6>' +
-                '<p><i>Put here for description</i></p>' +
-                '<p><button class="btn btn-success" onclick="backToForest()">Go Back to forests location</button></p>';
+            '<i>&nbsp;(distance: ' + forestData[i].distance + ' ' + unit + ')</i></h6>' +
+            '<p><i>Put here for description</i></p>' +
+            '<p><button class="btn btn-success" onclick="backToForest()">Go Back to forests location</button></p>';
 
         $('#aforest_container').html(htmlContent);
         $('#aforest_container').show();
@@ -358,7 +414,7 @@ $(document).ready(function() {
 
                         siteDataTable.push([oneRecord.site_name, oneRecord.description, oneRecord.distance,
                             '<a onclick="javascript:mapLocate(' +
-                        (markers.length - 1) + ')" href="Distance#map">' +
+                        (markers.length - 1) + ')" href="#map">' +
                         '<img src="http://maps.google.com/mapfiles/ms/icons/blue.png" /></a>']);
 
                         siteData.push({id: oneRecord.site_id, name: oneRecord.site_name,
@@ -372,7 +428,7 @@ $(document).ready(function() {
                         columns: [
                             {title: "Site Name"},
                             {title: "Site Description"},
-                            {title: 'Distance (' + unit + ')'},
+                            {title: 'Distance (' + unitText + ')'},
                             {title: "Map"}
                         ],
                         "columnDefs": [
@@ -394,21 +450,33 @@ $(document).ready(function() {
     }
     window.backToForest = function () {
         //alert("Go back to forest");
+        var unit = '';
+        var unitText = '';
+        if (displayMode == 'distance')
+        {
+            //enable slider
+            var $r = $('input[type=range]');
+            $r.prop('disabled', false);
+            $r.rangeslider('update',true);
 
-        //enable slider
-        var $r = $('input[type=range]');
-        $r.prop('disabled', false);
-        $r.rangeslider('update',true);
+            //enable unit dropdown (km or mile)
+            $('#unit').prop('disabled', false);
 
-        //enable unit dropdown (km or mile)
-        $('#unit').prop('disabled', false);
+            unit = $("select#unit option:selected").val();
+            unitText = $("select#unit option:selected").text();
+        }
+
+        if (displayMode == 'activity')
+        {
+            //enable button
+            $('#activity_button_list').css('pointer-events','auto');
+            $('#activity_button_list').css('color','');
+        }
 
         $('#aforest_container').hide('slow');
         $('#s_table_container').hide('slow');
         $('#f_table_container').show('slow');
 
-        var unit = $("select#unit option:selected").val();
-        var unitText = $("select#unit option:selected").text();
         var latitude = $("input#latitude").val();
         var longitude = $("input#longitude").val();
         markers = [];
@@ -416,37 +484,39 @@ $(document).ready(function() {
         //intialise map
         addMap(latitude,longitude);
 
-        //create circle marker
-        var $r = $('input[type=range]');
-        var boundary = 0;
-        var maxBoundary = 0;
-        if (unit == 'K')
+        if (displayMode == 'distance')
         {
-            boundary = 1000 * $r[0].value; //convert to meter
-            maxBoundary = 1000 * $r.attr('max'); //convert to meter
+            //create circle marker
+            var $r = $('input[type=range]');
+            var boundary = 0;
+            var maxBoundary = 0;
+            if (unit == 'K')
+            {
+                boundary = 1000 * $r[0].value; //convert to meter
+                maxBoundary = 1000 * $r.attr('max'); //convert to meter
+            }
+            if (unit == 'M')
+            {
+                boundary = 1.60934 * 1000 * $r[0].value; //convert to meter
+                maxBoundary = 1.60934 * 1000 * $r.attr('max'); //convert to meter
+            }
+            var setRadius = 0;
+            if (boundary > maxBoundary) {
+                setRadius = maxBoundary;
+            }
+            else {
+                setRadius = boundary;
+            }
+            setRadius = parseInt(setRadius);
+            var theRadius = new google.maps.Circle({
+                center: new google.maps.LatLng(latitude, longitude),
+                radius: setRadius,
+                strokeOpacity: 0.8,
+                strokeWeight: 1,
+                fillOpacity: 0.1
+            });
+            theRadius.setMap(map);
         }
-        if (unit == 'M')
-        {
-            boundary = 1.60934 * 1000 * $r[0].value; //convert to meter
-            maxBoundary = 1.60934 * 1000 * $r.attr('max'); //convert to meter
-        }
-        var setRadius = 0;
-        if (boundary > maxBoundary) {
-            setRadius = maxBoundary;
-        }
-        else {
-            setRadius = boundary;
-        }
-        setRadius = parseInt(setRadius);
-        var theRadius = new google.maps.Circle({
-            center: new google.maps.LatLng(latitude, longitude),
-            radius: setRadius,
-            strokeOpacity: 0.8,
-            strokeWeight: 1,
-            fillOpacity: 0.1
-        });
-        theRadius.setMap(map);
-
         //add position marker
         addMarker(latitude,longitude,'<b>You are here!</b>');
 
@@ -457,13 +527,134 @@ $(document).ready(function() {
         for (var i = 0; i < forestData.length; i++)
         {
             bounds.extend(new google.maps.LatLng(forestData[i].latitude, forestData[i].longitude));
-
             var marker = addMarker(forestData[i].latitude, forestData[i].longitude,
                 forestData[i].name,'http://maps.google.com/mapfiles/ms/icons/green.png');
-
             markers.push(marker);
-
             map.fitBounds(bounds);
         }
     }
+
+    var actArray = [];
+    window.displayDataActivity = function(el)
+    {
+        //alert(el.alt);
+        if(el.src.match('_active'))
+        {
+            el.src = '../../assets/img/buttons/' + el.id + '.png';
+            var i = actArray.indexOf(el.id);
+            if(i != -1) {
+                actArray.splice(i, 1);
+            }
+            //alert(actArray.toString());
+        }
+        else
+        {
+            el.src = '../../assets/img/buttons/' + el.id + '_active.png';
+            actArray.push(el.id);
+            //alert(actArray.toString());
+        }
+        if(actArray.length > 0)
+        {
+            respondActivity(actArray);
+        }
+        else{
+            initialise($("input#latitude").val(), $("input#longitude").val());
+        }
+    }
+
+    function respondActivity(activities)
+    {
+        var unit = 'K';
+        var unitText = 'Km';
+        var latitude = $("input#latitude").val();
+        var longitude = $("input#longitude").val();
+        //get the data from controller
+        $.ajax({
+            type: "POST",
+            url: url + "get_forests/activity",
+            dataType: 'json',
+            data: {unit: unit, latitude: latitude, longitude: longitude, activities: activities},
+            success: function (data) {
+                if (data) {
+                    forestData= [];
+                    forestDataTable = [];
+                    markers = [];
+
+                    //intialise map
+                    addMap(latitude,longitude);
+
+                    //add position marker
+                    addMarker(latitude,longitude,'<b>You are here!</b>');
+
+                    var bounds = new google.maps.LatLngBounds();
+                    bounds.extend(new google.maps.LatLng(latitude, longitude));
+
+                    //store the data and add marker
+                    $.each(data, function (index, oneRecord) {
+                        bounds.extend(new google.maps.LatLng(oneRecord.latitude, oneRecord.longitude));
+
+                        var marker = addMarker(oneRecord.latitude, oneRecord.longitude,
+                            oneRecord.forest_name,'http://maps.google.com/mapfiles/ms/icons/green.png');
+
+                        markers.push(marker);
+
+                        map.fitBounds(bounds);
+
+                        forestDataTable.push([oneRecord.forest_name, oneRecord.distance, '<a href="javascript:getSites(' +
+                        (markers.length - 1) + ')">details</a>','<a onclick="javascript:mapLocate(' +
+                        (markers.length - 1) + ')" href="#map">' +
+                        '<img src="http://maps.google.com/mapfiles/ms/icons/green.png" /></a>']);
+
+                        forestData.push({id: oneRecord.forest_id, name: oneRecord.forest_name,
+                            latitude: oneRecord.latitude, longitude: oneRecord.longitude,
+                            distance: oneRecord.distance});
+                    });
+
+                    //show forests data in table
+                    $('#f_table').DataTable({
+                        destroy: true,
+                        data: forestDataTable,
+                        columns: [
+                            {title: "Forest Name"},
+                            {title: 'Distance (' + unitText + ')'},
+                            {title: "Recreation sites"},
+                            {title: "Map"}
+                        ],
+                        "columnDefs": [
+                            { "orderable": false, "targets": 2 },
+                            { "orderable": false, "targets": 3 }
+                        ],
+                        "pagingType": "simple",
+                        "lengthMenu": [5, 10]
+                    });
+                }
+                else {
+                    //initialise map
+                    addMap(latitude,longitude);
+
+                    //add position marker
+                    addMarker(latitude,longitude,'<b>You are here!</b>');
+
+                    $('#f_table_container').html('<table id="f_table" class="table table-striped table-bordered"' +
+                        'cellspacing="0" width="100%"></table>');
+                    $("#f_table").html('<tr><td colspan="4"><div class="alert-warning">No forest for selected activities' +
+                        '</div></td></tr>');
+                }
+            }
+        });
+    }
+
+    /*
+    $('#activity_button_list').on('mouseenter','.activity_button',function (e) {
+        if(!e.target.src.match('_active'))
+        {
+            e.target.src = '../../assets/img/buttons/' + e.target.id + '_active.png';
+        }
+    })
+    $('#activity_button_list').on('mouseleave','.activity_button',function (e) {
+        if(e.target.src.match('_active'))
+        {
+            e.target.src = '../../assets/img/buttons/' + e.target.id + '_active.png';
+        }
+    });*/
 });
