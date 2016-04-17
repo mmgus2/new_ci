@@ -18,5 +18,4 @@
             <br />
         </div>
     <br /><br />
-    </div>
-</section>
+</div>

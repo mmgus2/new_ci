@@ -35,6 +35,7 @@
 <script src="../../assets/js/jquery.dataTables.min.js"></script>
 <script src="../../assets/js/dataTables.bootstrap.min.js"></script>
 <script src="../../assets/js/ajax.js"></script>
+<script src="../../assets/js/parallax.min.js"></script>
 
 <!-- Plugin JavaScript -->
 <!--script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script-->

@@ -3,11 +3,19 @@
         detectLocation();
     });
 </script>
-<section id="distance" class="bg-light-gray">
+<header class="location">
+    <div class="parallax-window" data-parallax="scroll" data-image-src="../../assets/img/distance_header.jpg">
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">How Far would you Explore?</div>
+            </div>
+        </div>
+    </div>
+</header>
     <div class="container">
         <input type="hidden" id="max_distance" />
         <input type="hidden" id="display_mode" value="distance" />
-        <div class="row">
+        <!--div class="row">
             <div class="col-md-12">
                 <header class="location" >
                     <div class="container">
@@ -17,7 +25,7 @@
                     </div>
                 </header>
             </div>
-        </div>
+        </div-->
         <!--div class="row">
             <div class="col-md-4">
                 <h5>How far would you explore?</h5>
