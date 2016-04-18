@@ -19,7 +19,7 @@ class Database_model extends CI_Model {
 
     public function read_act($array)
     {
-        $sql = "select f.forest_id as forest_id, forest_name, latitude, longitude
+        $sql = "select f.forest_id as forest_id, forest_name, latitude, longitude, forest_description
                 from forest f, forest_activity fa
                 where f.forest_id = fa.forest_id
                 and activity_id in ?

@@ -8,13 +8,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Cron extends CI_Controller {
-    public function greet($name)
+    public function index()
     {
-        if(!$this->input->is_cli_request())
+        /*if(!$this->input->is_cli_request())
         {
             echo "accessible only from command line";
             return;
-        }
-        echo "Hello, $name" . PHP_EOL;
+        }*/
+        echo "Hello world!" . PHP_EOL;
     }
 }

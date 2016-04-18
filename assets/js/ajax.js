@@ -3,8 +3,8 @@
  */
 $(document).ready(function() {
     //initialise base url for ajax request
-    var url = window.location.protocol + "//" + window.location.host + "/Ajax/";
-    //var url = "http://localhost/index.php/Ajax/";
+    //var url = window.location.protocol + "//" + window.location.host + "/Ajax/";
+    var url = "http://localhost/index.php/Ajax/";
 
     //variable to check whether it is in distance mode or activity mode
     var displayMode = $('#display_mode').val();
@@ -605,7 +605,7 @@ $(document).ready(function() {
                         '<img src="http://maps.google.com/mapfiles/ms/icons/green.png" /></a>']);
 
                         forestData.push({id: oneRecord.forest_id, name: oneRecord.forest_name,
-                            latitude: oneRecord.latitude, longitude: oneRecord.longitude,
+                            latitude: oneRecord.latitude, longitude: oneRecord.longitude, description: oneRecord.description,
                             distance: oneRecord.distance});
                     });
 
@@ -628,6 +628,7 @@ $(document).ready(function() {
                     });
                 }
                 else {
+                    alert("Failed to collect data");
                     //initialise map
                     addMap(latitude,longitude);
 
@@ -641,6 +642,7 @@ $(document).ready(function() {
                 }
             }
         });
+        //alert("end of response");
     }
 
     /*
