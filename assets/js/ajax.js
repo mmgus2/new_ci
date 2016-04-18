@@ -69,7 +69,7 @@ $(document).ready(function() {
                             var innerHtml = '<div class="col-sm-1">' +
                                 '<img src="../../assets/img/buttons/' +oneRecord.activity_id +'.png" alt="'
                                 + oneRecord.activity_name + '" onclick="displayDataActivity(this)"' +
-                                'width="100%" id="' + oneRecord.activity_id + '" />' +
+                                'class="img-responsive" id="' + oneRecord.activity_id + '" />' +
                                 '<br />' + oneRecord.activity_name + '</div>';
                             $('#activity_button_list').append(innerHtml);
                         });
