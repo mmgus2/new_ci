@@ -64,14 +64,14 @@ $(document).ready(function() {
                 dataType: 'json',
                 success: function (data) {
                     if (data) {
+                        // /var count = 0;
                         $.each(data, function (index, oneRecord){
-                            $('#activity_button_list').append('<div class="col-sm-1"><img src="../../assets/img/buttons/' +
-                                oneRecord.activity_id +'.png" alt="' + oneRecord.activity_name +
-                                '" onclick="displayDataActivity(this)"' +
-                                'height="50" width="50" class="activity_button" id="' +
-                                oneRecord.activity_id + '" /><br />' + oneRecord.activity_name + '</div>');
-                            //$('#activity_button_list').innerHTML = "Kunaon atuh";
-                            //alert(oneRecord.activity_id + ";" + oneRecord.activity_name);
+                            var innerHtml = '<div class="col-sm-1">' +
+                                '<img src="../../assets/img/buttons/' +oneRecord.activity_id +'.png" alt="'
+                                + oneRecord.activity_name + '" onclick="displayDataActivity(this)"' +
+                                'class="img-responsive" id="' + oneRecord.activity_id + '" />' +
+                                '<br />' + oneRecord.activity_name + '</div>';
+                            $('#activity_button_list').append(innerHtml);
                         });
                     }
                     else {

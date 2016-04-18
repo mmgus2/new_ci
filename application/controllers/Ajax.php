@@ -93,7 +93,8 @@ class Ajax extends CI_Controller {
             $sites[$i]["site_name"] = $this->record[$i]["site_name"];
             $sites[$i]["latitude"] = floatval($this->record[$i]["latitude"]);
             $sites[$i]["longitude"] = floatval($this->record[$i]["longitude"]);
-            $sites[$i]["description"] = $this->record[$i]["access_desc"];
+            $sites[$i]["description"] = $this->record[$i]["site_description"];
+            $sites[$i]["desc_link"] = $this->record[$i]["website"];
             $sites[$i]["distance"] = intval($site_distance);
         }
         echo json_encode($sites, JSON_PRETTY_PRINT);
