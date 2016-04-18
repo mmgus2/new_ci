@@ -910,3 +910,8 @@ body {
 .container-explore{
     padding-top: 5px;
 }
+
+/* location background*/
+.background-custom{
+    background-color: #EAEAA0
+}

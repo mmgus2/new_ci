@@ -69,7 +69,7 @@ $(document).ready(function() {
                             var innerHtml = '<div class="col-sm-1">' +
                                 '<img src="../../assets/img/buttons/' +oneRecord.activity_id +'.png" alt="'
                                 + oneRecord.activity_name + '" onclick="displayDataActivity(this)"' +
-                                'class="img-responsive" id="' + oneRecord.activity_id + '" />' +
+                                'width="100%" id="' + oneRecord.activity_id + '" />' +
                                 '<br />' + oneRecord.activity_name + '</div>';
                             $('#activity_button_list').append(innerHtml);
                         });
@@ -292,7 +292,7 @@ $(document).ready(function() {
                             '<img src="http://maps.google.com/mapfiles/ms/icons/green.png" /></a>']);
 
                         forestData.push({id: oneRecord.forest_id, name: oneRecord.forest_name,
-                            latitude: oneRecord.latitude, longitude: oneRecord.longitude,
+                            latitude: oneRecord.latitude, longitude: oneRecord.longitude, description: description,
                             distance: oneRecord.distance});
                     });
 
@@ -363,9 +363,8 @@ $(document).ready(function() {
             unit = 'K';
             unitText = 'Km';
         }
-        var htmlContent = '<h6><b>' + forestData[i].name + '</b>' +
-            '<i>&nbsp;(distance: ' + forestData[i].distance + ' ' + unit + ')</i></h6>' +
-            '<p><i>Put here for description</i></p>' +
+        var htmlContent = '<h6><b>' + forestData[i].name + '</b><i>&nbsp;(distance: ' + forestData[i].distance + ' ' + unit + ')</i></h6>' +
+            '<p>' + forestData[i].description + '</p>' +
             '<p><button class="btn btn-success" onclick="backToForest()">Go Back to forests location</button></p>';
 
         $('#aforest_container').html(htmlContent);

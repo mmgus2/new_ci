@@ -12,7 +12,7 @@
         </div>
     </div>
 </header>
-    <div class="container">
+    <div class="container background-custom">
         <!--input type="hidden" id="max_distance" /-->
         <input type="hidden" id="display_mode" value="activity" />
         <!--div class="row">
