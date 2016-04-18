@@ -72,6 +72,7 @@ class Ajax extends CI_Controller {
                 $forests[$i]["forest_name"] = $this->record[$i]["forest_name"];
                 $forests[$i]["latitude"] = floatval($this->record[$i]["latitude"]);
                 $forests[$i]["longitude"] = floatval($this->record[$i]["longitude"]);
+                $forests[$i]["description"] = floatval($this->record[$i]["forest_description"]);
                 $forests[$i]["distance"] = intval($forest_distance);
                 //$forests[]["max_distance"] = $max_distance;
             }
