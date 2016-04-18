@@ -292,7 +292,7 @@ $(document).ready(function() {
                             '<img src="http://maps.google.com/mapfiles/ms/icons/green.png" /></a>']);
 
                         forestData.push({id: oneRecord.forest_id, name: oneRecord.forest_name,
-                            latitude: oneRecord.latitude, longitude: oneRecord.longitude, description: description,
+                            latitude: oneRecord.latitude, longitude: oneRecord.longitude, description: oneRecord.description,
                             distance: oneRecord.distance});
                     });
 
