@@ -363,7 +363,7 @@ $(document).ready(function() {
             unit = 'K';
             unitText = 'Km';
         }
-        var htmlContent = '<h6><b>' + forestData[i].name + '</b><i>&nbsp;(distance: ' + forestData[i].distance + ' ' + unit + ')</i></h6>' +
+        var htmlContent = '<h6><b>' + forestData[i].name + '</b><i>&nbsp;(distance: ' + forestData[i].distance + ' ' + unitText + ')</i></h6>' +
             '<p>' + forestData[i].description + '</p>' +
             '<p><button class="btn btn-success" onclick="backToForest()">Go Back to forests location</button></p>';
 
