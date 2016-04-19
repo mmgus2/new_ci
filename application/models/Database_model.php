@@ -45,4 +45,12 @@ class Database_model extends CI_Model {
         $query = $this->db->query($sql);
         return $query->result_array();
     }
+
+    public function get_forest_activities($forest_id)
+    {
+        $sql = "SELECT activity_id FROM forest f, forest_activity fa" .
+            " WHERE f.forest_id = fa.forest_id AND f.forest_id = ?";
+        $query = $this->db->query($sql, array($forest_id));
+        return $query->result_array();
+    }
 }

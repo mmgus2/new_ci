@@ -33,7 +33,7 @@
                     <a class="page-scroll" href="Home#portfolio">Explore</a>
                 </li-->
                 <li>
-                    <a class="page-scroll" href="Coming">Information</a>
+                    <a class="page-scroll" href="Information">Information</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="Home#about">About</a>

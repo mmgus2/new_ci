@@ -7,14 +7,20 @@
     <div class="parallax-window" data-parallax="scroll" data-image-src="../../assets/img/activity_header.jpg">
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in">What activities interest you?</div>
+                <div class="intro-lead-in white-font">What activities interest you?</div>
             </div>
         </div>
     </div>
 </header>
-    <div class="container background-custom">
+<section class="bg-light-gray">
+    <div class="container">
         <!--input type="hidden" id="max_distance" /-->
         <input type="hidden" id="display_mode" value="activity" />
+        <div class="row">
+            <div class="col-md-12">
+                <b>Select one or more activites</b>
+            </div>
+        </div>
         <!--div class="row">
             <div class="col-md-12">
                 <header class="location" >

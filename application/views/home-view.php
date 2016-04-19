@@ -13,7 +13,7 @@
             <div class="container">
                 <div class="carousel-caption">
                     <h1>State Forests of Victoria</h1>
-                    <p>Search for the nearest State Forests.Explore the Greenery,peace and adventures.</p>
+                    <p>Search for the nearest state forests. Explore the greenery, peace and adventures.</p>
                     <!--p><a class="btn btn-lg btn-primary" href="#portfolio" role="button">Explore</a></p-->
                 </div>
             </div>
@@ -23,7 +23,7 @@
             <div class="container">
                 <div class="carousel-caption">
                     <h1>Indulge in Adventure</h1>
-                    <p>Know about the different kind of Activities that can be done in state Forests.</p>
+                    <p>Know about the different kind of activities that can be done in state forests.</p>
                     <!--p><a class="btn btn-lg btn-primary" href="#portfolio" role="button">Activities</a></p-->
                 </div>
             </div>
@@ -33,7 +33,7 @@
             <div class="container">
                 <div class="carousel-caption">
                     <h1>Give us your Feedback</h1>
-                    <p>Tell us your opinion about places,activities and more.</p>
+                    <p>Tell us your opinion about places, activities and more.</p>
                     <!--p><a class="btn btn-lg btn-primary" href="#contact" role="button">Feedback</a></p-->
                 </div>
             </div>
@@ -106,7 +106,7 @@
 </section>
 
 <!-- About Section -->
-<section id="about">
+<section id="about" class="bg-light-gray">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -119,53 +119,37 @@
                 <ul class="timeline">
                     <li>
                         <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="../../assets/img/beginnings.jpg" alt="">
+                            <img class="img-circle img-responsive" src="../../assets/img/page/beginnings.jpg" alt="">
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                                <h4>2016</h4>
+                                <h4> March 2016</h4>
                                 <h4 class="subheading">Our Humble Beginnings</h4>
                             </div>
                             <div class="timeline-body">
-                                <p class="text-muted">This company was formed by 4 students of Monash University in an endavour to provide an alternative to active lifestyle options. </p>
+                                <p class="text-muted">This website was formed to explore the forests of Victoria and  provide the activities that can help residents to lead an active lifestyle. </p>
                             </div>
                         </div>
                     </li>
                     <li class="timeline-inverted">
                         <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="../../assets/img/ExploreForest.jpg" alt="">
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>March 2016</h4>
-                                <h4 class="subheading">Explore Forest is Born</h4>
-                            </div>
-                            <div class="timeline-body">
-                                <p class="text-muted">Our child-Explore forest was conceptualised and put into motion for the development.</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="timeline-image">
-                            <h4>Coming
-                                <br>Soon!!
-                            </h4>
+                            <img class="img-circle img-responsive" src="../../assets/img/page/ExploreForest.jpg" alt="">
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4>April 2016</h4>
-                                <h4 class="subheading">Phase two expansion</h4>
+                                <h4 class="subheading">Distance and Activity Based Location</h4>
                             </div>
                             <div class="timeline-body">
-                                <p class="text-muted">Phase two expansion</p>
+                                <p class="text-muted">Explore Forest will help you see the forest and activity sites based on the distance chosen by the User.So Hop on and Explore the Location.</p>
                             </div>
                         </div>
                     </li>
-                    <li class="timeline-inverted">
+
+
+                    <li class="timeline">
                         <div class="timeline-image">
-                            <h4>Coming
-                                <br>Soon!!
-                            </h4>
+                            <img class="img-circle img-responsive" src="../../assets/img/page/fullservice.jpg" alt="">
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -173,7 +157,7 @@
                                 <h4 class="subheading">Transition to Full service</h4>
                             </div>
                             <div class="timeline-body">
-                                <p class="text-muted">Transition to Full service</p>
+                                <p class="text-muted">Website is live the functionalities like weather info,forest information along with distance and activities.</p>
                             </div>
                         </div>
                     </li>
@@ -181,7 +165,7 @@
 
                         <div
                             class="timeline-image">
-                            <a href = "AboutUs.html"><h4>Click
+                            <a href = "Aboutus"><h4>Click
                                     <br> to
                                     <br>Know more!!<h4></a>
 

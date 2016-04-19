@@ -55,7 +55,7 @@
         }
         
         .rangeslider__fill{
-            background: #0BD536;
+            background: #7CC37C;
             position: absolute;
         }
     </style>

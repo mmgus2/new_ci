@@ -7,12 +7,13 @@
     <div class="parallax-window" data-parallax="scroll" data-image-src="../../assets/img/distance_header.jpg">
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in">How Far would you Explore?</div>
+                <div class="intro-lead-in">How far do you want to explore?</div>
             </div>
         </div>
     </div>
 </header>
-    <div class="container background-custom">
+<section class="bg-light-gray">
+    <div class="container">
         <input type="hidden" id="max_distance" />
         <input type="hidden" id="display_mode" value="distance" />
         <!--div class="row">
@@ -33,8 +34,13 @@
         </div-->
         <div class="row">
             <div class="col-md-12">
+                <b>Scroll to get preferred distance</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <br />
-                <input type="range" value="0" min="0" step="1">
+                <input type="range" min="0" step="1">
             </div>
         </div>
         <br />

@@ -3,8 +3,8 @@
  */
 $(document).ready(function() {
     //initialise base url for ajax request
-    var url = window.location.protocol + "//" + window.location.host + "/Ajax/";
-    //var url = "http://localhost/index.php/Ajax/";
+    //var url = window.location.protocol + "//" + window.location.host + "/Ajax/";
+    var url = "http://localhost/index.php/Ajax/";
 
     //variable to check whether it is in distance mode or activity mode
     var displayMode = $('#display_mode').val();
@@ -21,6 +21,9 @@ $(document).ready(function() {
     var map = null;
     var markers = [];
     var infoWindow = new google.maps.InfoWindow();
+
+    //array for activities
+    var actArray = [];
 
     //detect user current location
     window.detectLocation = function(){
@@ -48,6 +51,7 @@ $(document).ready(function() {
                 success: function (data) {
                     if (data) {
                         initRangeSlider(data);
+                        displayDataDistance(data);
                     }
                     else {
                         initRangeSlider(0);
@@ -72,7 +76,9 @@ $(document).ready(function() {
                                 'class="img-responsive" id="' + oneRecord.activity_id + '" />' +
                                 '<br />' + oneRecord.activity_name + '</div>';
                             $('#activity_button_list').append(innerHtml);
+                            //actArray.push(oneRecord.activity_id);
                         });
+                        //respondActivity(actArray);
                     }
                     else {
                         $('#activity_button_list').innerHTML = "Button icons cannot be displayed!";
@@ -137,12 +143,12 @@ $(document).ready(function() {
             'cellspacing="0" width="100%"></table>');
         if(displayMode == 'distance')
         {
-            $("#f_table").html('<tr><td colspan="4"><div class="alert-warning">No forest within 0 ' +
+            $("#f_table").html('<tr><td colspan="4"><div class="notif-background">No forest within 0 ' +
                 $("select#unit option:selected").text() + '</div></td></tr>');
         }
         else if(displayMode == 'activity')
         {
-            $("#f_table").html('<tr><td colspan="4"><div class="alert-warning">' +
+            $("#f_table").html('<tr><td colspan="4"><div class="notif-background">' +
                 'There are no activities selected.</div></td></tr>');
         }
     }
@@ -150,7 +156,7 @@ $(document).ready(function() {
     //function to respond to user click
     window.mapLocate = function (i) {
         google.maps.event.trigger(markers[i], 'click');
-        map.setZoom(12);
+        //map.setZoom(12);
         map.setCenter(markers[i].getPosition());
     };
 
@@ -160,6 +166,7 @@ $(document).ready(function() {
         var $r = $('input[type=range]');
         var $handle;
         $r.attr({"max": maxValue});
+        $r.attr({"value": maxValue});
         $r.rangeslider({
             polyfill: false,
             onInit: function () {
@@ -276,24 +283,47 @@ $(document).ready(function() {
                     bounds.extend(new google.maps.LatLng(latitude, longitude));
 
                     //store the data and add marker
+                    var count = 0;
+                    var forestInfo = '';
                     $.each(data, function (index, oneRecord) {
                         bounds.extend(new google.maps.LatLng(oneRecord.latitude, oneRecord.longitude));
 
+                        forestInfo = '<p><b>' + oneRecord.forest_name + '</b></p>' +
+                                '<p>' + oneRecord.description + '</p>';
+
+                        for(var i = 0; i < oneRecord.activities.length; i++)
+                        {
+                            forestInfo += '<img src="../../assets/img/buttons/' + oneRecord.activities[i].activity_id +
+                                '.png" height="25px" width="25px" />&nbsp;';
+                        }
+
                         var marker = addMarker(oneRecord.latitude, oneRecord.longitude,
-                            oneRecord.forest_name,'http://maps.google.com/mapfiles/ms/icons/green.png');
+                            forestInfo,'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
+                            (count + 1) + '|7CC37C|000000');
 
                         markers.push(marker);
 
                         map.fitBounds(bounds);
 
-                        forestDataTable.push([oneRecord.forest_name, oneRecord.distance, '<a href="javascript:getSites(' +
-                        (markers.length - 1) + ')">details</a>','<a onclick="javascript:mapLocate(' +
-                        (markers.length - 1) + ')" href="#map">' +
-                            '<img src="http://maps.google.com/mapfiles/ms/icons/green.png" /></a>']);
+                        forestInfo = '<p><b>' + oneRecord.forest_name + '</b></p>' +
+                            '<p><a href="javascript:getSites(' + (markers.length - 1) + ')">Recreation sites</a>&nbsp;&nbsp;' +
+                            '|&nbsp;&nbsp;Locate Me:&nbsp;<a onclick="javascript:mapLocate(' + (markers.length - 1) + ')" href="#map">' +
+                            '<img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
+                            (count + 1) + '|7CC37C|000000" /></a></p>';
+
+                        for(var i = 0; i < oneRecord.activities.length; i++)
+                        {
+                            forestInfo += '<img src="../../assets/img/buttons/' + oneRecord.activities[i].activity_id +
+                                '.png" height="25px" width="25px" />&nbsp;';
+                        }
+
+
+                        forestDataTable.push([forestInfo, oneRecord.distance]);
 
                         forestData.push({id: oneRecord.forest_id, name: oneRecord.forest_name,
                             latitude: oneRecord.latitude, longitude: oneRecord.longitude, description: oneRecord.description,
                             distance: oneRecord.distance});
+                        count++;
                     });
 
                     //show forests data in table
@@ -301,17 +331,14 @@ $(document).ready(function() {
                         destroy: true,
                         data: forestDataTable,
                         columns: [
-                            {title: "Forest Name"},
-                            {title: 'Distance (' + unitText + ')'},
-                            {title: "Recreation sites"},
-                            {title: "Map"}
-                        ],
-                        "columnDefs": [
-                            { "orderable": false, "targets": 2 },
-                            { "orderable": false, "targets": 3 }
+                            {title: '<div class="green-font">Forest Name</div>'},
+                            {title: '<div class="green-font">Distance (' + unitText + ')</div>'}
                         ],
                         "pagingType": "simple",
-                        "lengthMenu": [5, 10]
+                        "lengthMenu": [3, 5],
+                        "dom": "<'row'<'col-sm-12'l>><'row'<'col-sm-12'f>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-5'i><'col-sm-7'p>>"
                     });
                 }
                 else {
@@ -323,7 +350,7 @@ $(document).ready(function() {
 
                     $('#f_table_container').html('<table id="f_table" class="table table-striped table-bordered"' +
                     'cellspacing="0" width="100%"></table>');
-                    $("#f_table").html('<tr><td colspan="4"><div class="alert-warning">No forest within ' +
+                    $("#f_table").html('<tr><td colspan="4"><div class="notif-background">No forest within ' +
                         distance + ' ' + $("select#unit option:selected").text() + '</div></td></tr>');
                 }
             }
@@ -382,7 +409,8 @@ $(document).ready(function() {
         addMap(latitude,longitude);
 
         var marker = addMarker(latitude,longitude,forestData[i].name,
-            'http://maps.google.com/mapfiles/ms/icons/green.png');
+            'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
+            (i + 1) + '|7CC37C|000000');
         markers.push(marker);
 
         //
@@ -400,47 +428,50 @@ $(document).ready(function() {
                 if (data) {
                     var bounds = new google.maps.LatLngBounds();
                     bounds.extend(new google.maps.LatLng(latitude, longitude));
-
+                    var count = 0;
+                    var siteInfo = '';
                     $.each(data, function (index, oneRecord) {
                         bounds.extend(new google.maps.LatLng(oneRecord.latitude, oneRecord.longitude));
+                        siteInfo = '<p><b>' + oneRecord.site_name + '</b></p>' +
+                            '<p>' + oneRecord.description + '</p>';
 
                         var marker = addMarker(oneRecord.latitude, oneRecord.longitude,
-                            oneRecord.site_name,'http://maps.google.com/mapfiles/ms/icons/blue.png');
+                            siteInfo,'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
+                            (count + 1) + '|FFDE00|000000');
 
                         markers.push(marker);
 
                         map.fitBounds(bounds);
 
-                        siteDataTable.push([oneRecord.site_name, oneRecord.description, oneRecord.distance,
-                            '<a onclick="javascript:mapLocate(' +
-                        (markers.length - 1) + ')" href="#map">' +
-                        '<img src="http://maps.google.com/mapfiles/ms/icons/blue.png" /></a>']);
+                        siteInfo = '<p><b>' + oneRecord.site_name + '</b></p>' +
+                                '<p>Locate Me:&nbsp;<a onclick="javascript:mapLocate(' + (markers.length - 1) + ')" href="#map">' +
+                                '<img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
+                                (count + 1) + '|FFDE00|000000" /></a></p>';
+                        siteDataTable.push([siteInfo, oneRecord.distance]);
 
                         siteData.push({id: oneRecord.site_id, name: oneRecord.site_name,
                             latitude: oneRecord.latitude, longitude: oneRecord.longitude,
                             description: oneRecord.description, distance: oneRecord.distance});
+                        count++;
                     });
                     //show sites data in table
                     $('#s_table').DataTable({
                         destroy: true,
                         data: siteDataTable,
                         columns: [
-                            {title: "Site Name"},
-                            {title: "Site Description"},
-                            {title: 'Distance (' + unitText + ')'},
-                            {title: "Map"}
-                        ],
-                        "columnDefs": [
-                            { "orderable": false, "targets": 2 },
-                            { "orderable": false, "targets": 3 }
+                            {title: '<div class="green-font">Site Name</div>'},
+                            {title: '<div class="green-font">Distance (' + unitText + ')</div>'}
                         ],
                         "pagingType": "simple",
-                        "lengthMenu": [5, 10]
+                        "lengthMenu": [3, 5],
+                        "dom": "<'row'<'col-sm-12'l>><'row'<'col-sm-12'f>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-5'i><'col-sm-7'p>>"
                     });
                     $('#s_table_container').show('slow');
                 }
                 else {
-                    $("#s_table").html('<tr><td colspan="4"><div class="alert-warning">No sites available for ' +
+                    $("#s_table").html('<tr><td colspan="4"><div class="notif-background">No sites available for ' +
                         forestData[i].name + '</div></td></tr>');
                     $('#s_table_container').show('slow');
                 }
@@ -527,13 +558,13 @@ $(document).ready(function() {
         {
             bounds.extend(new google.maps.LatLng(forestData[i].latitude, forestData[i].longitude));
             var marker = addMarker(forestData[i].latitude, forestData[i].longitude,
-                forestData[i].name,'http://maps.google.com/mapfiles/ms/icons/green.png');
+                forestData[i].name,'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
+                (i + 1) + '|7CC37C|000000');
             markers.push(marker);
             map.fitBounds(bounds);
         }
     }
 
-    var actArray = [];
     window.displayDataActivity = function(el)
     {
         //alert(el.alt);
@@ -589,24 +620,46 @@ $(document).ready(function() {
                     bounds.extend(new google.maps.LatLng(latitude, longitude));
 
                     //store the data and add marker
+                    var count = 0;
+                    var forestInfo = '';
                     $.each(data, function (index, oneRecord) {
                         bounds.extend(new google.maps.LatLng(oneRecord.latitude, oneRecord.longitude));
 
+                        forestInfo = '<p><b>' + oneRecord.forest_name + '</b></p>' +
+                            '<p>' + oneRecord.description + '</p>';
+
+                        for(var i = 0; i < oneRecord.activities.length; i++)
+                        {
+                            forestInfo += '<img src="../../assets/img/buttons/' + oneRecord.activities[i].activity_id +
+                                '.png" height="25px" width="25px" />&nbsp;';
+                        }
+
                         var marker = addMarker(oneRecord.latitude, oneRecord.longitude,
-                            oneRecord.forest_name,'http://maps.google.com/mapfiles/ms/icons/green.png');
+                            forestInfo,'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
+                            (count + 1) + '|7CC37C|000000');
 
                         markers.push(marker);
 
                         map.fitBounds(bounds);
 
-                        forestDataTable.push([oneRecord.forest_name, oneRecord.distance, '<a href="javascript:getSites(' +
-                        (markers.length - 1) + ')">details</a>','<a onclick="javascript:mapLocate(' +
-                        (markers.length - 1) + ')" href="#map">' +
-                        '<img src="http://maps.google.com/mapfiles/ms/icons/green.png" /></a>']);
+                        forestInfo = '<p><b>' + oneRecord.forest_name + '</b></p>' +
+                            '<p><a href="javascript:getSites(' + (markers.length - 1) + ')">Recreation sites</a>&nbsp;&nbsp;' +
+                            '|&nbsp;&nbsp;Locate Me:&nbsp;<a onclick="javascript:mapLocate(' + (markers.length - 1) + ')" href="#map">' +
+                            '<img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
+                            (count + 1) + '|7CC37C|000000" /></a></p>';
+
+                        for(var i = 0; i < oneRecord.activities.length; i++)
+                        {
+                            forestInfo += '<img src="../../assets/img/buttons/' + oneRecord.activities[i].activity_id +
+                                '.png" height="25px" width="25px" />&nbsp;';
+                        }
+
+                        forestDataTable.push([forestInfo, oneRecord.distance]);
 
                         forestData.push({id: oneRecord.forest_id, name: oneRecord.forest_name,
                             latitude: oneRecord.latitude, longitude: oneRecord.longitude, description: oneRecord.description,
                             distance: oneRecord.distance});
+                        count++;
                     });
 
                     //show forests data in table
@@ -614,17 +667,14 @@ $(document).ready(function() {
                         destroy: true,
                         data: forestDataTable,
                         columns: [
-                            {title: "Forest Name"},
-                            {title: 'Distance (' + unitText + ')'},
-                            {title: "Recreation sites"},
-                            {title: "Map"}
-                        ],
-                        "columnDefs": [
-                            { "orderable": false, "targets": 2 },
-                            { "orderable": false, "targets": 3 }
+                            {title: '<div class="green-font">Forest Name</div>'},
+                            {title: '<div class="green-font">Distance (' + unitText + ')</div>'}
                         ],
                         "pagingType": "simple",
-                        "lengthMenu": [5, 10]
+                        "lengthMenu": [3, 5],
+                        "dom": "<'row'<'col-sm-12'l>><'row'<'col-sm-12'f>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-5'i><'col-sm-7'p>>"
                     });
                 }
                 else {
@@ -637,7 +687,7 @@ $(document).ready(function() {
 
                     $('#f_table_container').html('<table id="f_table" class="table table-striped table-bordered"' +
                         'cellspacing="0" width="100%"></table>');
-                    $("#f_table").html('<tr><td colspan="4"><div class="alert-warning">No forest for selected activities' +
+                    $("#f_table").html('<tr><td colspan="4"><div class="notif-background">No forest for selected activities' +
                         '</div></td></tr>');
                 }
             }

@@ -48,7 +48,9 @@ h5,
 h6 {
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-transform: uppercase;
-    font-weight: 700
+    font-weight: 700;
+    /*addition*/
+    color: #7CC37C;
 }
 
 .img-centered {
@@ -276,10 +278,12 @@ header .intro-text {
 
 header .intro-text .intro-lead-in {
     font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-style: italic;
+    /*font-style: italic;*/
     font-size: 22px;
     line-height: 22px;
-    margin-bottom: 25px
+    margin-bottom: 25px;
+    /*additon*/
+    /*color: black;*/
 }
 
 header .intro-text .intro-heading {
@@ -298,10 +302,12 @@ header .intro-text .intro-heading {
     }
     header .intro-text .intro-lead-in {
         font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-style: italic;
+        /*font-style: italic;*/
         font-size: 40px;
         line-height: 40px;
-        margin-bottom: 25px
+        margin-bottom: 25px;
+        /*additon*/
+        /*color: black;*/
     }
     header .intro-text .intro-heading {
         font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -320,7 +326,7 @@ section {
 section h2.section-heading {
     font-size: 40px;
     margin-top: 0;
-    margin-bottom: 15px
+    margin-bottom: 15px;
 }
 
 section h3.section-subheading {
@@ -334,7 +340,8 @@ section h3.section-subheading {
 
 @media (min-width:768px) {
     section {
-        padding: 150px 0
+        /*padding: 150px 0*/
+        padding: 20px 0
     }
 }
 
@@ -864,8 +871,9 @@ body {
 }
 
 .location .intro-text .intro-lead-in {
-    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-style: italic;
+    /*font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /*font-style: italic;*/
     font-size: 22px;
     line-height: 22px;
     margin-bottom: 25px
@@ -886,8 +894,9 @@ body {
         padding-bottom: 100px
     }
     .location .intro-text .intro-lead-in {
-        font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-style: italic;
+        /*font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+        font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        /*font-style: italic;*/
         font-size: 40px;
         line-height: 40px;
         margin-bottom: 25px;
@@ -911,7 +920,23 @@ body {
     padding-top: 5px;
 }
 
-/* location background*/
-.background-custom{
-    background-color: #EAEAA0
+.black-font{
+    color: black;
+}
+
+.background-color-custom{
+    background-color: grey;
+}
+
+.notif-background{
+    background-color: #E6E6E6;
+}
+
+.green-font{
+    color: #7CC37C;
+}
+
+/* style for info window */
+.gm-style-iw {
+    max-width: 300px;
 }

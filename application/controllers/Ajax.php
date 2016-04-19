@@ -19,6 +19,7 @@ class Ajax extends CI_Controller {
      * @see http://codeigniter.com/user_guide/general/urls.html
      */
     private $record = null;
+    private $model = null;
 
     public function __construct()
     {
@@ -51,7 +52,9 @@ class Ajax extends CI_Controller {
                     $forests[$i]["longitude"] = floatval($this->record[$i]["longitude"]);
                     $forests[$i]["description"] = $this->record[$i]["forest_description"];
                     $forests[$i]["distance"] = intval($forest_distance);
-                    //$forests[]["max_distance"] = $max_distance;
+                    //$activities = null;
+                    $activities = $this->model->get_forest_activities($forests[$i]["forest_id"]);
+                    $forests[$i]['activities'] = $activities;
                 }
             }
         }
@@ -75,10 +78,13 @@ class Ajax extends CI_Controller {
                 $forests[$i]["description"] = $this->record[$i]["forest_description"];
                 $forests[$i]["distance"] = intval($forest_distance);
                 //$forests[]["max_distance"] = $max_distance;
+                $activities = $this->model->get_forest_activities($forests[$i]["forest_id"]);
+                $forests[$i]['activities'] = $activities;
             }
         }
         echo json_encode($forests, JSON_PRETTY_PRINT);
-        //var_dump($act_array);
+        //echo "<br /><br />";
+        //var_dump(array_values($activities));
     }
     public function get_sites()
     {
