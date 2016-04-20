@@ -7,7 +7,7 @@
         </div>
     </div>
 </header>
-<section>
+<section class="bg-light-gray">
     <div class="container background-location">
         <h2>Our Mission</h2>
         <p>Our Mission is to develop a platform to give people a better and active lifestyle options.State Forest’s sites of nature is a refreshing change from city’s moving nature. The recreational activities in such places that are less crowded and relatively unexplored promote cleaner environment and time away from stress and anxiety.</p>
@@ -24,7 +24,7 @@
             <div class="col-xs-6 col-sm-3">
                 <div class="team-member text-center">
                     <img class="img-responsive"
-                         src="../../assets/img/page/navjot.JPG" alt="" />
+                         src="../../assets/img/page/navjot.png" alt="" />
                     <h3>Navjot Kaur  </h3>
                     <p>User Interface Designer</p>
                     <p>Email: nkkau1@student.monash.edu</p>

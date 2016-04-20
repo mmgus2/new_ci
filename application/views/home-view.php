@@ -60,7 +60,7 @@
         </div>
         <div class="row">
             <div class="col-md-4 col-sm-6 portfolio-item">
-                <a href="Coming" class="portfolio-link">
+                <a href="Information" class="portfolio-link">
                     <div class="portfolio-hover">
                         <div class="portfolio-hover-content">
                             <i class="fa fa-tree"></i>

@@ -10,7 +10,7 @@
     </div>
 </header>
 
-<section>
+<section class="bg-light-gray">
     <div class="container background-location">
         <h2>Welcome to Delta Solutions!</h2>
         <p>These terms and conditions outline the rules and regulations for the use of  Delta Solutions's Website. <br />

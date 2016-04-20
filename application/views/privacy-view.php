@@ -10,7 +10,7 @@
     </div>
 </header>
 
-<section>
+<section class="bg-light-gray">
     <div class="container background-location">
         &#8211; Updated April 2016
         <p>This following document sets forth the Privacy Policy for the <em>Delta Solutions</em> website,  <em>www.xploreForest.tk</em>.</p>
