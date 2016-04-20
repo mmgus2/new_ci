@@ -8,12 +8,21 @@ class Database_model extends CI_Model {
         $this->load->database();
     }
 
-    public function read()
+    public function read($var = null)
     {
         //$sql = "SELECT * FROM forest ORDER BY forest_name";
-        $sql = "SELECT * FROM forest ORDER BY ?";
-        //$query = $this->db->query($sql);
-        $query = $this->db->query($sql,array('forest_name'));
+        if(isset($var))
+        {
+            $sql = "SELECT * FROM forest WHERE forest_id = ? ORDER BY ?";
+            //$query = $this->db->query($sql);
+            $query = $this->db->query($sql,array($var,'forest_name'));
+        }
+        else
+        {
+            $sql = "SELECT * FROM forest ORDER BY ?";
+            //$query = $this->db->query($sql);
+            $query = $this->db->query($sql,array('forest_name'));
+        }
         return $query->result_array();
     }
 

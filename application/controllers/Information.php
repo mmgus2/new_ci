@@ -9,27 +9,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Information extends CI_Controller {
 
-    /**
-     * Index Page for this controller.
-     *
-     * Maps to the following URL
-     * 		http://example.com/index.php/welcome
-     *	- or -
-     * 		http://example.com/index.php/welcome/index
-     *	- or -
-     * Since this controller is set as the default controller in
-     * config/routes.php, it's displayed at http://example.com/
-     *
-     * So any other public methods not prefixed with an underscore will
-     * map to /index.php/welcome/<method_name>
-     * @see http://codeigniter.com/user_guide/general/urls.html
-     */
+    private $record = null;
+    private $model = null;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Database_model');
+        $this->model = $this->Database_model;
+    }
+
     public function index()
     {
 
+        $this->record = $this->model->read();
+        $forests = NULL;
+        for ($i=0; $i < sizeof($this->record); $i++)
+        {
+                $forests[$i]["forest_id"] = $this->record[$i]["forest_id"];
+                $forests[$i]["forest_name"] = $this->record[$i]["forest_name"];
+                $forests[$i]["latitude"] = floatval($this->record[$i]["latitude"]);
+                $forests[$i]["longitude"] = floatval($this->record[$i]["longitude"]);
+                $forests[$i]["description"] = $this->record[$i]["forest_description"];
+        }
+        $data['allforests'] = $forests;
         $this->load->view('header');
         $this->load->view('menu');
-        $this->load->view('information-view');
+        $this->load->view('information-view',$data);
         $this->load->view('footer');
+    }
+
+    public function get_forest($forestID){
+        //later
     }
 }

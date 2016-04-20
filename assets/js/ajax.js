@@ -433,7 +433,9 @@ $(document).ready(function() {
                     $.each(data, function (index, oneRecord) {
                         bounds.extend(new google.maps.LatLng(oneRecord.latitude, oneRecord.longitude));
                         siteInfo = '<p><b>' + oneRecord.site_name + '</b></p>' +
-                            '<p>' + oneRecord.description + '</p>';
+                            '<p>' + oneRecord.description + '</p>' +
+                            '<p><a href="http://maps.google.com/maps?saddr=-37.9361409,145.12104109999999&daddr=' +
+                            oneRecord.latitude + ',' + oneRecord.longitude + '" target="_blank" >Get direction</a></p>';
 
                         var marker = addMarker(oneRecord.latitude, oneRecord.longitude,
                             siteInfo,'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
@@ -446,7 +448,9 @@ $(document).ready(function() {
                         siteInfo = '<p><b>' + oneRecord.site_name + '</b></p>' +
                                 '<p>Locate Me:&nbsp;<a onclick="javascript:mapLocate(' + (markers.length - 1) + ')" href="#map">' +
                                 '<img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
-                                (count + 1) + '|FFDE00|000000" /></a></p>';
+                                (count + 1) + '|FFDE00|000000" /></a></p>' +
+                                '<p><a href="http://maps.google.com/maps?saddr=-37.9361409,145.12104109999999&daddr=' +
+                            oneRecord.latitude + ',' + oneRecord.longitude + '" target="_blank" >Get direction</a></p>';
                         siteDataTable.push([siteInfo, oneRecord.distance]);
 
                         siteData.push({id: oneRecord.site_id, name: oneRecord.site_name,
