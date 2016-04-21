@@ -62,7 +62,7 @@ p {
 	</div-->
 	<section class="bg-light-gray">
 		<div class="container">
-			<h1>This page is not existed.</h1>
+			<h1>This page does not exist.</h1>
 			<a href="Home">Back to Homepage</a>
 		</div>
 	</section>
