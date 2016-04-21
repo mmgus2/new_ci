@@ -56,9 +56,15 @@ p {
 </style>
 </head>
 <body>
-	<div id="container">
-		<h1><?php echo $heading; ?></h1>
-		<?php echo $message; ?>
-	</div>
+	<!--div id="container">
+		<h1><?php //echo $heading; ?></h1>
+		<?php //echo $message; ?>
+	</div-->
+	<section class="bg-light-gray">
+		<div class="container">
+			<h1>This page is not existed.</h1>
+			<a href="Home">Back to Homepage</a>
+		</div>
+	</section>
 </body>
 </html>
