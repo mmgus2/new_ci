@@ -37,6 +37,7 @@ $config['base_url'] = '';
 |
 */
 $config['index_page'] = 'index.php';
+//$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -315,7 +316,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = '0YXbivu2jidhHqeav63ZV7S0ajiUQU69';
 
 /*
 |--------------------------------------------------------------------------

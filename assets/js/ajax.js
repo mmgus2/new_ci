@@ -4,7 +4,7 @@
 $(document).ready(function() {
     //initialise base url for ajax request
     var url = window.location.protocol + "//" + window.location.host + "/Ajax/";
-    //var url = "http://localhost/index.php/Ajax/";
+    //var url = "http://localhost/Ajax/";
 
     //variable to check whether it is in distance mode or activity mode
     var displayMode = $('#display_mode').val();
@@ -482,6 +482,8 @@ $(document).ready(function() {
             }
         });
     }
+
+    //go back to forest when in site mode
     window.backToForest = function () {
         //alert("Go back to forest");
         var unit = '';
@@ -569,6 +571,7 @@ $(document).ready(function() {
         }
     }
 
+    //respond to activity button click
     window.displayDataActivity = function(el)
     {
         //alert(el.alt);
@@ -596,6 +599,7 @@ $(document).ready(function() {
         }
     }
 
+    //respond to activity button
     function respondActivity(activities)
     {
         var unit = 'K';

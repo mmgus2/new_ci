@@ -40,6 +40,7 @@
 
     <!--for google map-->
     <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script src="../../assets/js/jquery.simpleWeather.min.js"></script>
 
     <!--custom style for handle bar in distance-->
     <style>
