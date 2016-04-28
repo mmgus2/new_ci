@@ -36,7 +36,7 @@ class Review extends CI_Controller {
             $this->load->view('members-view');
             $this->load->view('footer');
         } else {
-            redirect('http://localhost/index.php/Review/restricted  ');
+            redirect(base_url().'Review/restricted');
         }
     }
 
@@ -60,7 +60,7 @@ class Review extends CI_Controller {
                 'is_logged_in' => 1
             );
             $this->session->set_userdata($data);
-            redirect('http://localhost/index.php/Review/members');
+            redirect(base_url().'Review/members');
             //$this->members();
         } else {
             $this->login();
@@ -99,7 +99,7 @@ class Review extends CI_Controller {
             $this->email->subject("Confirm your account at XploreForest!");
 
             $message = "<p>Thank you for signing up!</p>";
-            $message .= "<p><a href='http://localhost/index.php/Review/register_user/$key'>Click here</a>" .
+            $message .= "<p><a href='".base_url()."Review/register_user/$key'>Click here</a>" .
                 " to confirm your account</p>";
 
             $this->email->message($message);
@@ -131,6 +131,6 @@ class Review extends CI_Controller {
 
     public function logout(){
         $this->session->sess_destroy();
-        redirect('http://localhost/index.php/Review/login');
+        redirect(base_url().'Review/login');
     }
 }

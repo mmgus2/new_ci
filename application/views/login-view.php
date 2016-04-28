@@ -25,7 +25,7 @@
                             <?php echo validation_errors(); ?>
                         </div>
                     <?php } ?>
-                    <form id="loginform" class="form-horizontal" role="form" method="post" action="Review/login_validation">
+                    <form id="loginform" class="form-horizontal" role="form" method="post" action="<?php echo base_url(); ?>Review/login_validation">
 
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
