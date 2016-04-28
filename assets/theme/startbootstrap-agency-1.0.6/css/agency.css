@@ -58,7 +58,9 @@ h6 {
 }
 
 .bg-light-gray {
-    background-color: #f7f7f7
+    background-color: #f7f7f7;
+    /*additional*/
+    margin-bottom: 10px
 }
 
 .bg-darkest-gray {

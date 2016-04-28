@@ -85,6 +85,7 @@ class Review extends CI_Controller {
             $this->load->library('email');
 
             $this->email->initialize(array(
+                'mailtype' => 'html',
                 'protocol' => 'smtp',
                 'smtp_host' => 'smtp.sendgrid.net',
                 'smtp_user' => 'azure_575578cf162423c4d82b8168f0e4eaad@azure.com',
@@ -99,7 +100,7 @@ class Review extends CI_Controller {
             $this->email->subject("Confirm your account at XploreForest!");
 
             $message = "<p>Thank you for signing up!</p>";
-            $message .= "<p><a href='".base_url()."Review/register_user/$key'>Click here</a>" .
+            $message .= "<p><a href='" . base_url() . "Review/register_user/$key'>Click here</a>" .
                 " to confirm your account</p>";
 
             $this->email->message($message);
