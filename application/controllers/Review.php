@@ -83,6 +83,7 @@ class Review extends CI_Controller {
             //send an email to the user
             //$this->load->library('email', array('mailtype' => 'html')); //set email to html for registration link
             $this->load->library('email');
+            $this->load->model('model_users');
 
             $this->email->initialize(array(
                 'mailtype' => 'html',
@@ -105,13 +106,18 @@ class Review extends CI_Controller {
 
             $this->email->message($message);
 
-            if($this->email->send()){
-                echo "The email has been sent!";
-            }else{
-                echo "Could not send the email.";
+            if ($this->model_users->add_temp_user($key)){
+                if($this->email->send()){
+                    //echo "The email has been sent!";
+                }else{
+                    //echo "Could not send the email.";
+                }
+            } else {
+                //echo "Problem adding user to database.";
             }
 
             //add them to the temp_users db
+
 
         } else {
             $this->signup();
