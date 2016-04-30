@@ -13,7 +13,7 @@ class Facebook extends CI_Controller {
 
         $this->load->view('header');
         $this->load->view('menu');
-        $this->load->view('facebook2-view');
+        $this->load->view('facebook_-view');
         $this->load->view('footer');
     }
 }
