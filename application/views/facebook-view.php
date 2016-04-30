@@ -23,6 +23,6 @@
     <p>Lorem ipsum</p>
 
     <div class="fb-like" data-href="<?php base_url(); ?>facebook/<?php echo $number?>" data-layout="standard"
-         data-action="recommend" data-show-faces="true" data-share="true"></div>
+         data-action="recommend" data-show-faces="true" data-share="false"></div>
     <div class="fb-comments" data-href="<?php base_url(); ?>facebook/<?php echo $number?>" data-numposts="5"></div>
 </section>
