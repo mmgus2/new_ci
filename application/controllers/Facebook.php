@@ -8,14 +8,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Facebook extends CI_Controller {
-    public function index($number)
+    public function index()
+    {
+    }
+
+    public function review($number)
     {
         $data['number'] = $number;
         $this->load->view('header');
         $this->load->view('menu');
         $this->load->view('facebook-view', $data);
         $this->load->view('footer');
-
-
     }
 }
