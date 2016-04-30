@@ -1,6 +1,6 @@
 <style>
-    .fb-like {
-        overflow: hidden !important;
+    .fb_edge_comment_widget {
+        display: none !important;
     }
 </style>
 <div id="fb-root"></div>
