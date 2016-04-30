@@ -4,7 +4,7 @@
 $(document).ready(function() {
     //initialise base url for ajax request
     var url = window.location.protocol + "//" + window.location.host + "/Ajax/";
-    //var url = "http://localhost/Ajax/";
+    //var url = "http://localhost/index.php/Ajax/";
 
     //variable to check whether it is in distance mode or activity mode
     var displayMode = $('#display_mode').val();

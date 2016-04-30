@@ -1,5 +1,4 @@
 <!-- Navigation -->
-<!-- Navigation -->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
 
@@ -19,24 +18,23 @@
                 <li class="hidden">
                     <a href="#page-top"></a>
                 </li>
-                <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Explore <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="Distance">By Distance</a></li>
-                        <li><a href="Activity">By Activities</a></li>
-                        <!--li><a href="#">By Name</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Other Info</a></li-->
-                    </ul>
-                </li>
-                <!--li>
-                    <a class="page-scroll" href="Home#portfolio">Explore</a>
-                </li-->
                 <li>
-                    <a class="page-scroll" href="Information">Information</a>
+                    <a class="page-scroll" href="Home">Home</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="Home#about">About</a>
+                    <a class="page-scroll" href="Distance">Location</a>
+                </li>
+
+                <li>
+                    <a class="page-scroll" href="Activity">Activities</a>
+                </li>
+
+                <li>
+                    <a class="page-scroll" href="Information">Info</a>
+                </li>
+
+                <li>
+                    <a class="page-scroll" href="#about">About</a>
                 </li>
 
             </ul>

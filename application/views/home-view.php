@@ -14,7 +14,7 @@
                 <div class="carousel-caption">
                     <h1>State Forests of Victoria</h1>
                     <p>Search for the nearest state forests. Explore the greenery, peace and adventures.</p>
-                    <!--p><a class="btn btn-lg btn-primary" href="#portfolio" role="button">Explore</a></p-->
+                    <p><a class="btn btn-lg btn-primary" href="Distance" role="button">Location</a></p>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 <div class="carousel-caption">
                     <h1>Indulge in Adventure</h1>
                     <p>Know about the different kind of activities that can be done in state forests.</p>
-                    <!--p><a class="btn btn-lg btn-primary" href="#portfolio" role="button">Activities</a></p-->
+                    <p><a class="btn btn-lg btn-primary" href="Activity" role="button">Activities</a></p>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
                 <div class="carousel-caption">
                     <h1>Give us your Feedback</h1>
                     <p>Tell us your opinion about places, activities and more.</p>
-                    <!--p><a class="btn btn-lg btn-primary" href="#contact" role="button">Feedback</a></p-->
+                    <p><a class="btn btn-lg btn-primary" href="Information" role="button">Info</a></p>
                 </div>
             </div>
         </div>
@@ -106,76 +106,33 @@
 </section>
 
 <!-- About Section -->
-<section id="about" class="bg-light-gray">
+<section id="about" style="padding-top:100px;padding-bottom:150px" class="bg-light-gray">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h2 class="section-heading">About</h2>
-                <h3 class="section-subheading text-muted">Story of development and new beginnings</h3>
+                <h2 class="section-heading">Forests In Victoria</h2>
+                <h3 class="section-subheading text-muted">Explore your way to Forests of Victoria</h3>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <ul class="timeline">
-                    <li>
-                        <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="../../assets/img/page/beginnings.jpg" alt="">
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4> March 2016</h4>
-                                <h4 class="subheading">Our Humble Beginnings</h4>
-                            </div>
-                            <div class="timeline-body">
-                                <p class="text-muted">This website was formed to explore the forests of Victoria and  provide the activities that can help residents to lead an active lifestyle. </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="timeline-inverted">
-                        <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="../../assets/img/page/ExploreForest.jpg" alt="">
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>April 2016</h4>
-                                <h4 class="subheading">Distance and Activity Based Location</h4>
-                            </div>
-                            <div class="timeline-body">
-                                <p class="text-muted">Explore Forest will help you see the forest and activity sites based on the distance chosen by the User.So Hop on and Explore the Location.</p>
-                            </div>
-                        </div>
-                    </li>
+        <div style="background-color:white">
+            <div class="row text-left">
+                <div class="col-md-5">
+                    <img  src="../../assets/img/1027.png" class="img-responsive" alt="Generic placeholder image" >
 
 
-                    <li class="timeline">
-                        <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="../../assets/img/page/fullservice.jpg" alt="">
-                        </div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>May 2016</h4>
-                                <h4 class="subheading">Transition to Full service</h4>
-                            </div>
-                            <div class="timeline-body">
-                                <p class="text-muted">Website is live the functionalities like weather info,forest information along with distance and activities.</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li  class="timeline-inverted">
+                </div>
 
-                        <div
-                            class="timeline-image">
-                            <a href = "Aboutus"><h4>Click
-                                    <br> to
-                                    <br>Know more!!<h4></a>
-
-                        </div>
+                <div class="col-md-6 " style="text-align:justify">
+                    <h4>Forests of Victoria</h4>
+                    <hr>
+                    <p class="text-muted">Victoria has many forests and hundreds of recreation sites.They are closer to nature and wonderful getaways from the hustle bustle of the city.In this site, we aim to provide you with the information of such hidden gems.You can explore through the functions of location,activities and information to gain the knowledge of such places and how to land there.
+                    </p>
+                    <p class="text-muted"> This is one stop place to have everything you need for the next forest travel.Explore the comforts of nature packed with adventures.</p>
+                    <p><a class="btn btn-default" href="#" role="button">Our Journey &raquo;</a></p>
+                </div>
 
             </div>
-            </li>
-            </ul>
         </div>
-    </div>
     </div>
 </section>
 
