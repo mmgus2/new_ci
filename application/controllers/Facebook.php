@@ -2,18 +2,18 @@
 /**
  * Created by PhpStorm.
  * User: gusis
- * Date: 4/13/2016
- * Time: 4:02 AM
+ * Date: 4/30/2016
+ * Time: 11:13 AM
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Coming extends CI_Controller {
+class Facebook extends CI_Controller {
     public function index()
     {
 
         $this->load->view('header');
         $this->load->view('menu');
-        $this->load->view('coming-view');
+        $this->load->view('facebook-view');
         $this->load->view('footer');
     }
 }
