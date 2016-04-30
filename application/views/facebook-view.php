@@ -23,11 +23,12 @@
         <p>Lorem ipsum</p>
         <p>Lorem ipsum</p>
         <div class="col-md-12">
-            <div class="fb-like" data-href="<?php echo base_url(); ?>facebook/<?php echo $forest_id?>" data-layout="standard"
+            <div class="fb-like" data-href="<?php echo base_url(); ?>facebook/<?php echo $forest_id?>"data-layout="standard"
                  data-action="recommend" data-show-faces="true" data-share="false"></div>
         </div>
         <div class="col-md-12">
-            <div class="fb-comments" data-href="<?php echo base_url(); ?>facebook/<?php echo $forest_id?>" data-numposts="5"></div>
+            <div class="fb-comments" data-href="<?php echo base_url(); ?>facebook/<?php echo $forest_id?>"
+                 width="100%" data-numposts="5"></div>
         </div>
     </div>
 </section>
