@@ -9,6 +9,14 @@
     }(document, 'script', 'facebook-jssdk'));
 </script>
 <section class="bg-light-gray">
+    <p>Lorem ipsum</p>
+    <p>Lorem ipsum</p>
+    <p>Lorem ipsum</p>
+    <p>Lorem ipsum</p>
+    <p>Lorem ipsum</p>
+    <p>Lorem ipsum</p>
+    <p>Lorem ipsum</p>
+
     <div class="fb-like" data-href="<?php base_url(); ?>facebook" data-layout="standard"
          data-action="recommend" data-show-faces="true" data-share="true"></div>
 </section>
