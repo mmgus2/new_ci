@@ -8,16 +8,29 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Facebook extends CI_Controller {
-    public function index()
+    public function index($var = null)
     {
+        if(isset($var)){
+            $data['forest_id'] = $var;
+            $this->load->view('header');
+            $this->load->view('menu');
+            $this->load->view('facebook-view', $data);
+            $this->load->view('footer');
+        }
+        else{
+            $this->load->view('header');
+            $this->load->view('menu');
+            echo "Invalid webpage access";
+            $this->load->view('footer');
+        }
     }
 
     public function review($number)
     {
-        $data['number'] = $number;
+        /*$data['number'] = $number;
         $this->load->view('header');
         $this->load->view('menu');
         $this->load->view('facebook-view', $data);
-        $this->load->view('footer');
+        $this->load->view('footer');*/
     }
 }
