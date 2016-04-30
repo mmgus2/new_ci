@@ -14,19 +14,20 @@
     }(document, 'script', 'facebook-jssdk'));
 </script>
 <section class="bg-light-gray">
-    <p>Lorem ipsum</p>
-    <p>Lorem ipsum</p>
-    <p>Lorem ipsum</p>
-    <p>Lorem ipsum</p>
-    <p>Lorem ipsum</p>
-    <p>Lorem ipsum</p>
-    <p>Lorem ipsum</p>
-<div class="col-md-12">
-    <div class="fb-like" data-href="<?php echo base_url(); ?>facebook/<?php echo $number?>" data-layout="standard"
-         data-action="recommend" data-show-faces="true" data-share="false">
+    <div class="container">
+        <p>Lorem ipsum</p>
+        <p>Lorem ipsum</p>
+        <p>Lorem ipsum</p>
+        <p>Lorem ipsum</p>
+        <p>Lorem ipsum</p>
+        <p>Lorem ipsum</p>
+        <p>Lorem ipsum</p>
+        <div class="col-md-12">
+            <div class="fb-like" data-href="<?php echo base_url(); ?>facebook/<?php echo $number?>" data-layout="standard"
+                 data-action="recommend" data-show-faces="true" data-share="false"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="fb-comments" data-href="<?php echo base_url(); ?>facebook/<?php echo $number?>" data-numposts="5"></div>
+        </div>
     </div>
-</div>
-<div class="col-md-12">
-    <div class="fb-comments" data-href="<?php echo base_url(); ?>facebook/<?php echo $number?>" data-numposts="5"></div>
-</div>
 </section>
