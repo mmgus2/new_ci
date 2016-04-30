@@ -1,3 +1,8 @@
+<style>
+    .fb-like {
+        overflow: hidden !important;
+    }
+</style>
 <div id="fb-root"></div>
 <script>
     (function(d, s, id) {
