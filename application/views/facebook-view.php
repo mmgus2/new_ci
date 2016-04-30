@@ -24,4 +24,5 @@
 
     <div class="fb-like" data-href="<?php base_url(); ?>facebook/<?php echo $number?>" data-layout="standard"
          data-action="recommend" data-show-faces="true" data-share="true"></div>
+    <div class="fb-comments" data-href="<?php base_url(); ?>facebook/<?php echo $number?>" data-numposts="5"></div>
 </section>
