@@ -34,7 +34,7 @@
                 </li>
 
                 <li>
-                    <a class="page-scroll" href="#about">About</a>
+                    <a class="page-scroll" href="Home#about">About</a>
                 </li>
 
             </ul>
