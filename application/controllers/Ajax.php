@@ -29,6 +29,7 @@ class Ajax extends CI_Controller {
         $this->load->helper('geodistance');
     }
 
+    //digunakan
     public function get_forests($choice)
     {
         if($choice == 'distance')
@@ -86,6 +87,8 @@ class Ajax extends CI_Controller {
         //echo "<br /><br />";
         //var_dump(array_values($activities));
     }
+
+    //digunakan
     public function get_sites()
     {
         $forest_id = $this->input->post('forest_id');
@@ -108,6 +111,7 @@ class Ajax extends CI_Controller {
         echo json_encode($sites, JSON_PRETTY_PRINT);
     }
 
+    //digunakan
     public function get_max_distances()
     {
         $this->record = $this->model->read();
@@ -127,6 +131,7 @@ class Ajax extends CI_Controller {
         echo ceil($maxDistance);
     }
 
+    //digunakan
     public function get_activities()
     {
         $this->record = $this->model->read_activities();
