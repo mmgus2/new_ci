@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href="Home#page-top">XploreForest</a>
+            <a class="navbar-brand page-scroll" href="<?php echo base_url();?>Home#page-top">XploreForest</a>
         </div>
 
 
@@ -19,22 +19,22 @@
                     <a href="#page-top"></a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="Home">Home</a>
+                    <a class="page-scroll" href="<?php echo base_url();?>Home">Home</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="Distance">Location</a>
-                </li>
-
-                <li>
-                    <a class="page-scroll" href="Activity">Activities</a>
+                    <a class="page-scroll" href="<?php echo base_url();?>Distance">Location</a>
                 </li>
 
                 <li>
-                    <a class="page-scroll" href="Information">Info</a>
+                    <a class="page-scroll" href="<?php echo base_url();?>Activity">Activities</a>
                 </li>
 
                 <li>
-                    <a class="page-scroll" href="Home#about">About</a>
+                    <a class="page-scroll" href="<?php echo base_url();?>Information">Info</a>
+                </li>
+
+                <li>
+                    <a class="page-scroll" href="<?php echo base_url();?>Aboutus">About Us</a>
                 </li>
 
             </ul>

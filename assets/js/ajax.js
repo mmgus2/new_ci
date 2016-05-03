@@ -25,17 +25,60 @@ $(document).ready(function() {
     //array for activities
     var actArray = [];
 
+    //init rangeSlider
+    initRangeSlider(0);
+
     //detect user current location
     window.detectLocation = function(){
-        $.geolocation.get({
-                success: initialSetup,
-                error: askForPosition
-        })
+        /*$.geolocation.get({
+            success: initialSetup,
+            error: askForPosition
+        })*/
+        getLocation();
+    }
+
+    //additional function just added 04 Mei 2016
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(initialSetup, errorInfo);
+        } else {
+            html = '<div class="alert alert-danger">Geolocation is not supported by this browser. Please Specify your location manually.</div>';
+            $('#input_info').html(html);
+            $('#input_info').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
+        }
+    }
+
+    function errorInfo(error){
+        switch(error.code)
+        {
+            case error.PERMISSION_DENIED:
+                html = '<div class="alert alert-danger">User denied the request for Geolocation. Please Specify your location manually.</div>';
+                $('#input_info').html(html);
+                $('#input_info').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                html = '<div class="alert alert-danger">Location information is unavailable. Please Specify your location manually.</div>';
+                $('#input_info').html(html);
+                $('#input_info').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
+                break;
+            case error.TIMEOUT:
+                html = '<div class="alert alert-danger">The request to get user location timed out. Please Specify your location manually.</div>';
+                $('#input_info').html(html);
+                $('#input_info').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
+                break;
+            case error.UNKNOWN_ERROR:
+                html = '<div class="alert alert-danger">An unknown error occurred. Please Specify your location manually.</div>';
+                $('#input_info').html(html);
+                $('#input_info').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
+                break;
+        }
     }
 
     //initial setup for the page
     function initialSetup(position)
     {
+        fillAddress(position);
+
         $("#latitude").val(position.coords.latitude);
         $("#longitude").val(position.coords.longitude);
         initialise(position.coords.latitude, position.coords.longitude);
@@ -50,11 +93,11 @@ $(document).ready(function() {
                     unit: $("select#unit option:selected").val()},
                 success: function (data) {
                     if (data) {
-                        initRangeSlider(data);
+                        updateRangeSlider(data);
                         displayDataDistance(data);
                     }
                     else {
-                        initRangeSlider(0);
+                        updateRangeSlider(0);
                     }
                 }
             });
@@ -191,6 +234,7 @@ $(document).ready(function() {
         alert("Couldn't detect the position");
     }
 
+    //respond to change unit
     $("select#unit").change(function () {
         markers = [];
         forestDataTable = [];
@@ -206,6 +250,7 @@ $(document).ready(function() {
             success: function (data) {
                 if (data) {
                     updateRangeSlider(data);
+                    displayDataDistance(data);
                 }
                 else {
                     return updateRangeSlider(0);
@@ -216,10 +261,10 @@ $(document).ready(function() {
 
     function updateRangeSlider(maxValue) {
         var $r = $('input[type=range]');
-        $r[0].value = 0;
+        //$r[0].value = maxValue;
         $r.attr({"max": maxValue});
-
         $r.rangeslider('update', true);
+        $r.val(maxValue).change();
     }
 
 
@@ -288,8 +333,8 @@ $(document).ready(function() {
                     $.each(data, function (index, oneRecord) {
                         bounds.extend(new google.maps.LatLng(oneRecord.latitude, oneRecord.longitude));
 
-                        forestInfo = '<p><b>' + oneRecord.forest_name + '</b></p>' +
-                                '<p>' + oneRecord.description + '</p>';
+                        forestInfo = '<p><b>' + oneRecord.name + '</b></p>' +
+                            '<p>' + oneRecord.description + '</p>';
 
                         for(var i = 0; i < oneRecord.activities.length; i++)
                         {
@@ -305,7 +350,7 @@ $(document).ready(function() {
 
                         map.fitBounds(bounds);
 
-                        forestInfo = '<p><b>' + oneRecord.forest_name + '</b></p>' +
+                        forestInfo = '<p><b>' + oneRecord.name + '</b></p>' +
                             '<p><a href="javascript:getSites(' + (markers.length - 1) + ')">Recreation sites</a>&nbsp;&nbsp;' +
                             '|&nbsp;&nbsp;Locate Me:&nbsp;<a onclick="javascript:mapLocate(' + (markers.length - 1) + ')" href="#map">' +
                             '<img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
@@ -320,7 +365,7 @@ $(document).ready(function() {
 
                         forestDataTable.push([forestInfo, oneRecord.distance]);
 
-                        forestData.push({id: oneRecord.forest_id, name: oneRecord.forest_name,
+                        forestData.push({id: oneRecord.id, name: oneRecord.name,
                             latitude: oneRecord.latitude, longitude: oneRecord.longitude, description: oneRecord.description,
                             distance: oneRecord.distance});
                         count++;
@@ -349,7 +394,7 @@ $(document).ready(function() {
                     addMarker(latitude,longitude,'<b>You are here!</b>');
 
                     $('#f_table_container').html('<table id="f_table" class="table table-striped table-bordered"' +
-                    'cellspacing="0" width="100%"></table>');
+                        'cellspacing="0" width="100%"></table>');
                     $("#f_table").html('<tr><td colspan="4"><div class="notif-background">No forest within ' +
                         distance + ' ' + $("select#unit option:selected").text() + '</div></td></tr>');
                 }
@@ -446,10 +491,10 @@ $(document).ready(function() {
                         map.fitBounds(bounds);
 
                         siteInfo = '<p><b>' + oneRecord.site_name + '</b></p>' +
-                                '<p>Locate Me:&nbsp;<a onclick="javascript:mapLocate(' + (markers.length - 1) + ')" href="#map">' +
-                                '<img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
-                                (count + 1) + '|FFDE00|000000" /></a></p>' +
-                                '<p><a href="http://maps.google.com/maps?saddr=-37.9361409,145.12104109999999&daddr=' +
+                            '<p>Locate Me:&nbsp;<a onclick="javascript:mapLocate(' + (markers.length - 1) + ')" href="#map">' +
+                            '<img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
+                            (count + 1) + '|FFDE00|000000" /></a></p>' +
+                            '<p><a href="http://maps.google.com/maps?saddr=-37.9361409,145.12104109999999&daddr=' +
                             oneRecord.latitude + ',' + oneRecord.longitude + '" target="_blank" >Get direction</a></p>';
                         siteDataTable.push([siteInfo, oneRecord.distance]);
 
@@ -633,7 +678,7 @@ $(document).ready(function() {
                     $.each(data, function (index, oneRecord) {
                         bounds.extend(new google.maps.LatLng(oneRecord.latitude, oneRecord.longitude));
 
-                        forestInfo = '<p><b>' + oneRecord.forest_name + '</b></p>' +
+                        forestInfo = '<p><b>' + oneRecord.name + '</b></p>' +
                             '<p>' + oneRecord.description + '</p>';
 
                         for(var i = 0; i < oneRecord.activities.length; i++)
@@ -650,7 +695,7 @@ $(document).ready(function() {
 
                         map.fitBounds(bounds);
 
-                        forestInfo = '<p><b>' + oneRecord.forest_name + '</b></p>' +
+                        forestInfo = '<p><b>' + oneRecord.name + '</b></p>' +
                             '<p><a href="javascript:getSites(' + (markers.length - 1) + ')">Recreation sites</a>&nbsp;&nbsp;' +
                             '|&nbsp;&nbsp;Locate Me:&nbsp;<a onclick="javascript:mapLocate(' + (markers.length - 1) + ')" href="#map">' +
                             '<img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
@@ -664,7 +709,7 @@ $(document).ready(function() {
 
                         forestDataTable.push([forestInfo, oneRecord.distance]);
 
-                        forestData.push({id: oneRecord.forest_id, name: oneRecord.forest_name,
+                        forestData.push({id: oneRecord.forest_id, name: oneRecord.name,
                             latitude: oneRecord.latitude, longitude: oneRecord.longitude, description: oneRecord.description,
                             distance: oneRecord.distance});
                         count++;
@@ -704,16 +749,140 @@ $(document).ready(function() {
     }
 
     /*
-    $('#activity_button_list').on('mouseenter','.activity_button',function (e) {
-        if(!e.target.src.match('_active'))
+     $('#activity_button_list').on('mouseenter','.activity_button',function (e) {
+     if(!e.target.src.match('_active'))
+     {
+     e.target.src = '../../assets/img/buttons/' + e.target.id + '_active.png';
+     }
+     })
+     $('#activity_button_list').on('mouseleave','.activity_button',function (e) {
+     if(e.target.src.match('_active'))
+     {
+     e.target.src = '../../assets/img/buttons/' + e.target.id + '_active.png';
+     }
+     });*/
+    function initAutocomplete() {
+//set the bias boundary for Victoria, Australia
+        var defaultBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(-39.224731, 140.962477),
+            new google.maps.LatLng(-33.981051, 149.976488 )
+        );
+        var options = {
+            bounds: defaultBounds,
+            types: ['address'],
+            componentRestrictions: {country:'au'}
+        };
+
+        //get the html input element for the autocomplete search box
+        var input = document.getElementById('input_loc');
+        //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        //create autocomplete object
+        autocomplete = new google.maps.places.Autocomplete(input, options);
+
+        autocomplete.addListener('place_changed', initSetup);
+    }
+
+    var componentForm = {
+        /*street_number: 'short_name',
+         route: 'long_name',
+         locality: 'long_name',*/
+        administrative_area_level_1: 'short_name'
+        /*country: 'long_name',
+         postal_code: 'short_name'*/
+    };
+
+    function initSetup()
+    {
+        var place = autocomplete.getPlace();
+        if(!place.address_components)
         {
-            e.target.src = '../../assets/img/buttons/' + e.target.id + '_active.png';
+            html = '<div class="alert alert-danger">Location can\'t be found. Please select from the list.</div>';
+            $('#input_info').html(html);
+            $('#input_info').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
         }
-    })
-    $('#activity_button_list').on('mouseleave','.activity_button',function (e) {
-        if(e.target.src.match('_active'))
+        if(place.address_components)
         {
-            e.target.src = '../../assets/img/buttons/' + e.target.id + '_active.png';
+            for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];
+                if (addressType == 'administrative_area_level_1') {
+                    var val = place.address_components[i][componentForm[addressType]];
+                    if(val == 'VIC')
+                    {
+                        //Selected adress is inside Victoria
+                        html = '<div class="alert alert-success"> Your selected location:<br /><strong> ' + place.formatted_address + '<strong></div>';
+                        $('#input_info').html(html);
+                        $('#input_info').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
+
+                        //get the latitude and longitude data of location
+                        $("#latitude").val(place.geometry.location.lat());
+                        $("#longitude").val(place.geometry.location.lng());
+
+                        //initialise the page again, similar like change unit
+                        markers = [];
+                        forestDataTable = [];
+
+                        var latitude = $("#latitude").val();
+                        var longitude = $("#longitude").val();
+
+                        initialise(latitude, longitude);
+                        if (displayMode == 'distance')
+                        {
+                            $.ajax({
+                                type: "POST",
+                                url: url + "get_max_distances",
+                                dataType: 'text',
+                                data: {latitude: latitude, longitude: longitude,
+                                    unit: $("select#unit option:selected").val()},
+                                success: function (data) {
+                                    if (data) {
+                                        updateRangeSlider(data);
+                                        displayDataDistance(data);
+                                    }
+                                    else {
+                                        updateRangeSlider(0);
+                                    }
+                                }
+                            });
+                        }
+                        else if (displayMode == 'activity')
+                        {
+
+                        }
+
+                        return;
+                    }
+                    else if(val != 'VIC'|| !val)
+                    {
+                        //Selected adress outside Victoria
+                        html = '<div class="alert alert-warning">Currently, doesn\'t support area outside Victoria.<br /> Please select address inside Victoria.</div>';
+                        $('#input_info').html(html);
+                        $('#input_info').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
+                        return;
+                    }
+                }
+            }
         }
-    });*/
+    }
+
+    function fillAddress(position){
+        $.ajax({
+            type: "GET",
+            url: "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.coords.latitude + "," + position.coords.longitude,
+            dataType: 'json',
+            //data: {unit: unit, latitude: latitude, longitude: longitude, activities: activities},
+            success: function (data) {
+                if (data) {
+                    html = '<div class="alert alert-success"> Your estimated current location:<br /><strong>' + data.results[1].formatted_address + '</strong></div>';
+                    $('#input_info').html(html);
+                    $('#input_info').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
+                    //$('#input_loc').val(data.results[0].formatted_address);
+                }
+            }
+        });
+    }
+
+    initAutocomplete();
+    //getLocation();
+    $("#input_loc").addClear();
 });

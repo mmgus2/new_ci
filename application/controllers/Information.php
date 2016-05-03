@@ -22,7 +22,7 @@ class Information extends CI_Controller {
     public function index()
     {
 
-        $this->record = $this->model->read();
+        $this->record = $this->model->read_forest();
         $forests = NULL;
         for ($i=0; $i < sizeof($this->record); $i++)
         {

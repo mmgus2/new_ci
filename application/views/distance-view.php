@@ -3,6 +3,9 @@
         detectLocation();
     });
 </script>
+<style>
+    ::-ms-clear {display: none; width:0; height:0;}
+</style>
 <header class="location">
     <div class="parallax-window" data-parallax="scroll" data-image-src="../../assets/img/distance_header.jpg">
         <div class="container">
@@ -34,18 +37,19 @@
         </div-->
         <div class="row">
             <div class="col-md-12">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div id="input_info" hidden="true"></div>
+                <input class="form-control" id="input_loc" placeholder="Specify your location" type="text"></input>
+            </div>
+            <div class="col-md-7">
                 <b>Scroll to get preferred distance</b>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
                 <br />
-                <input type="range" min="0" step="1">
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-sm-2">
+                <br />
+                <input type="range" min="0" step="1" id="range_slider">&nbsp;
                 <select class="form-control" id="unit">
                     <option value="K" selected>Km</option>
                     <option value="M">Mile</option>
