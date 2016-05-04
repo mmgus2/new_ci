@@ -17,8 +17,8 @@
     $(document).ready(function() {
         var downloadpath = '../../assets/forest_map/';
         var imagepath = '../../assets/img/forest_images/';
-        //var baseUrl = window.location.protocol + "//" + window.location.host + "/Ajax/";
-        var baseUrl = "http://localhost/index.php/";
+        var baseUrl = window.location.protocol + "//" + window.location.host + "/Ajax/";
+        //var baseUrl = "http://localhost/index.php/";
 
         var forests = <?php echo json_encode($allforests) ?>;
         var table = $('#info_table').DataTable({
