@@ -473,7 +473,7 @@ $(document).ready(function() {
                             '<p>Locate Me:&nbsp;<a onclick="javascript:mapLocate(' + (markers.length - 1) + ')" href="#map">' +
                             '<img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
                             (count + 1) + '|FFDE00|000000" /></a></p>' +
-                            '<p><a href="http://maps.google.com/maps?saddr=-37.9361409,145.12104109999999&daddr=' +
+                            '<p><a href="http://maps.google.com/maps?saddr=' + curLatitude + ',' + curLongitude + '&daddr=' +
                             oneRecord.latitude + ',' + oneRecord.longitude + '" target="_blank" >Get direction</a></p>';
                         siteDataTable.push([siteInfo, oneRecord.distance]);
 
