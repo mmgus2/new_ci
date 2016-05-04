@@ -427,6 +427,9 @@ $(document).ready(function() {
         var latitude = forestData[i].latitude;
         var longitude = forestData[i].longitude;
 
+        var curLatitude = $("input#latitude").val();
+        var curLongitude = $("input#longitude").val();
+
         addMap(latitude,longitude);
 
         var marker = addMarker(latitude,longitude,forestData[i].name,
@@ -455,7 +458,7 @@ $(document).ready(function() {
                         bounds.extend(new google.maps.LatLng(oneRecord.latitude, oneRecord.longitude));
                         siteInfo = '<p><b>' + oneRecord.site_name + '</b></p>' +
                             '<p>' + oneRecord.description + '</p>' +
-                            '<p><a href="http://maps.google.com/maps?saddr=-37.9361409,145.12104109999999&daddr=' +
+                            '<p><a href="http://maps.google.com/maps?saddr=' + curLatitude + ',' + curLongitude + '&daddr=' +
                             oneRecord.latitude + ',' + oneRecord.longitude + '" target="_blank" >Get direction</a></p>';
 
                         var marker = addMarker(oneRecord.latitude, oneRecord.longitude,
