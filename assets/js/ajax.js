@@ -602,8 +602,7 @@ $(document).ready(function() {
                 actArray.splice(i, 1);
             }
             //alert(actArray.toString());
-        }
-        if(!el.src.match('_active'))
+        } else
         {
             el.src = '../../assets/img/buttons/' + el.id + '_active.png';
             actArray.push(el.id);
