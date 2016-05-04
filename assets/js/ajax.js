@@ -603,7 +603,7 @@ $(document).ready(function() {
             }
             //alert(actArray.toString());
         }
-        else
+        if(!el.src.match('_active'))
         {
             el.src = '../../assets/img/buttons/' + el.id + '_active.png';
             actArray.push(el.id);
@@ -613,7 +613,8 @@ $(document).ready(function() {
         {
             respondActivity(actArray);
         }
-        else{
+        if(actArray.length <= 0)
+        {
             addMap($("input#latitude").val(), $("input#longitude").val());
             addMarker($("input#latitude").val(), $("input#longitude").val(),'<b>You are here!</b>');
             $('#f_table_container').html('<table id="f_table" class="table table-striped"' +
