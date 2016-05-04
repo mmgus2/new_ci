@@ -1,10 +1,11 @@
 /**
  * Created by gusis on 4/2/2016.
+ * Last modified: 4/5/2016
  */
 $(document).ready(function() {
     //initialise base url for ajax request
-    var url = window.location.protocol + "//" + window.location.host + "/Ajax/";
-    //var url = "http://localhost/index.php/Ajax/";
+    //var baseUrl = window.location.protocol + "//" + window.location.host + "/Ajax/";
+    var baseUrl = "http://localhost/index.php/Ajax/";
 
     //variable to check whether it is in distance mode or activity mode
     var displayMode = $('#display_mode').val();
@@ -25,27 +26,40 @@ $(document).ready(function() {
     //array for activities
     var actArray = [];
 
-    //init rangeSlider
+    //initialitation for slider
     initRangeSlider(0);
 
     //detect user current location
     window.detectLocation = function(){
-        /*$.geolocation.get({
-            success: initialSetup,
-            error: askForPosition
-        })*/
         getLocation();
     }
 
-    //additional function just added 04 Mei 2016
+    //get estimated current location using HTML5 geolocoation
     function getLocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(initialSetup, errorInfo);
+            navigator.geolocation.getCurrentPosition(autogeoSetup, errorInfo);
         } else {
             html = '<div class="alert alert-danger">Geolocation is not supported by this browser. Please Specify your location manually.</div>';
             $('#input_info').html(html);
             $('#input_info').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
         }
+    }
+
+    //initial setup for the page using html5 geolocation
+    function autogeoSetup(position)
+    {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+
+        //initiate estimate address and show it in the page
+        estimateAddress(latitude,longitude);
+
+        //store data inside hidden input tag
+        $("#latitude").val(latitude);
+        $("#longitude").val(longitude);
+
+        //set the button and initialise map
+        setupButton(latitude,longitude);
     }
 
     function errorInfo(error){
@@ -74,30 +88,35 @@ $(document).ready(function() {
         }
     }
 
-    //initial setup for the page
-    function initialSetup(position)
-    {
-        fillAddress(position);
+    //ajax function to set button for distance(slider) or activity(activity buttons)
+    function setupButton(latitude,longitude){
+        var selectedUnit = $("select#unit option:selected").val();
 
-        $("#latitude").val(position.coords.latitude);
-        $("#longitude").val(position.coords.longitude);
-        initialise(position.coords.latitude, position.coords.longitude);
         if (displayMode == 'distance')
         {
             //initialise slider
             $.ajax({
                 type: "POST",
-                url: url + "get_max_distances",
+                url: baseUrl +"get_max_distances",
                 dataType: 'text',
-                data: {latitude: position.coords.latitude, longitude: position.coords.longitude,
-                    unit: $("select#unit option:selected").val()},
+                data: {latitude: latitude, longitude: longitude,
+                    unit: selectedUnit
+                },
                 success: function (data) {
                     if (data) {
+                        //update slider button
                         updateRangeSlider(data);
+
+                        //show map and table data
                         displayDataDistance(data);
+
+                        //initiate max distance hidden input tag
+                        $("#max_distance").val(data);
                     }
                     else {
                         updateRangeSlider(0);
+                        displayDataDistance(0);
+                        $("#max_distance").val(0);
                     }
                 }
             });
@@ -105,13 +124,18 @@ $(document).ready(function() {
         else if (displayMode == 'activity')
         {
             //initalise activity buttons
+            //initialise map
+            addMap(latitude,longitude);
+
+            //add position marker
+            addMarker(latitude,longitude,'<b>You are here!</b>');
+            $('#activity_button_list').html('');
             $.ajax({
                 type: "POST",
-                url: url + "get_activities",
+                url: baseUrl +"get_activities",
                 dataType: 'json',
                 success: function (data) {
                     if (data) {
-                        // /var count = 0;
                         $.each(data, function (index, oneRecord){
                             var innerHtml = '<div class="col-sm-1">' +
                                 '<img src="../../assets/img/buttons/' +oneRecord.activity_id +'.png" alt="'
@@ -119,9 +143,11 @@ $(document).ready(function() {
                                 'class="img-responsive" id="' + oneRecord.activity_id + '" />' +
                                 '<br />' + oneRecord.activity_name + '</div>';
                             $('#activity_button_list').append(innerHtml);
-                            //actArray.push(oneRecord.activity_id);
                         });
-                        //respondActivity(actArray);
+                        $('#f_table_container').html('<table id="f_table" class="table table-striped"' +
+                            'cellspacing="0" width="100%"></table>');
+                        $("#f_table").html('<tr><td colspan="4"><div class="notif-background">' +
+                            'No activities selected.</div></td></tr>');
                     }
                     else {
                         $('#activity_button_list').innerHTML = "Button icons cannot be displayed!";
@@ -131,7 +157,7 @@ $(document).ready(function() {
         }
     }
 
-    //function to initialise map with event listener
+    //function to add map with event listener
     function addMap(latitude, longitude)
     {
         var mapInit = {
@@ -151,7 +177,7 @@ $(document).ready(function() {
         if (arguments.length == 3)
         {
             var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(latitude, longitude),
+                position: new google.maps.LatLng(latitude, longitude)
             });
             marker.setMap(map);
             marker.addListener('click', function () {
@@ -175,27 +201,6 @@ $(document).ready(function() {
         }
     }
 
-
-    //function to initialise the map
-    function initialise(initLat, initLong) {
-        addMap(initLat, initLong);
-
-        addMarker(initLat,initLong,'<b>You are here!</b>');
-
-        $('#f_table_container').html('<table id="f_table" class="table table-striped table-bordered"' +
-            'cellspacing="0" width="100%"></table>');
-        if(displayMode == 'distance')
-        {
-            $("#f_table").html('<tr><td colspan="4"><div class="notif-background">No forest within 0 ' +
-                $("select#unit option:selected").text() + '</div></td></tr>');
-        }
-        else if(displayMode == 'activity')
-        {
-            $("#f_table").html('<tr><td colspan="4"><div class="notif-background">' +
-                'There are no activities selected.</div></td></tr>');
-        }
-    }
-
     //function to respond to user click
     window.mapLocate = function (i) {
         google.maps.event.trigger(markers[i], 'click');
@@ -203,13 +208,12 @@ $(document).ready(function() {
         map.setCenter(markers[i].getPosition());
     };
 
-    //initialise range slider
+    //initialise slider
     function initRangeSlider(maxValue)
     {
         var $r = $('input[type=range]');
         var $handle;
-        $r.attr({"max": maxValue});
-        $r.attr({"value": maxValue});
+        $r.attr({"max": maxValue, "value": maxValue});
         $r.rangeslider({
             polyfill: false,
             onInit: function () {
@@ -229,36 +233,7 @@ $(document).ready(function() {
         el.textContent = val;
     }
 
-    function askForPosition(error)
-    {
-        alert("Couldn't detect the position");
-    }
-
-    //respond to change unit
-    $("select#unit").change(function () {
-        markers = [];
-        forestDataTable = [];
-        var latitude = $("#latitude").val();
-        var longitude = $("#longitude").val();
-        initialise(latitude, longitude);
-        $.ajax({
-            type: "POST",
-            url: url + "get_max_distances",
-            dataType: 'text',
-            data: {latitude: latitude, longitude: longitude,
-                unit: $("select#unit option:selected").val()},
-            success: function (data) {
-                if (data) {
-                    updateRangeSlider(data);
-                    displayDataDistance(data);
-                }
-                else {
-                    return updateRangeSlider(0);
-                }
-            }
-        });
-    });
-
+    //update slider
     function updateRangeSlider(maxValue) {
         var $r = $('input[type=range]');
         //$r[0].value = maxValue;
@@ -267,6 +242,13 @@ $(document).ready(function() {
         $r.val(maxValue).change();
     }
 
+    //respond to change unit
+    $("select#unit").change(function () {
+        var latitude = $("#latitude").val();
+        var longitude = $("#longitude").val();
+
+        setupButton(latitude,longitude);
+    });
 
     //respond to side bar
     function displayDataDistance(distance)
@@ -275,10 +257,17 @@ $(document).ready(function() {
         var unitText = $("select#unit option:selected").text();
         var latitude = $("input#latitude").val();
         var longitude = $("input#longitude").val();
+
+        //initialise map
+        addMap(latitude,longitude);
+
+        //add position marker
+        addMarker(latitude,longitude,'<b>You are here!</b>');
+
         //get the data from controller
         $.ajax({
             type: "POST",
-            url: url + "get_forests/distance",
+            url: baseUrl +"get_forests/distance",
             dataType: 'json',
             data: {distance: distance, unit: unit, latitude: latitude, longitude: longitude},
             success: function (data) {
@@ -286,9 +275,6 @@ $(document).ready(function() {
                     forestData= [];
                     forestDataTable = [];
                     markers = [];
-
-                    //intialise map
-                    addMap(latitude,longitude);
 
                     //create circle marker
                     var $r = $('input[type=range]');
@@ -321,9 +307,7 @@ $(document).ready(function() {
                     });
                     theRadius.setMap(map);
 
-                    //add position marker
-                    addMarker(latitude,longitude,'<b>You are here!</b>');
-
+                    //initialise map boundary
                     var bounds = new google.maps.LatLngBounds();
                     bounds.extend(new google.maps.LatLng(latitude, longitude));
 
@@ -364,7 +348,6 @@ $(document).ready(function() {
 
 
                         forestDataTable.push([forestInfo, oneRecord.distance]);
-
                         forestData.push({id: oneRecord.id, name: oneRecord.name,
                             latitude: oneRecord.latitude, longitude: oneRecord.longitude, description: oneRecord.description,
                             distance: oneRecord.distance});
@@ -387,13 +370,7 @@ $(document).ready(function() {
                     });
                 }
                 else {
-                    //initialise map
-                    addMap(latitude,longitude);
-
-                    //add position marker
-                    addMarker(latitude,longitude,'<b>You are here!</b>');
-
-                    $('#f_table_container').html('<table id="f_table" class="table table-striped table-bordered"' +
+                    $('#f_table_container').html('<table id="f_table" class="table table-striped"' +
                         'cellspacing="0" width="100%"></table>');
                     $("#f_table").html('<tr><td colspan="4"><div class="notif-background">No forest within ' +
                         distance + ' ' + $("select#unit option:selected").text() + '</div></td></tr>');
@@ -421,9 +398,6 @@ $(document).ready(function() {
 
             //disable unit dropdown (km or mile)
             $('#unit').prop('disabled', true);
-
-            unit = $("select#unit option:selected").val();
-            unitText = $("select#unit option:selected").text();
         }
 
         if(displayMode == 'activity')
@@ -432,10 +406,12 @@ $(document).ready(function() {
             $('#activity_button_list').css('pointer-events','none');
             $('#activity_button_list').css('color','grey');
 
-            unit = 'K';
-            unitText = 'Km';
         }
-        var htmlContent = '<h6><b>' + forestData[i].name + '</b><i>&nbsp;(distance: ' + forestData[i].distance + ' ' + unitText + ')</i></h6>' +
+
+        unit = $("select#unit option:selected").val();
+        unitText = $("select#unit option:selected").text();
+
+        var htmlContent = '<h6><b>' + forestData[i].name + '</b>&nbsp;(distance: ' + forestData[i].distance + ' ' + unitText + ')</h6>' +
             '<p>' + forestData[i].description + '</p>' +
             '<p><button class="btn btn-success" onclick="backToForest()">Go Back to forests location</button></p>';
 
@@ -461,7 +437,7 @@ $(document).ready(function() {
         //
         $.ajax({
             type: "POST",
-            url: url + "get_sites",
+            url: baseUrl + "get_sites",
             dataType: 'json',
             data: {
                 forest_id: forestData[i].id,
@@ -531,8 +507,6 @@ $(document).ready(function() {
     //go back to forest when in site mode
     window.backToForest = function () {
         //alert("Go back to forest");
-        var unit = '';
-        var unitText = '';
         if (displayMode == 'distance')
         {
             //enable slider
@@ -542,9 +516,6 @@ $(document).ready(function() {
 
             //enable unit dropdown (km or mile)
             $('#unit').prop('disabled', false);
-
-            unit = $("select#unit option:selected").val();
-            unitText = $("select#unit option:selected").text();
         }
 
         if (displayMode == 'activity')
@@ -553,6 +524,9 @@ $(document).ready(function() {
             $('#activity_button_list').css('pointer-events','auto');
             $('#activity_button_list').css('color','');
         }
+
+        unit = $("select#unit option:selected").val();
+        unitText = $("select#unit option:selected").text();
 
         $('#aforest_container').hide('slow');
         $('#s_table_container').hide('slow');
@@ -640,21 +614,28 @@ $(document).ready(function() {
             respondActivity(actArray);
         }
         else{
-            initialise($("input#latitude").val(), $("input#longitude").val());
+            addMap($("input#latitude").val(), $("input#longitude").val());
+            addMarker($("input#latitude").val(), $("input#longitude").val(),'<b>You are here!</b>');
+            $('#f_table_container').html('<table id="f_table" class="table table-striped"' +
+                'cellspacing="0" width="100%"></table>');
+            $("#f_table").html('<tr><td colspan="4"><div class="notif-background">No forest for selected activities' +
+                '</div></td></tr>');
         }
     }
 
     //respond to activity button
     function respondActivity(activities)
     {
-        var unit = 'K';
-        var unitText = 'Km';
+        //var unit = 'K';
+        //var unitText = 'Km';
+        unit = $("select#unit option:selected").val();
+        unitText = $("select#unit option:selected").text();
         var latitude = $("input#latitude").val();
         var longitude = $("input#longitude").val();
         //get the data from controller
         $.ajax({
             type: "POST",
-            url: url + "get_forests/activity",
+            url: baseUrl +"get_forests/activity",
             dataType: 'json',
             data: {unit: unit, latitude: latitude, longitude: longitude, activities: activities},
             success: function (data) {
@@ -709,7 +690,7 @@ $(document).ready(function() {
 
                         forestDataTable.push([forestInfo, oneRecord.distance]);
 
-                        forestData.push({id: oneRecord.forest_id, name: oneRecord.name,
+                        forestData.push({id: oneRecord.id, name: oneRecord.name,
                             latitude: oneRecord.latitude, longitude: oneRecord.longitude, description: oneRecord.description,
                             distance: oneRecord.distance});
                         count++;
@@ -731,14 +712,13 @@ $(document).ready(function() {
                     });
                 }
                 else {
-                    alert("Failed to collect data");
                     //initialise map
                     addMap(latitude,longitude);
 
                     //add position marker
                     addMarker(latitude,longitude,'<b>You are here!</b>');
 
-                    $('#f_table_container').html('<table id="f_table" class="table table-striped table-bordered"' +
+                    $('#f_table_container').html('<table id="f_table" class="table table-striped"' +
                         'cellspacing="0" width="100%"></table>');
                     $("#f_table").html('<tr><td colspan="4"><div class="notif-background">No forest for selected activities' +
                         '</div></td></tr>');
@@ -762,7 +742,7 @@ $(document).ready(function() {
      }
      });*/
     function initAutocomplete() {
-//set the bias boundary for Victoria, Australia
+    //set the bias boundary for Victoria, Australia
         var defaultBounds = new google.maps.LatLngBounds(
             new google.maps.LatLng(-39.224731, 140.962477),
             new google.maps.LatLng(-33.981051, 149.976488 )
@@ -818,37 +798,11 @@ $(document).ready(function() {
                         $("#latitude").val(place.geometry.location.lat());
                         $("#longitude").val(place.geometry.location.lng());
 
-                        //initialise the page again, similar like change unit
-                        markers = [];
-                        forestDataTable = [];
-
                         var latitude = $("#latitude").val();
                         var longitude = $("#longitude").val();
 
-                        initialise(latitude, longitude);
-                        if (displayMode == 'distance')
-                        {
-                            $.ajax({
-                                type: "POST",
-                                url: url + "get_max_distances",
-                                dataType: 'text',
-                                data: {latitude: latitude, longitude: longitude,
-                                    unit: $("select#unit option:selected").val()},
-                                success: function (data) {
-                                    if (data) {
-                                        updateRangeSlider(data);
-                                        displayDataDistance(data);
-                                    }
-                                    else {
-                                        updateRangeSlider(0);
-                                    }
-                                }
-                            });
-                        }
-                        else if (displayMode == 'activity')
-                        {
-
-                        }
+                        //set the button and initialise map and table
+                        setupButton(latitude,longitude);
 
                         return;
                     }
@@ -858,6 +812,7 @@ $(document).ready(function() {
                         html = '<div class="alert alert-warning">Currently, doesn\'t support area outside Victoria.<br /> Please select address inside Victoria.</div>';
                         $('#input_info').html(html);
                         $('#input_info').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
+
                         return;
                     }
                 }
@@ -865,24 +820,24 @@ $(document).ready(function() {
         }
     }
 
-    function fillAddress(position){
+    function estimateAddress(latitude,longitude){
         $.ajax({
             type: "GET",
-            url: "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.coords.latitude + "," + position.coords.longitude,
+            url: "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude,
             dataType: 'json',
-            //data: {unit: unit, latitude: latitude, longitude: longitude, activities: activities},
             success: function (data) {
                 if (data) {
-                    html = '<div class="alert alert-success"> Your estimated current location:<br /><strong>' + data.results[1].formatted_address + '</strong></div>';
+                    html = '<div class="alert alert-success"> Your estimated current location:<br /><strong>' +
+                        data.results[1].formatted_address + '</strong></div>';
                     $('#input_info').html(html);
                     $('#input_info').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
-                    //$('#input_loc').val(data.results[0].formatted_address);
                 }
             }
         });
     }
-
-    initAutocomplete();
-    //getLocation();
-    $("#input_loc").addClear();
+    if (displayMode == "distance" || displayMode == "activity"){
+        initAutocomplete();
+        //getLocation();
+        $("#input_loc").addClear();
+    }
 });

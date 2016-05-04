@@ -21,6 +21,24 @@
                 <b>Select one or more activites</b>
             </div>
         </div>
+        <div class="row">
+            <br />
+            <span id="activity_button_list"></span>
+            <br />
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="input_info" hidden="true"></div>
+                <input class="form-control" id="input_loc" placeholder="Specify your location" type="text">
+            </div>
+            <div class="col-md-6">
+                Distance unit: &nbsp;
+                <select class="form-control" id="unit">
+                    <option value="K" selected>Km</option>
+                    <option value="M">Mile</option>
+                </select>
+            </div>
+        </div>
         <!--div class="row">
             <div class="col-md-12">
                 <header class="location" >
@@ -33,7 +51,4 @@
             </div>
         </div-->
         <br />
-        <div class="row" id="activity_button_list">
-            <div class="col-sm-1"></div>
-        </div>
         <br />

@@ -65,10 +65,10 @@ class Ajax extends CI_Controller {
         }
         if($choice == 'activity')
         {
-            $unit = $this->input->get('unit');
-            $init_lat = $this->input->get('latitude');
-            $init_lon = $this->input->get('longitude');
-            $act_array = $this->input->get('activities');
+            $unit = $this->input->post('unit');
+            $init_lat = $this->input->post('latitude');
+            $init_lon = $this->input->post('longitude');
+            $act_array = $this->input->post('activities');
             $this->record = $this->model->read_forest($act_array);
             //echo json_encode($record, JSON_PRETTY_PRINT);
             $forests = NULL;
@@ -114,6 +114,8 @@ class Ajax extends CI_Controller {
             $sites[$i]["description"] = $this->record[$i]["site_description"];
             $sites[$i]["desc_link"] = $this->record[$i]["website"];
             $sites[$i]["distance"] = intval($site_distance);
+            $activities = $this->model->read_site_act($sites[$i]["site_id"]);
+            $sites[$i]['activities'] = $activities;
         }
         echo json_encode($sites, JSON_PRETTY_PRINT);
     }

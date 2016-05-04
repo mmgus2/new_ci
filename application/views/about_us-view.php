@@ -7,7 +7,68 @@
         </div>
     </div>
 </header>
-<section class="bg-light-gray">
+<section id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">About</h2>
+                <h3 class="section-subheading text-muted">Story of development and new beginnings</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="timeline">
+                    <li>
+                        <div class="timeline-image">
+                            <img class="img-circle img-responsive" src="../../assets/img/beginnings.jpg" alt="">
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4> March 2016</h4>
+                                <h4 class="subheading">Our Humble Beginnings</h4>
+                            </div>
+                            <div class="timeline-body">
+                                <p class="text-muted">This website was formed to explore the forests of Victoria and  provide the activities that can help residents to lead an active lifestyle. </p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image">
+                            <img class="img-circle img-responsive" src="../../assets/img/ExploreForest.jpg" alt="">
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>April 2016</h4>
+                                <h4 class="subheading">Distance and Activity Based Location</h4>
+                            </div>
+                            <div class="timeline-body">
+                                <p class="text-muted">Explore Forest will help you see the forest and activity sites based on the distance chosen by the User.So Hop on and Explore the Location.</p>
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <li class="timeline">
+                        <div class="timeline-image">
+                            <img class="img-circle img-responsive" src="../../assets/img/fullservice.jpg" alt="">
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>May 2016</h4>
+                                <h4 class="subheading">Transition to Full service</h4>
+                            </div>
+                            <div class="timeline-body">
+                                <p class="text-muted">Website is live the functionalities like weather info,forest information along with distance and activities.</p>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="about" class="bg-light-gray">
     <div class="container background-location">
         <h2>Our Mission</h2>
         <p>Our Mission is to develop a platform to give people a better and active lifestyle options.State Forest’s sites of nature is a refreshing change from city’s moving nature. The recreational activities in such places that are less crowded and relatively unexplored promote cleaner environment and time away from stress and anxiety.</p>

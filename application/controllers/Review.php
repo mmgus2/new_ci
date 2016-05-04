@@ -8,136 +8,50 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Review extends CI_Controller {
-    public function index()
+
+    public function __construct()
     {
-        $this->login();
+        parent::__construct();
+        $this->load->model('Database_model');
+        $this->model = $this->Database_model;
     }
 
-    public function login()
+    function _remap($method,$args)
     {
+
+        if (method_exists($this, $method))
+        {
+            $this->$method($args);
+        }
+        else
+        {
+            $this->index($method,$args);
+        }
+    }
+
+    public function index($id)
+    {
+        $this->record = $this->model->read_a_forest($id);
+        $forest = NULL;
+        $forest["id"] = $this->record[0]["forest_id"];
+        $forest["name"] = $this->record[0]["forest_name"];
+        $forest["latitude"] = floatval($this->record[0]["latitude"]);
+        $forest["longitude"] = floatval($this->record[0]["longitude"]);
+        $forest["description"] = $this->record[0]["forest_description"];
+        $sites = $this->model->read_site($forest["id"]);
+        $forest['sites'] = $sites;
+        /*for ($j=0; $j < sizeof($sites); $j++)
+        {
+            $forest['sites'][$j]['activities']= $this->model->read_site_act($sites[$j]['site_id']);
+        }*/
+        $activities = $this->model->read_forest_act($forest["id"]);
+        $forest['activities'] = $activities;
+
+        $data['aforest'] = $forest;
         $this->load->view('header');
         $this->load->view('menu');
-        $this->load->view('login-view');
+        $this->load->view('review-view',$data);
         $this->load->view('footer');
-    }
 
-    public function signup(){
-        $this->load->view('header');
-        $this->load->view('menu');
-        $this->load->view('signup-view');
-        $this->load->view('footer');
-    }
-
-    public  function members()
-    {
-        if($this->session->userdata('is_logged_in')){
-            $this->load->view('header');
-            $this->load->view('menu');
-            $this->load->view('members-view');
-            $this->load->view('footer');
-        } else {
-            redirect(base_url().'Review/restricted');
-        }
-    }
-
-    public function restricted(){
-        $this->load->view('header');
-        $this->load->view('menu');
-        $this->load->view('restricted-view');
-        $this->load->view('footer');
-    }
-
-    public function login_validation()
-    {
-        $this->load->library('form_validation');
-
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|callback_validate_credentials');
-        $this->form_validation->set_rules('password', 'Password', 'required|md5|trim');
-
-        if($this->form_validation->run()){
-            $data = array(
-                'email' => $this->input->post('email'),
-                'is_logged_in' => 1
-            );
-            $this->session->set_userdata($data);
-            redirect(base_url().'Review/members');
-            //$this->members();
-        } else {
-            $this->login();
-        }
-    }
-
-    public function signup_validation(){
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[users.email]');
-        $this->form_validation->set_rules('password', 'Password', 'required|trim');
-        $this->form_validation->set_rules('cpassword', 'Confirm Password', 'required|trim|matches[password]');
-
-        $this->form_validation->set_message('is_unique', "That email address already exists.");
-
-        if($this->form_validation->run()){
-
-            //generate a random key
-            $key = md5(uniqid());
-
-            //send an email to the user
-            //$this->load->library('email', array('mailtype' => 'html')); //set email to html for registration link
-            $this->load->library('email');
-            $this->load->model('model_users');
-
-            $this->email->initialize(array(
-                'mailtype' => 'html',
-                'protocol' => 'smtp',
-                'smtp_host' => 'smtp.sendgrid.net',
-                'smtp_user' => 'azure_575578cf162423c4d82b8168f0e4eaad@azure.com',
-                'smtp_pass' => 'deltasolutions123+',
-                'smtp_port' => 587,
-                'crlf' => "\r\n",
-                'newline' => "\r\n"
-            ));
-
-            $this->email->from('solutionsdelta1@gmail.com','Delta Solutions');
-            $this->email->to($this->input->post('email'));
-            $this->email->subject("Confirm your account at XploreForest!");
-
-            $message = "<p>Thank you for signing up!</p>";
-            $message .= "<p><a href='" . base_url() . "Review/register_user/$key'>Click here</a>" .
-                " to confirm your account</p>";
-
-            $this->email->message($message);
-
-            if ($this->model_users->add_temp_user($key)){
-                if($this->email->send()){
-                    //echo "The email has been sent!";
-                }else{
-                    //echo "Could not send the email.";
-                }
-            } else {
-                //echo "Problem adding user to database.";
-            }
-
-            //add them to the temp_users db
-
-
-        } else {
-            $this->signup();
-        }
-    }
-
-    public function validate_credentials()
-    {
-        $this->load->model('model_users');
-
-        if($this->model_users->can_log_in()){
-            return true;
-        } else {
-            $this->form_validation->set_message('validate_credentials', 'Incorrect username/password.');
-            return false;
-        }
-    }
-
-    public function logout(){
-        $this->session->sess_destroy();
-        redirect(base_url().'Review/login');
     }
 }

@@ -30,7 +30,6 @@
 <script src="../../assets/theme/startbootstrap-agency-1.0.6/js/bootstrap.min.js" ></script>
 
 <!--custom script -->
-<script src="../../assets/js/jquery.geolocation.min.js"></script>
 <script src="../../assets/js/rangeslider.min.js"></script>
 <script src="../../assets/js/jquery.dataTables.min.js"></script>
 <script src="../../assets/js/dataTables.bootstrap.min.js"></script>

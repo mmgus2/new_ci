@@ -29,6 +29,13 @@ class Database_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function read_a_forest($id)
+    {
+        $sql = "SELECT * FROM forest WHERE forest_id =  ?";
+        $query = $this->db->query($sql,array($id));
+        return $query->result_array();
+    }
+
     //get site data from site table in database according to a specific forest ID
     public function read_site($forestID)
     {
@@ -48,7 +55,7 @@ class Database_model extends CI_Model {
     //get activity data from database use a specific forest ID
     public function read_forest_act($forestID)
     {
-        $sql = "SELECT fa.activity_id as activity_id, a.activity_name
+        $sql = "SELECT fa.activity_id as activity_id, a.activity_name as activity_name
                 FROM forest f, forest_activity fa, activity a
                 WHERE f.forest_id = fa.forest_id
                 AND fa.activity_id = a.activity_id
