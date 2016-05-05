@@ -15,11 +15,13 @@
             success: function (data) {
                 if (data) {
                     variable = data;
-                    alert(data);
+                    //alert(data);
                 }
+            },
+            complete function('success'){
+            alert(variable);
             }
         });
-        alert(variable);
     });
 </script>
 </body>
