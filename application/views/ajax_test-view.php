@@ -10,7 +10,7 @@
         $.ajax({
             type: "POST",
             url: "http://xploreforest-development.azurewebsites.net/Ajax/get_forests/distance",
-            dataType: 'text',
+            dataType: 'json',
             data: {latitude: -37.9167, longitude: 145.2, unit: 'K', distance: 100},
             success: function (data) {
                 if (data) {
@@ -18,14 +18,14 @@
                         forestData.push({name: oneRecord.name, description: oneRecord.description});
                     });
                 }
-            }/*,
+            },
             complete: function(jqXHR, status){
                 if(status == 'success'){
                     for(var i = 0; i < forestData.length; i++){
                         console.log(forestData[i].name + ',' + forestData[i].description);
                     }
                 }
-            }*/
+            }
         });
     });
 </script>
