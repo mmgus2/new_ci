@@ -17,13 +17,16 @@
                     $.each(data, function (index, oneRecord) {
                         forestData.push({name: oneRecord.name, description: oneRecord.description});
                     });
+                    for(var i = 0; i < forestData.length; i++){
+                        console.log(forestData[i].name + ',' + forestData[i].description);
+                    }
                 }
             },
             complete: function(jqXHR, status){
                 if(status == 'success'){
-                    for(var i = 0; i < forestData.length; i++){
+                    /*for(var i = 0; i < forestData.length; i++){
                         console.log(forestData[i].name + ',' + forestData[i].description);
-                    }
+                    }*/
                 }
             }
         });
