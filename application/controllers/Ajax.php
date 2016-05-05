@@ -82,12 +82,13 @@ class Ajax extends CI_Controller {
                 $forests[$i]["longitude"] = floatval($this->record[$i]["longitude"]);
                 $forests[$i]["description"] = $this->record[$i]["forest_description"];
                 $forests[$i]["distance"] = intval($forest_distance);
-                /*$sites = $this->model->read_site($forests[$i]["id"]);
+                //should be commented again
+                $sites = $this->model->read_site($forests[$i]["id"]);
                 $forests[$i]['sites'] = $sites;
                 for ($j=0; $j < sizeof($sites); $j++)
                 {
                     $forests[$i]['sites'][$j]['activities']= $this->model->read_site_act($sites[$j]['site_id']);
-                }*/
+                }
                 $activities = $this->model->read_forest_act($forests[$i]["id"]);
                 $forests[$i]['activities'] = $activities;
             }
