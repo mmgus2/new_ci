@@ -6,21 +6,24 @@
 <body>
 <script>
     $(document).ready(function() {
-        var variable = 0;
+        var forestData = [];
         $.ajax({
             type: "POST",
-            url: "http://xploreforest-development.azurewebsites.net/Ajax/get_max_distances",
+            url: "http://xploreforest-development.azurewebsites.net/Ajax/get_forests/distance",
             dataType: 'text',
-            data: {latitude: -37.9167, longitude: 145.2, unit: 'K'},
+            data: {latitude: -37.9167, longitude: 145.2, unit: 'K', distance: 400},
             success: function (data) {
                 if (data) {
-                    variable = data;
-                    //alert(data);
+                    $.each(data, function (index, oneRecord) {
+                        forestData.push({name: oneRecord.name, description: oneRecord.description});
+                    });
                 }
             },
             complete: function(jqXHR, status){
                 if(status == 'success'){
-                    alert(variable);
+                    for(var i = 0; i < forestData.length; i++){
+                        console.log(forestData[i].name + ',' + forestData[i].description);
+                    }
                 }
             }
         });
