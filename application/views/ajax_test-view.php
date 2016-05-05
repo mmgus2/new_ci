@@ -56,13 +56,13 @@
         function displayData(){
             for(var i = 0; i < forestData.length; i++){
                 console.log("Forest:");
-                console.log(forestData[i].name + " , " + forest.description);
+                console.log(forestData[i].name + " , " + forestData[i].description);
 
                 console.log("Sites:");
                 for (var j = 0; j < forestData[i].sites.length; j++){
                     console.log(i + " " + forestData[i].sites[j].name + " , " + forestData[i].sites[j].description);
                     console.log("Activities:");
-                    for(var k = 0; k < forestData[i].sites[i].activity.length; k++){
+                    for(var k = 0; k < forestData[i].sites[j].activity.length; k++){
                         console.log(forestData[i].sites[j].activity[k]);
                     }
                 }
