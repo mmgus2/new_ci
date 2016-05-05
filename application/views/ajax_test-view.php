@@ -18,7 +18,7 @@
                     //alert(data);
                 }
             },
-            complete: function(jqXHR, 'success'){
+            complete: function(jqXHR, "success"){
                 alert(variable);
             }
         });
