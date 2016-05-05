@@ -59,17 +59,17 @@
                 console.log(forestData[i].name + " , " + forestData[i].description);
 
                 console.log("Sites:");
-                for (var j = 0; j < forestData[i].sites.length; j++){
-                    console.log(i + " " + forestData[i].sites[j].name + " , " + forestData[i].sites[j].description);
+                for (var j = 0; j < forestData[i].site.length; j++){
+                    console.log(i + " " + forestData[i].site[j].name + " , " + forestData[i].site[j].description);
                     console.log("Activities:");
-                    for(var k = 0; k < forestData[i].sites[j].activity.length; k++){
-                        console.log(forestData[i].sites[j].activity[k]);
+                    for(var k = 0; k < forestData[i].site[j].activity.length; k++){
+                        console.log(forestData[i].site[j].activity[k]);
                     }
                 }
 
                 console.log("Forest Activities:")
                 for (var i = 0; i < forestData[i].activity.length; i++){
-                    console.log(record.activity[i]);
+                    console.log(forestData[i].activity[i]);
                 }
             }
         }
