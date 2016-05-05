@@ -18,8 +18,10 @@
                     //alert(data);
                 }
             },
-            complete: function(jqXHR, "success"){
-                alert(variable);
+            complete: function(jqXHR, status){
+                if(status == 'success'){
+                    alert(variable);
+                }
             }
         });
     });
