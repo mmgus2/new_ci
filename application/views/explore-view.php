@@ -15,6 +15,7 @@
         </div>
     </div>
 </header>
+<!--Menu Section-->
 <section class="bg-light-gray">
     <div class="container">
         <input type="hidden" id="max_distance" />
@@ -24,7 +25,7 @@
                 <h3 class="section-subheading text-muted">Check out our website to know about the victorian forests.</h3>
             </div>
         </div-->
-        <div class="panel panel-default">
+        <!--div class="panel panel-default"-->
             <div class="row" style="margin: 10px 0;">
                 <div class="col-sm-10 col-sm-offset-1">
                     <div id="input_info" hidden="true"></div>
@@ -33,7 +34,7 @@
                     <input class="form-control" id="input_loc" placeholder="Specify your location" type="text">
                 </div>
             </div>
-            <div id="controller" hidden="true">
+        <div id="controller">
             <div class="row">
                 <div class="col-sm-10 col-sm-offset-1">
                     <hr />
@@ -64,13 +65,65 @@
                                  alt="<?php echo $activity[$i]["activity_name"] ?>"
                                  class="img-responsive" id="<?php echo $activity[$i]["activity_id"] ?>"
                                  onclick="displayDataActivity(this)"
-                            />
+                            >
                                  <p><?php echo $activity[$i]["activity_name"] ?></p>
                         </div>
                 <?php
                     }
                 ?>
             </div>
+        </div>
+        <!--/div-->
+        <div id="image_list"></div>
+        <div id=""
+    </div>
+</section>
+
+<!--Pictures Forest Section-->
+<section class="bg-light-gray">
+    <div class="container">
+    </div>
+</section>
+
+<!-- Map Section -->
+<section class="bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style= "background-color:white" >
+                <div class="fa-border" id="map" style="width: 100%; height: 600px;"></div>
+            </div>
+        </div>
+        <div class="row text-left">
+            <div class="col-md-12" style= "background-color:white" >
+                <strong>Legends</strong>
+                <hr>
+                <ul class="list-inline">
+                    <li>
+                        <img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|7CC37C|000000"
+                             alt="Forest legend"
+                             height="50" width="50">
+                        <p>Forest</p>
+                    </li>
+                    <li>
+                        <img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|FFDE00|000000"
+                             alt="Recreation site legend"
+                             height="50" width="50">
+                        <p>Recreation Site</p>
+                    </li>
+                    <?php
+                    for ($i = 0; $i < sizeof($activity); $i++){
+                        ?>
+                        <li>
+                            <img src="../../assets/img/buttons/<?php echo $activity[$i]["activity_id"] ?>.png"
+                                 alt="<?php echo $activity[$i]["activity_name"] ?>"
+                                 height="50" width="50"
+                            >
+                            <p><?php echo $activity[$i]["activity_name"] ?></p>
+                        </li>
+                        <?php
+                    }
+                    ?>
+                </ul>
             </div>
         </div>
     </div>
