@@ -501,7 +501,7 @@ $(document).ready(function() {
         return x.constructor.toString().indexOf("Array") > -1;
     }
 
-    function drawMapMarker(data,type,addMarker){
+    function drawMapMarker(data,type,aMarker){
         //get the selected unit
         var unit = $("select#unit option:selected").val();
         var unitText = $("select#unit option:selected").text();
@@ -558,8 +558,8 @@ $(document).ready(function() {
         }
 
         if(type == "site"){
-            latitude = addMarker.latitude;
-            longitude = addMarker.longitude;
+            latitude = aMarker.latitude;
+            longitude = aMarker.longitude;
         }
         //initialise map boundary
         var bounds = new google.maps.LatLngBounds();
