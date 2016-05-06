@@ -682,7 +682,7 @@ $(document).ready(function() {
                         for(var i = 0; i < record.activity.length; i++){
                             site.addActivity(record.activity[i]);
                         }
-                    }
+                    })
                     siteData.push(site);
                 }
             },
