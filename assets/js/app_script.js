@@ -191,8 +191,8 @@ $(document).ready(function() {
                         //initiate selected address and show it in the page
                         informLocation("Your selected location:&nbsp;",place.formatted_address);
 
-                        //set the controller (update slider)
-                        setupController(userLatitude,userLongitude);
+                        //set the max distance
+                        setMaxDistance(userLatitude,userLongitude);
 
                         //initialise map with user estimated location and add marker
                         createMap(userLatitude,userLongitude);
@@ -228,8 +228,8 @@ $(document).ready(function() {
         //initiate estimate address and show it in the page
         estimateAddress(latitude,longitude);
 
-        //set the controller (update slider)
-        setupController(latitude,longitude);
+        //set max distance data
+        setMaxDistance(latitude,longitude);
 
         //initialise map with user estimated location and add marker
         createMap(latitude,longitude);
@@ -260,8 +260,8 @@ $(document).ready(function() {
         $('#input_info').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
     }
 
-    //set the controller (update slider)
-    function setupController(latitude,longitude){
+    //set max distance data
+    function setMaxDistance(latitude,longitude){
         var selectedUnit = $("select#unit option:selected").val();
         //initialise slider
         $.ajax({
@@ -271,11 +271,11 @@ $(document).ready(function() {
             data: {latitude: latitude,longitude: longitude,unit: selectedUnit},
             success: function (data) {
                 if (data) {
-                    //update slider button
-                    updateRangeSlider(data);
-
                     //store max distance data
                     maxDistance = data;
+
+                    //update range slider max value
+                    updateRangeSlider(data);
                 }
             }
         });
@@ -355,7 +355,12 @@ $(document).ready(function() {
         var $r = $('input[type=range]');
         $r.attr({"max": maxValue});
         $r.rangeslider('update', true);
-        $r.val(maxValue).change();
+        //$r.val(maxValue).change();
+    }
+
+    function setRangeSliderVal(value){
+        var $r = $('input[type=range]');
+        $r.val(value).change();
     }
     //----------------End of slider function using rangeslider.js-------------
 
@@ -392,6 +397,7 @@ $(document).ready(function() {
     //function that respond to activity button
     window.acceptActivity = function(el)
     {
+        setRangeSliderVal(maxDistance);
         //alert(el.alt);
         if(el.src.match('_active')){
             el.src = '../../assets/img/buttons/' + el.id + '.png';
@@ -510,14 +516,14 @@ $(document).ready(function() {
         var bounds = new google.maps.LatLngBounds();
         bounds.extend(new google.maps.LatLng(latitude,longitude));
         for(var i = 0; i < data.length; i++){
-            bounds.extend(new google.maps.LatLng(data.latitude, data.longitude));
+            bounds.extend(new google.maps.LatLng(data[i].latitude, data[i].longitude));
 
-            popupInfo = '<p><b>' + data.name + '</b></p>' +
-                '<p>' + data.description + '</p>';
+            popupInfo = '<p><b>' + data[i].name + '</b></p>' +
+                '<p>' + data[i].description + '</p>';
 
-            for(var j = 0; j < data.activity.length; j++)
+            for(var j = 0; j < data[i].activity.length; j++)
             {
-                popupInfo += '<img src="../../assets/img/buttons/' + data.activity[j].activity_id + '.png" ' +
+                popupInfo += '<img src="../../assets/img/buttons/' + data[i].activity[j].activity_id + '.png" ' +
                                   'height="25px" width="25px" />&nbsp;';
             }
 
@@ -526,7 +532,7 @@ $(document).ready(function() {
                 marker_link = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + i + '|7CC37C|000000';
             }
 
-            var marker = addMarker(data.latitude, data.longitude,
+            var marker = addMarker(data[i].latitude, data[i].longitude,
                 popupInfo,marker_link);
 
             markers.push(marker);
