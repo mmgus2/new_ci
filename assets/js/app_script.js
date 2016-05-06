@@ -192,8 +192,14 @@ $(document).ready(function() {
                         //initiate selected address and show it in the page
                         informLocation("Your selected location:&nbsp;",place.formatted_address);
 
-                        //set the max distance
+                        //set max distance data
                         setMaxDistance(userLatitude,userLongitude);
+
+                        //update slider max value
+                        updateRangeSlider(maxDistance);
+
+                        //set slider value to 0
+                        setRangeSliderVal(0);
 
                         //initialise map with user estimated location and add marker
                         createMap(userLatitude,userLongitude);
@@ -599,7 +605,7 @@ $(document).ready(function() {
         //set slider value to 0
         setRangeSliderVal(0);
 
-        //set act button to inactive
+        //set act button to inactive ???
 
         //remove previous marker(s) (if any)
         for(var i = 0; i < markers.length; i++){
