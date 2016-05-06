@@ -38,7 +38,12 @@ class Ajax_response extends CI_Controller {
                 $forest[$i]["longitude"] = floatval($this->record[$i]["longitude"]);
                 $forest[$i]["description"] = $this->record[$i]["forest_description"];
                 $forest[$i]["distance"] = intval($forest_distance);
-                $forest[$i]["activity"] = $this->get_forest_act($forest[$i]["id"]);
+                $activity = $this->model->read_forest_act($forest[$i]["id"]);
+                for ($i = 0; $i < sizeof($activity); $i++) {
+                    $forest[$i]["activity"]["id"] = $activity["activity_id"];
+                    $forest[$i]["activity"]["name"] = $activity["activity_name"];
+                }
+                //$forest[$i]["activity"] = $this->get_forest_act($forest[$i]["id"]);
             }
         }
         echo json_encode($forest, JSON_PRETTY_PRINT);
