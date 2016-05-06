@@ -22,7 +22,7 @@
         var forestData = [];
         $.ajax({
             type: "POST",
-            url: "http://xploreforest-development.azurewebsites.net/Ajax/get_forests/distance",
+            url: "http://xploreforest-development.azurewebsites.net/Ajax_response/get_forest",
             dataType: 'json',
             data: {latitude: -37.9167, longitude: 145.2, unit: 'K', distance: 100},
             success: function (data) {

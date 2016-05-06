@@ -3,7 +3,7 @@
  */
 $(document).ready(function() {
     //initialise base url for ajax request
-    var baseUrl = window.location.protocol + "//" + window.location.host + "/Ajax/";
+    var baseUrl = window.location.protocol + "//" + window.location.host + "/Ajax_response/";
     //var baseUrl = "http://localhost/index.php/Ajax/";
 
     //define forest class
