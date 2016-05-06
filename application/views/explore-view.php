@@ -51,10 +51,12 @@
                     for ($i = 0; $i < sizeof($activity); $i++){
                         ?>
                         <div class="col-sm-1">
-                            <img src="../../assets/img/buttons/'<?php echo $activity[$i]["id"] ?>.png"
-                                 alt="<?php echo $activity[$i]["name"] ?>"
-                                 class="img-responsive" id="<?php echo $activity[$i]["id"] ?>"
-                                 <p><?php echo $activity[$i]["name"] ?></p>
+                            <img src="../../assets/img/buttons/'<?php echo $activity[$i]["activity_id"] ?>.png"
+                                 alt="<?php echo $activity[$i]["activity_name"] ?>"
+                                 class="img-responsive" id="<?php echo $activity[$i]["activity_id"] ?>"
+                                 onclick="displayDataActivity(this)"
+                            />
+                                 <p><?php echo $activity[$i]["activity_name"] ?></p>
                         </div>
                 <?php
                     }
