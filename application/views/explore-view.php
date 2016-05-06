@@ -40,17 +40,13 @@
             </div>
             <div class="row" style="margin: 10px 0;">
                 <div class="col-sm-8 col-sm-offset-1" >
-                    <br />
                     <input type="range" min="0" step="1" id="range_slider">&nbsp;
-                    <br />
                 </div>
                 <div class="col-sm-2">
-                    <br />
                     <select class="form-control" id="unit">
                         <option value="K" selected>Km</option>
                         <option value="M">Mile</option>
                     </select>
-                    <br />
                 </div>
             </div>
             <div class="row">
