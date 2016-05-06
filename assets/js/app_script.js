@@ -199,6 +199,10 @@ $(document).ready(function() {
                         createMap(userLatitude,userLongitude);
                         addMarker(userLatitude,userLongitude,'<b>You select this location!</b>');
 
+                        //enable activity button list
+                        $('#activity_button_list').css('pointer-events','auto');
+                        $('#activity_button_list').css('color','');
+
                         return;
                     }
                     else if(val != 'VIC'|| !val)
@@ -235,6 +239,10 @@ $(document).ready(function() {
         //initialise map with user estimated location and add marker
         createMap(latitude,longitude);
         addMarker(latitude,longitude,'<b>Your estimated location!</b>');
+        
+        //enable activity button list
+        $('#activity_button_list').css('pointer-events','auto');
+        $('#activity_button_list').css('color','');
     }
 
     //display address estimation to the page
@@ -561,5 +569,17 @@ $(document).ready(function() {
             map.fitBounds(bounds);
         }
     }
+
+    //triggered when unit is changed
+    $("select#unit").change(function () {
+
+        //set max distance data
+        setMaxDistance(userLatitude,userLongitude);
+
+        //update slider max value
+
+
+        //initialise map with user estimated location and add marker
+    });
 
 })

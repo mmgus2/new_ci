@@ -56,7 +56,7 @@
                     <input type="range" min="0" step="1" id="range_slider">&nbsp;
                 </div>
                 <div class="col-sm-2" style="position: relative; top: -5px;">
-                    <select class="form-control" id="unit">
+                    <select class="form-control" id="unit" disabled>
                         <option value="K" selected>Km</option>
                         <option value="M">Mile</option>
                     </select>
@@ -67,7 +67,8 @@
                     <hr />
                 </div>
             </div>
-            <div class="row row-centered" style="margin: 10px 0;">
+            <div class="row row-centered" style="margin: 10px 0; pointer-events: none; color: grey;"
+                 id="activity_button_list">
                 <?php
                     for ($i = 0; $i < sizeof($activity); $i++){
                         ?>
