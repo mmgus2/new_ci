@@ -43,14 +43,14 @@ class Ajax_response extends CI_Controller {
                 $forest[$i]["longitude"] = floatval($this->record[$i]["longitude"]);
                 $forest[$i]["description"] = $this->record[$i]["forest_description"];
                 $forest[$i]["distance"] = intval($forest_distance);
-                $forest[$i]["activity"] = $this->model->get_forest_act($forest[$i]["id"]);
+                $forest[$i]["activity"] = $this->get_forest_act($forest[$i]["id"]);
             }
         }
         echo json_encode($forest, JSON_PRETTY_PRINT);
     }
 
     //get activity list based on specific forest ID
-    protected function get_forest_act($forest_id)
+    private function get_forest_act($forest_id)
     {
         $this->record = read_forest_act($forest_id);
         $activity = null;
@@ -79,13 +79,13 @@ class Ajax_response extends CI_Controller {
             $site[$i]["description"] = $this->record[$i]["site_description"];
             $site[$i]["desc_link"] = $this->record[$i]["website"];
             $site[$i]["distance"] = intval($site_distance);
-            $site[$i]["activity"] = $this->model->get_site_act($site[$i]["site_id"]);
+            $site[$i]["activity"] = $this->get_site_act($site[$i]["site_id"]);
         }
         echo json_encode($site, JSON_PRETTY_PRINT);
     }
 
     //get activity list based on specific site ID
-    protected function get_site_act($site_id)
+    private function get_site_act($site_id)
     {
         $this->record = read_site_act($site_id);
         $activity = null;
