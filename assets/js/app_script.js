@@ -199,6 +199,14 @@ $(document).ready(function() {
                         createMap(userLatitude,userLongitude);
                         addMarker(userLatitude,userLongitude,'<b>You select this location!</b>');
 
+                        //enable slider
+                        var $r = $('input[type=range]');
+                        $r.prop('disabled', false);
+                        $r.rangeslider('update',true);
+
+                        //enable select unit dropdown
+                        $("select#unit").attr("disabled","false");
+
                         //enable activity button list
                         $('#activity_button_list').css('pointer-events','auto');
                         $('#activity_button_list').css('color','');
@@ -239,6 +247,14 @@ $(document).ready(function() {
         //initialise map with user estimated location and add marker
         createMap(latitude,longitude);
         addMarker(latitude,longitude,'<b>Your estimated location!</b>');
+
+        //enable slider
+        var $r = $('input[type=range]');
+        $r.prop('disabled', false);
+        $r.rangeslider('update',true);
+
+        //enable select unit dropdown
+        $("select#unit").attr("disabled","false");
         
         //enable activity button list
         $('#activity_button_list').css('pointer-events','auto');

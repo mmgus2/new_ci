@@ -53,7 +53,7 @@
             </div>
             <div class="row" style="margin: 10px 0;">
                 <div class="col-sm-8 col-sm-offset-1" >
-                    <input type="range" min="0" step="1" id="range_slider">&nbsp;
+                    <input type="range" min="0" step="1" id="range_slider" disabled>&nbsp;
                 </div>
                 <div class="col-sm-2" style="position: relative; top: -5px;">
                     <select class="form-control" id="unit" disabled>
