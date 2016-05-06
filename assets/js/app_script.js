@@ -481,9 +481,6 @@ $(document).ready(function() {
         var latitude = 0;
         var longitude = 0;
 
-        //initalise circle object
-        var theRadius = null;
-
         //remove previous marker(s) (if any)
         for(var i = 0; i < markers.length; i++){
             markers[i].setMap(null);
@@ -496,6 +493,11 @@ $(document).ready(function() {
 
         //clean the markers array
         markers = [];
+
+        //initalise circle object for forest
+        if(type == 'forest'){
+            var theRadius = null;
+        }
 
         if (type == "forest"){
             latitude = userLatitude;
@@ -521,7 +523,7 @@ $(document).ready(function() {
                 setRadius = boundary;
             }
             setRadius = parseInt(setRadius);
-            var theRadius = new google.maps.Circle({
+            theRadius = new google.maps.Circle({
                 center: new google.maps.LatLng(latitude,longitude),
                 radius: setRadius,
                 strokeOpacity: 0.8,
