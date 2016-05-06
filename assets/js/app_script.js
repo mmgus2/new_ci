@@ -473,6 +473,18 @@ $(document).ready(function() {
     }
 
     function drawMapMarker(data,type){
+        //get the selected unit
+        var unit = $("select#unit option:selected").val();
+        var unitText = $("select#unit option:selected").text();
+
+        //initialise center map
+        var latitude = 0;
+        var longitude = 0;
+
+        if (type == 'forest'){
+            var theRadius = null;
+        }
+
         //remove previous marker(s) (if any)
         for(var i = 0; i < markers.length; i++){
             markers[i].setMap(null);
@@ -485,11 +497,7 @@ $(document).ready(function() {
 
         //clean the markers array
         markers = [];
-        //get the selected unit
-        var unit = $("select#unit option:selected").val();
-        var unitText = $("select#unit option:selected").text();
-        var latitude = 0;
-        var longitude = 0;
+
         if (type == "forest"){
             latitude = userLatitude;
             longitude = userLongitude;
