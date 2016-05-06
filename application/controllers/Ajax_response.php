@@ -50,7 +50,7 @@ class Ajax_response extends CI_Controller {
     }
 
     //get activity list based on specific forest ID
-    private function get_forest_act($forest_id)
+    public function get_forest_act($forest_id)
     {
         $this->record =  $this->model->read_forest_act($forest_id);
         $activity = null;
@@ -58,7 +58,8 @@ class Ajax_response extends CI_Controller {
             $activity[$i]["id"] = $this->record[$i]["activity_id"];
             $activity[$i]["name"] = $this->record[$i]["activity_name"];
         }
-        return $activity;
+        echo json_encode($activity, JSON_PRETTY_PRINT);
+        //return $activity;
     }
 
     //get site list based on specific forest ID
