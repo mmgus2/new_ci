@@ -102,13 +102,13 @@
                     <li>
                         <img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|7CC37C|000000"
                              alt="Forest legend"
-                             height="20" width="10">
+                        >
                         <p>Forest</p>
                     </li>
                     <li>
                         <img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|FFDE00|000000"
                              alt="Recreation site legend"
-                             height="20" width="10">
+                        >
                         <p>Recreation Site</p>
                     </li>
                     <?php
