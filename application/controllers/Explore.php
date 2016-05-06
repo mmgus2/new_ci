@@ -19,17 +19,11 @@ class Explore extends CI_Controller {
 
     public function index()
     {
-        $this->record = $this->model->read_activity();
-        for ($i=0; $i < sizeof($this->record); $i++)
-        {
-            $activity[$i]["id"] = $this->record[$i]["activity_id"];
-            $activity[$i]["name"] = $this->record[$i]["activity_name"];
-        }
-        $data['activity'] = $activity;
+        $data['activity'] = $this->record = $this->model->read_activity();
 
         $this->load->view('header');
         $this->load->view('menu');
-        $this->load->view('explore-view','$data');
+        $this->load->view('explore-view',$data);
         $this->load->view('footer');
     }
 }
