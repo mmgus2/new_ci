@@ -27,11 +27,10 @@ class Ajax_response extends CI_Controller {
         $init_lon = $this->input->get('longitude');
         $act_array = $this->input->get('activity');
         $forest = NULL;
-        if ($act_array == null || sizeof($act_array) == 0) {
-            $this->record = $this->model->read_forest();
-        }
         if (sizeof($act_array) > 0){
             $this->record = $this->model->read_forest($act_array);
+        } else {
+            $this->record = $this->model->read_forest();
         }
         for ($i = 0; $i < sizeof($this->record); $i++) {
             $forest_distance = distance(floatval($init_lat), floatval($init_lon),
