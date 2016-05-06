@@ -102,13 +102,13 @@
                     <li>
                         <img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|7CC37C|000000"
                              alt="Forest legend"
-                             height="10" width="7">
+                             height="20" width="10">
                         <p>Forest</p>
                     </li>
                     <li>
                         <img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|FFDE00|000000"
                              alt="Recreation site legend"
-                             height="10" width="7">
+                             height="20" width="10">
                         <p>Recreation Site</p>
                     </li>
                     <?php
@@ -118,7 +118,7 @@
                             <img src="../../assets/img/buttons/<?php echo $activity[$i]["activity_id"] ?>.png"
                                  class="img-responsive"
                                  alt="<?php echo $activity[$i]["activity_name"] ?>"
-                                 height="10"
+                                 height="20"
                             >
                             <p><?php echo $activity[$i]["activity_name"] ?></p>
                         </li>
