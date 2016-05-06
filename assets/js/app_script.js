@@ -200,7 +200,7 @@ $(document).ready(function() {
                     else if(val != 'VIC'|| !val)
                     {
                         //Selected adress outside Victoria
-                        alertLocation("Currently, doesn't support area outside Victoria. " +
+                        alertLocation("Currently, the site doesn't support area outside Victoria. " +
                             "Please select address inside Victoria.");
 
                         return;
