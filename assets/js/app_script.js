@@ -201,6 +201,8 @@ $(document).ready(function() {
                         //set slider value to 0
                         setRangeSliderVal(0);
 
+                        distance = 0;
+
                         //initialise map with user estimated location and add marker
                         createMap(userLatitude,userLongitude);
                         addMarker(userLatitude,userLongitude,'<b>You select this location!</b>');
@@ -604,6 +606,8 @@ $(document).ready(function() {
 
         //set slider value to 0
         setRangeSliderVal(0);
+
+        distance = 0;
 
         //set act button to inactive ???
 
