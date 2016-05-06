@@ -14,8 +14,8 @@ class Ajax_response extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
-        $this->load->model('Database_model_new');
-        $this->model = $this->Database_model_new;
+        $this->load->model('Database_model');
+        $this->model = $this->Database_model;
         $this->load->helper('geodistance');
     }
 
@@ -27,11 +27,11 @@ class Ajax_response extends CI_Controller {
         $init_lon = $this->input->get('longitude');
         $act_array = $this->input->get('activity');
         $forest = NULL;
-        /*if (isset($act_array)){
+        if (isset($act_array)){
             $this->record = $this->model->read_forest($act_array);
-        } else {*/
+        } else {
             $this->record = $this->model->read_forest();
-        /*}*/
+        }
         for ($i = 0; $i < sizeof($this->record); $i++) {
             $forest_distance = distance(floatval($init_lat), floatval($init_lon),
                 floatval($this->record[$i]["latitude"]), floatval($this->record[$i]["longitude"]), $unit);
