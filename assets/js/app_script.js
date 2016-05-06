@@ -397,7 +397,7 @@ $(document).ready(function() {
     //function that respond to activity button
     window.acceptActivity = function(el)
     {
-        setRangeSliderVal(maxDistance);
+        setRangeSliderVal(distance);
         //alert(el.alt);
         if(el.src.match('_active')){
             el.src = '../../assets/img/buttons/' + el.id + '.png';
@@ -481,9 +481,8 @@ $(document).ready(function() {
         var latitude = 0;
         var longitude = 0;
 
-        if (type == 'forest'){
-            var theRadius = null;
-        }
+        //initalise circle object
+        var theRadius = null;
 
         //remove previous marker(s) (if any)
         for(var i = 0; i < markers.length; i++){
