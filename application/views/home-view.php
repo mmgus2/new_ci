@@ -14,7 +14,7 @@
                 <div class="carousel-caption">
                     <h1>State Forests of Victoria</h1>
                     <p>Search for the nearest state forests. Explore the greenery, peace and adventures.</p>
-                    <p><a class="btn btn-lg btn-primary" href="Distance" role="button">Location</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="<?php echo base_url();?>Explore" role="button">Explore</a></p>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 <div class="carousel-caption">
                     <h1>Indulge in Adventure</h1>
                     <p>Know about the different kind of activities that can be done in state forests.</p>
-                    <p><a class="btn btn-lg btn-primary" href="Activity" role="button">Activities</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="<?php echo base_url();?>Explore" role="button">Explore</a></p>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
                 <div class="carousel-caption">
                     <h1>Give us your Feedback</h1>
                     <p>Tell us your opinion about places, activities and more.</p>
-                    <p><a class="btn btn-lg btn-primary" href="Information" role="button">Info</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="<?php echo base_url();?>Information" role="button">Info</a></p>
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
         </div>
         <div class="row">
             <div class="col-md-4 col-sm-6 portfolio-item">
-                <a href="Information" class="portfolio-link">
+                <a href="<?php echo base_url();?>Information" class="portfolio-link">
                     <div class="portfolio-hover">
                         <div class="portfolio-hover-content">
                             <i class="fa fa-tree"></i>
@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 portfolio-item">
-                <a href="Distance" class="portfolio-link">
+                <a href="<?php echo base_url();?>Explore" class="portfolio-link">
                     <div class="portfolio-hover">
                         <div class="portfolio-hover-content">
                             <i class="fa fa-tree"></i>
@@ -88,7 +88,7 @@
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 portfolio-item">
-                <a href="Activity" class="portfolio-link">
+                <a href="<?php echo base_url();?>Explore" class="portfolio-link">
                     <div class="portfolio-hover">
                         <div class="portfolio-hover-content">
                             <i class="fa fa-tree"></i>
