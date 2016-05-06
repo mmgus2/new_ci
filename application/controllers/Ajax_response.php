@@ -27,7 +27,11 @@ class Ajax_response extends CI_Controller {
         $init_lon = $this->input->get('longitude');
         $act_array = $this->input->get('activity');
         $forest = NULL;
-        $this->record = $this->model->read_forest();
+        if(isset($act_array)){
+            $this->record = $this->model->read_forest($act_array);
+        } else {
+            $this->record = $this->model->read_forest();
+        }
         for ($i = 0; $i < sizeof($this->record); $i++) {
             $forest_distance = distance(floatval($init_lat), floatval($init_lon),
                 floatval($this->record[$i]["latitude"]), floatval($this->record[$i]["longitude"]), $unit);
@@ -75,7 +79,7 @@ class Ajax_response extends CI_Controller {
             $site[$i]["description"] = $this->record[$i]["site_description"];
             $site[$i]["desc_link"] = $this->record[$i]["website"];
             $site[$i]["distance"] = intval($site_distance);
-            $site[$i]["activity"] = $this->get_site_act($site[$i]["site_id"]);
+            $site[$i]["activity"] = $this->model->read_site_act($site[$i]["site_id"]);
         }
         echo json_encode($site, JSON_PRETTY_PRINT);
     }
