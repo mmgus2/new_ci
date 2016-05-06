@@ -1,9 +1,20 @@
 <script>
     $(this).load(function() {
+        //detect location
         detectLocation();
+
+        //intialise slider max value = 0
+        initRangeSlider(0);
+
+        //initialise input auto complete from google
+        initAutocomplete();
+
+        //add clear button (x) inside input auto complete
+        $("#input_loc").addClear();
     });
 </script>
 <style>
+    /*remove clear button (x) in Internet Explorer*/
     ::-ms-clear {display: none; width:0; height:0;}
 </style>
 <header class="location">

@@ -118,11 +118,6 @@ $(document).ready(function() {
     //array for selected activity
     var selectedActivity = [];
 
-    //initialitation for slider
-    initRangeSlider(0);
-
-    //autocomplete field initiation
-    initAutocomplete();
 
     //detect user current location
     window.detectLocation = function(){
@@ -135,7 +130,7 @@ $(document).ready(function() {
     }
 
     //------ autocomplete field functions-------------------------------------------------
-    function initAutocomplete() {
+    window.initAutocomplete = function () {
         //set the bias boundary for Victoria, Australia
         var defaultBounds = new google.maps.LatLngBounds(
             new google.maps.LatLng(-39.224731, 140.962477),
@@ -327,7 +322,7 @@ $(document).ready(function() {
     }
 
     //----------------Slider function using rangeslider.js-------------
-    function initRangeSlider(maxValue)
+    window.initRangeSlider = function (maxValue)
     {
         var $r = $('input[type=range]');
         var $handle;
