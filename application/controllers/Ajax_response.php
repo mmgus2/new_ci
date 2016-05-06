@@ -14,8 +14,8 @@ class Ajax_response extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
-        $this->load->model('Database_model');
-        $this->model = $this->Forest_model;
+        $this->load->model('Database_model_new');
+        $this->model = $this->Database_model_new;
         $this->load->helper('geodistance');
     }
 
