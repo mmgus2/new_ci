@@ -33,6 +33,7 @@
                     <input class="form-control" id="input_loc" placeholder="Specify your location" type="text">
                 </div>
             </div>
+            <hr />
             <div class="row">
                 <div class="col-sm-10">
                     <br />
@@ -40,12 +41,15 @@
                     <br />
                 </div>
                 <div class="col-sm-2">
+                    <br />
                     <select class="form-control" id="unit">
                         <option value="K" selected>Km</option>
                         <option value="M">Mile</option>
                     </select>
+                    <br />
                 </div>
             </div>
+            <hr />
             <div class="row row-centered">
                 <?php
                     for ($i = 0; $i < sizeof($activity); $i++){
