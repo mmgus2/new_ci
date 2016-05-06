@@ -18,8 +18,9 @@
 <!--Menu Section-->
 <section class="bg-light-gray">
     <div class="container">
+        <input type="hidden" id="latitude" />
+        <input type="hidden" id="longitude" />
         <input type="hidden" id="max_distance" />
-        <input type="hidden" id="display_mode" value="distance" />
         <!--div class="row">
             <div class="col-sm-12 text-left">
                 <h3 class="section-subheading text-muted">Check out our website to know about the victorian forests.</h3>
@@ -73,9 +74,6 @@
                 ?>
             </div>
         </div>
-        <!--/div-->
-        <div id="image_list"></div>
-        <div id=""
     </div>
 </section>
 

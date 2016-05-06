@@ -21,11 +21,11 @@ class Ajax_response extends CI_Controller {
 
     //get forest list based on activity and/or distance
     public function get_forest(){
-        $max_distance = $this->input->get('distance');
-        $unit = $this->input->get('unit');
-        $init_lat = $this->input->get('latitude');
-        $init_lon = $this->input->get('longitude');
-        $act_array = $this->input->get('activity');
+        $max_distance = $this->input->post('distance');
+        $unit = $this->input->post('unit');
+        $init_lat = $this->input->post('latitude');
+        $init_lon = $this->input->post('longitude');
+        $act_array = $this->input->post('activity');
         $forest = NULL;
         if(isset($act_array)){
             $this->record = $this->model->read_forest($act_array);
@@ -48,25 +48,12 @@ class Ajax_response extends CI_Controller {
         echo json_encode($forest, JSON_PRETTY_PRINT);
     }
 
-    //get activity list based on specific forest ID
-    private function get_forest_act($forest_id)
-    {
-        $this->record =  $this->model->read_forest_act($forest_id);
-        $activity = null;
-        for ($i = 0; $i < sizeof($this->record); $i++) {
-            $activity[$i]["id"] = $this->record[$i]["activity_id"];
-            $activity[$i]["name"] = $this->record[$i]["activity_name"];
-        }
-        //echo json_encode($activity, JSON_PRETTY_PRINT);
-        return $activity;
-    }
-
     //get site list based on specific forest ID
     public function get_site(){
-        $forest_id = $this->input->get('forest_id');
-        $unit = $this->input->get('unit');
-        $init_lat = $this->input->get('latitude');
-        $init_lon = $this->input->get('longitude');
+        $forest_id = $this->input->post('forest_id');
+        $unit = $this->input->post('unit');
+        $init_lat = $this->input->post('latitude');
+        $init_lon = $this->input->post('longitude');
         $this->record = $this->model->read_site($forest_id);
         for ($i=0; $i < sizeof($this->record); $i++)
         {
@@ -84,25 +71,13 @@ class Ajax_response extends CI_Controller {
         echo json_encode($site, JSON_PRETTY_PRINT);
     }
 
-    //get activity list based on specific site ID
-    private function get_site_act($site_id)
-    {
-        $this->record =  $this->model->read_site_act($site_id);
-        $activity = null;
-        for ($i = 0; $i < sizeof($this->record); $i++) {
-            $activity[$i]["id"] = $this->record[$i]["activity_id"];
-            $activity[$i]["name"] = $this->record[$i]["activity_name"];
-        }
-        return $activity;
-    }
-
     //get maximum distance
     public function get_max_distance()
     {
         $this->record = $this->model->read_forest();
-        $init_lat = $this->input->get('latitude');
-        $init_lon = $this->input->get('longitude');
-        $unit = "" . $this->input->get('unit');
+        $init_lat = $this->input->post('latitude');
+        $init_lon = $this->input->post('longitude');
+        $unit = "" . $this->input->post('unit');
         $maxDistance = 0;
         for ($i=0; $i < sizeof($this->record); $i++)
         {
