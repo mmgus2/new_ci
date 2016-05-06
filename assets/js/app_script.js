@@ -473,6 +473,17 @@ $(document).ready(function() {
     }
 
     function drawMapMarker(data,type){
+        //remove previous marker(s) (if any)
+        for(var i = 0; i < markers.length; i++){
+            markers[i].setMap(null);
+        }
+
+        //remove polyline (if any)
+        if(theRadius){
+            theRadius.setMap(null);
+        }
+
+        //clean the markers array
         markers = [];
         //get the selected unit
         var unit = $("select#unit option:selected").val();
