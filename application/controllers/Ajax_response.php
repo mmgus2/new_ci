@@ -27,7 +27,7 @@ class Ajax_response extends CI_Controller {
         $init_lon = $this->input->get('longitude');
         $act_array = $this->input->get('activity');
         $forest = NULL;
-        if (sizeof($act_array) > 0){
+        if (isset($act_array)){
             $this->record = $this->model->read_forest($act_array);
         } else {
             $this->record = $this->model->read_forest();
