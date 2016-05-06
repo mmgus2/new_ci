@@ -416,7 +416,7 @@ $(document).ready(function() {
         }
         if(selectedActivity.length <= 0)
         {
-            //showing random location -- ADD FUNCTION HERE LATER
+            displayForest(distance);
         }
     }
 
