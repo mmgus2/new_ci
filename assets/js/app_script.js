@@ -487,7 +487,7 @@ $(document).ready(function() {
             complete: function(jqXHR, status){
                 if(status == 'success'){
                     //draw on map
-                    drawMapMarker(forestData,"forest");
+                    drawMapMarker(forestData,"forest",null);
 
                     //populate the list
 
@@ -501,7 +501,7 @@ $(document).ready(function() {
         return x.constructor.toString().indexOf("Array") > -1;
     }
 
-    function drawMapMarker(data,type){
+    function drawMapMarker(data,type,addMarker){
         //get the selected unit
         var unit = $("select#unit option:selected").val();
         var unitText = $("select#unit option:selected").text();
@@ -556,6 +556,11 @@ $(document).ready(function() {
             });
             theRadius.setMap(map);
         }
+
+        if(type == "site"){
+            latitude = addMarker.latitude;
+            longitude = addMarker.longitude;
+        }
         //initialise map boundary
         var bounds = new google.maps.LatLngBounds();
         bounds.extend(new google.maps.LatLng(latitude,longitude));
@@ -571,10 +576,25 @@ $(document).ready(function() {
                                   'height="25px" width="25px" />&nbsp;';
             }
 
+            if (type == 'forest'){
+                popupInfo += '<p><button class="btn btn-success" onclick="getSites(' + i + ')">' +
+                    'Recreation Site</button></p>';
+            }
+
+            if (type == 'site'){
+                popupInfo += '<p><a href="http://maps.google.com/maps?saddr=' + userLatitude + ',' + userLongitude +
+                    '&daddr=' +  data[i].latitude + ',' +  data[i].longitude +
+                    '" target="_blank" class="btn btn-success">Get direction</a></p>'
+            }
+
             var marker_link = '';
             if(type == 'forest'){
                 marker_link = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + (i + 1) +
                     '|7CC37C|000000';
+            }
+
+            if(type == 'site'){
+
             }
 
             var marker = addMarker(data[i].latitude, data[i].longitude,
@@ -593,9 +613,88 @@ $(document).ready(function() {
         setMaxDistance(userLatitude,userLongitude);
 
         //update slider max value
+        updateRangeSlider(maxDistance);
 
+        //set slider value to 0
+        setRangeSliderVal(0);
 
-        //initialise map with user estimated location and add marker
+        //set act button to inactive
+
+        //remove previous marker(s) (if any)
+        for(var i = 0; i < markers.length; i++){
+            markers[i].setMap(null);
+        }
+
+        //remove polyline (if any)
+        if(theRadius){
+            theRadius.setMap(null);
+        }
+
+        //clean the markers array
+        markers = [];
+
+        //clean / randomise the image list ?? -- IMPLEMENT LATER
     });
 
+    //get site from specific forest
+    window.getSites = function (i) {
+        //re-center the map and show info window for the forest
+        google.maps.event.trigger(markers[i], 'click');
+        map.setZoom(12);
+        map.setCenter(markers[i].getPosition());
+
+        var unit = $("select#unit option:selected").val();
+        var unitText = $("select#unit option:selected").text();
+
+        //disable slider
+        var $r = $('input[type=range]');
+        $r.prop('disabled', true);
+        $r.rangeslider('update', true);
+
+        //disable unit dropdown (km or mile)
+        $('#unit').prop('disabled', true);
+
+        //disable activity buttons
+        $('#activity_button_list').css('pointer-events', 'none');
+        $('#activity_button_list').css('color', 'grey');
+
+        addMarker(forestData[i].latitude,forestData[i].longitude,forestData[i].name,
+            'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
+            (i + 1) + '|7CC37C|000000');
+
+        $.ajax({
+            type: "POST",
+            url: baseUrl + "get_sites",
+            dataType: 'json',
+            data: {
+                forest_id: forestData[i].id,
+                unit: unit,
+                latitude: userLatitude,
+                longitude: userLongitude
+            },
+            success: function (data) {
+                if (data) {
+                    $.each(data, function (index, record) {
+                        var site = new Site();
+                        site.setId(record.id).setName(record.name).setLatitude(record.latitude)
+                            .setLongitude(record.longitude).setDescription(record.description)
+                            .setDistance(record.distance).setDescLink(record.desc_link);
+                        for(var i = 0; i < record.activity.length; i++){
+                            site.addActivity(record.activity[i]);
+                        }
+                    }
+                    siteData.push(site);
+                }
+            },
+            complete: function(jqXHR, status){
+                if(status == 'success'){
+                    //draw on map
+                    drawMapMarker(siteData,"site",forestData[i]);
+
+                    //populate the list
+
+                }
+            }
+        })
+    }
 })
