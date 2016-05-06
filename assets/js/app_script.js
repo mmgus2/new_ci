@@ -199,17 +199,7 @@ $(document).ready(function() {
                         createMap(userLatitude,userLongitude);
                         addMarker(userLatitude,userLongitude,'<b>You select this location!</b>');
 
-                        //enable slider
-                        var $r = $('input[type=range]');
-                        $r.prop('disabled', false);
-                        $r.rangeslider('update',true);
-
-                        //enable select unit dropdown
-                        $("select#unit").attr("disabled",false);
-
-                        //enable activity button list
-                        $('#activity_button_list').css('pointer-events','auto');
-                        $('#activity_button_list').css('color','');
+                        enableMenu();
 
                         return;
                     }
@@ -248,17 +238,7 @@ $(document).ready(function() {
         createMap(latitude,longitude);
         addMarker(latitude,longitude,'<b>Your estimated location!</b>');
 
-        //enable slider
-        var $r = $('input[type=range]');
-        $r.prop('disabled', false);
-        $r.rangeslider('update',true);
-
-        //enable select unit dropdown
-        $("select#unit").attr("disabled",false);
-        
-        //enable activity button list
-        $('#activity_button_list').css('pointer-events','auto');
-        $('#activity_button_list').css('color','');
+        enableMenu();
     }
 
     //display address estimation to the page
@@ -647,20 +627,14 @@ $(document).ready(function() {
         var unit = $("select#unit option:selected").val();
         var unitText = $("select#unit option:selected").text();
 
-        //disable autocomplete
-        $('#input_loc').attr('disabled',true);
+        //disable the menu
+        disableMenu();
 
-        //disable slider
-        var $r = $('input[type=range]');
-        $r.prop('disabled', true);
-        $r.rangeslider('update', true);
+        //hide the menu
+        $('#menu_container').hide('slow');
 
-        //disable unit dropdown (km or mile)
-        $('#unit').prop('disabled', true);
-
-        //disable activity buttons
-        $('#activity_button_list').css('pointer-events', 'none');
-        $('#activity_button_list').css('color', 'grey');
+        //show the return to forest button
+        $('#return_forest').show('slow');
 
         addMarker(forestData[i].latitude,forestData[i].longitude,forestData[i].name,
             'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
@@ -700,5 +674,46 @@ $(document).ready(function() {
                 }
             }
         })
+    }
+
+    window.backToForest = function () {
+        enableMenu();
+        $('#return_forest').hide('slow');
+        $('#menu_container').show('slow');
+        drawMapMarker(forestData,'forest',null);
+    }
+
+    function enableMenu(){
+        //enable autocomplete
+        $('#input_loc').attr('disabled',false);
+
+        //enable slider
+        var $r = $('input[type=range]');
+        $r.prop('disabled', false);
+        $r.rangeslider('update',true);
+
+        //enable select unit dropdown
+        $("select#unit").attr("disabled",false);
+
+        //enable activity button list
+        $('#activity_button_list').css('pointer-events','auto');
+        $('#activity_button_list').css('color','');
+    }
+
+    function disableMenu(){
+        //disable autocomplete
+        $('#input_loc').attr('disabled',true);
+
+        //disable slider
+        var $r = $('input[type=range]');
+        $r.prop('disabled', true);
+        $r.rangeslider('update', true);
+
+        //disable unit dropdown (km or mile)
+        $('#unit').prop('disabled', true);
+
+        //disable activity buttons
+        $('#activity_button_list').css('pointer-events', 'none');
+        $('#activity_button_list').css('color', 'grey');
     }
 })

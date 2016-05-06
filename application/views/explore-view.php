@@ -29,8 +29,6 @@
 <!--Menu Section-->
 <section class="bg-light-gray">
     <div class="container">
-        <input type="hidden" id="max_distance" />
-        <input type="hidden" id="activity" />
         <!--div class="row">
             <div class="col-sm-12 text-left">
                 <h3 class="section-subheading text-muted">Check out our website to know about the victorian forests.</h3>
@@ -41,11 +39,20 @@
                 <div class="col-sm-10 col-sm-offset-1">
                     <div id="input_info" hidden="true"></div>
                 </div>
+            </div>
+        <div id = "return_forest" hidden="true">
+            <div class="row" style="margin: 10px 0;">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <button class="btn btn-success" onclick="backToForest()">Return to Forest List</button>
+                </div>
+            </div>
+        </div>
+        <div id="menu_container">
+            <div class="row" style="margin: 10px 0;">
                 <div class="col-sm-10 col-sm-offset-1">
                     <input class="form-control" id="input_loc" placeholder="Specify your location" type="text">
                 </div>
             </div>
-        <div id="controller">
             <div class="row">
                 <div class="col-sm-10 col-sm-offset-1">
                     <hr />
