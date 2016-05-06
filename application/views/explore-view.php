@@ -24,7 +24,7 @@
                 <h3 class="section-subheading text-muted">Check out our website to know about the victorian forests.</h3>
             </div>
         </div-->
-        <div class="panel panel-default" id="menu_container">
+        <div class="panel panel-default">
             <div class="row" style="margin: 10px 0;">
                 <div class="col-sm-10 col-sm-offset-1">
                     <div id="input_info" hidden="true"></div>
@@ -33,6 +33,7 @@
                     <input class="form-control" id="input_loc" placeholder="Specify your location" type="text">
                 </div>
             </div>
+            <div id="controller" hidden="true">
             <div class="row">
                 <div class="col-sm-10 col-sm-offset-1">
                     <hr />
@@ -42,7 +43,7 @@
                 <div class="col-sm-8 col-sm-offset-1" >
                     <input type="range" min="0" step="1" id="range_slider">&nbsp;
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-2" style="position: relative; top: -5px;">
                     <select class="form-control" id="unit">
                         <option value="K" selected>Km</option>
                         <option value="M">Mile</option>
@@ -69,6 +70,7 @@
                 <?php
                     }
                 ?>
+            </div>
             </div>
         </div>
     </div>
