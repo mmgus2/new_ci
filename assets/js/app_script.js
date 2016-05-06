@@ -250,6 +250,7 @@ $(document).ready(function() {
 
     //inform of user current location
     function informLocation(message,address){
+        $('#input_info').removeClass();
         $('#input_info').addClass("alert alert-success");
         html = message + '<strong>' + address + '</strong>';
         $('#input_info').html(html);
@@ -379,6 +380,7 @@ $(document).ready(function() {
 
     //alert if geolocation is failed
     function alertLocation(message){
+        $('#input_info').removeClass();
         $('#input_info').addClass("alert alert-danger");
         $('#input_info').text(message);
         $('#input_info').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
