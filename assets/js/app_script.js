@@ -3,7 +3,7 @@
  */
 $(document).ready(function() {
     //initialise base url for ajax request
-    var baseUrl = window.location.protocol + "//" + window.location.host + "/Ajax_response/";
+    var baseUrl = window.location.protocol + "//" + window.location.host + "/";
     //var baseUrl = "http://localhost/index.php/Ajax/";
 
     //define forest class
@@ -279,7 +279,7 @@ $(document).ready(function() {
         //initialise slider
         $.ajax({
             type: "POST",
-            url: baseUrl +"get_max_distance",
+            url: baseUrl +"Ajax_response/get_max_distance",
             dataType: 'text',
             data: {latitude: latitude,longitude: longitude,unit: selectedUnit},
             success: function (data) {
@@ -456,7 +456,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: baseUrl + "get_forest",
+            url: baseUrl + "Ajax_response/get_forest",
             dataType: 'json',
             data: data,
             success: function (data) {
@@ -555,22 +555,26 @@ $(document).ready(function() {
         for(var i = 0; i < data.length; i++){
             bounds.extend(new google.maps.LatLng(data[i].latitude, data[i].longitude));
 
-            popupInfo = '<p><b>' + data[i].name + '</b></p>' +
+            popupInfo = '<p><strong>' + data[i].name + '</strong></p>' +
                 '<p>' + data[i].description + '</p>';
 
+            popupInfo += '<p>';
             for(var j = 0; j < data[i].activity.length; j++)
             {
                 popupInfo += '<img src="../../assets/img/buttons/' + data[i].activity[j].activity_id + '.png" ' +
                                   'height="25px" width="25px" />&nbsp;';
             }
+            popupInfo += '</p>';
 
             if (type == 'forest'){
-                popupInfo += '<br /><p><button class="btn btn-success" onclick="getSites(' + i + ')">' +
-                    'Recreation Site</button></p>';
+                popupInfo += '<p><div class="btn-group btn-group-justified">';
+                popupInfo += '<button class="btn btn-success" onclick="getSites(' + i + ')">Recreation Site</button>';
+                popupInfo += '<a href="' + baseUrl  + 'review/' + data[i].id + '" class="btn btn-success">Review</a>';
+                popupInfo += '</div></p>';
             }
 
             if (type == 'site'){
-                popupInfo += '<br /><p><a href="http://maps.google.com/maps?saddr=' + userLatitude + ',' + userLongitude +
+                popupInfo += '<p><a href="http://maps.google.com/maps?saddr=' + userLatitude + ',' + userLongitude +
                     '&daddr=' +  data[i].latitude + ',' +  data[i].longitude +
                     '" target="_blank" class="btn btn-success">Get direction</a></p>'
             }
@@ -652,7 +656,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: baseUrl + "get_site",
+            url: baseUrl + "Ajax_response/get_site",
             dataType: 'json',
             data: {
                 forest_id: forestData[i].id,
