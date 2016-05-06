@@ -568,7 +568,7 @@ $(document).ready(function() {
 
             if (type == 'forest'){
                 popupInfo += '<p><div class="btn-group btn-group-justified">';
-                popupInfo += '<a href="getSites(' + i + ')" class="btn btn-success">Recreation Site</a>';
+                popupInfo += '<a href="javascript:getSites(' + i + ')" class="btn btn-success">Recreation Site</a>';
                 popupInfo += '<a href="' + baseUrl  + 'review/' + data[i].id + '" class="btn btn-success">Review</a>';
                 popupInfo += '</div></p>';
             }
