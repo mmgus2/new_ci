@@ -594,7 +594,8 @@ $(document).ready(function() {
             }
 
             if(type == 'site'){
-
+                marker_link = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + (i + 1) +
+                    '|FFDE00|000000';
             }
 
             var marker = addMarker(data[i].latitude, data[i].longitude,
