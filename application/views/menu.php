@@ -22,12 +22,17 @@
                     <a class="page-scroll" href="<?php echo base_url();?>Home">Home</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="<?php echo base_url();?>Distance">Location</a>
+                    <a class="page-scroll" href="<?php echo base_url();?>Explore">Explore</a>
+                </li>
+                <!--
+                <li>
+                    <a class="page-scroll" href="<?php //echo base_url();?>Distance">Location</a>
                 </li>
 
                 <li>
-                    <a class="page-scroll" href="<?php echo base_url();?>Activity">Activities</a>
+                    <a class="page-scroll" href="<?php //echo base_url();?>Activity">Activities</a>
                 </li>
+                -->
 
                 <li>
                     <a class="page-scroll" href="<?php echo base_url();?>Information">Info</a>
