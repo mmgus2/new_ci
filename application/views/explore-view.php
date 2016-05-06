@@ -61,11 +61,11 @@
                     for ($i = 0; $i < sizeof($activity); $i++){
                         ?>
                         <div class="col-sm-1 col-centered">
-                            <img src="../../assets/img/buttons/<?php echo $activity[$i]["activity_id"] ?>.png"
+                            <p><img src="../../assets/img/buttons/<?php echo $activity[$i]["activity_id"] ?>.png"
                                  alt="<?php echo $activity[$i]["activity_name"] ?>"
                                  class="img-responsive" id="<?php echo $activity[$i]["activity_id"] ?>"
                                  onclick="displayDataActivity(this)"
-                            >
+                            ></p>
                                  <p><?php echo $activity[$i]["activity_name"] ?></p>
                         </div>
                 <?php
