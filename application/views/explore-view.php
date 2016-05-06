@@ -46,12 +46,12 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="text-align: center">
                 <?php
                     for ($i = 0; $i < sizeof($activity); $i++){
                         ?>
                         <div class="col-sm-1">
-                            <img src="../../assets/img/buttons/'<?php echo $activity[$i]["activity_id"] ?>.png"
+                            <img src="../../assets/img/buttons/<?php echo $activity[$i]["activity_id"] ?>.png"
                                  alt="<?php echo $activity[$i]["activity_name"] ?>"
                                  class="img-responsive" id="<?php echo $activity[$i]["activity_id"] ?>"
                                  onclick="displayDataActivity(this)"
