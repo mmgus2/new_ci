@@ -604,7 +604,7 @@ $(document).ready(function() {
     }
 
     //function to store get direction in iframe
-    function getDirection(srcLat,srcLng,destLat,destLng){
+    window.getDirection = function(srcLat,srcLng,destLat,destLng){
         $('#iframe').attr("src",'http://maps.google.com/maps?saddr=' + srcLat + ',' + srcLng +
         '&daddr=' +  destLat + ',' +  destLng);
         $('#iframe_container').show('slow');
