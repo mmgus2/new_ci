@@ -577,12 +577,12 @@ $(document).ready(function() {
             }
 
             if (type == 'forest'){
-                popupInfo += '<p><button class="btn btn-success" onclick="getSites(' + i + ')">' +
+                popupInfo += '<br /><p><button class="btn btn-success" onclick="getSites(' + i + ')">' +
                     'Recreation Site</button></p>';
             }
 
             if (type == 'site'){
-                popupInfo += '<p><a href="http://maps.google.com/maps?saddr=' + userLatitude + ',' + userLongitude +
+                popupInfo += '<br /><p><a href="http://maps.google.com/maps?saddr=' + userLatitude + ',' + userLongitude +
                     '&daddr=' +  data[i].latitude + ',' +  data[i].longitude +
                     '" target="_blank" class="btn btn-success">Get direction</a></p>'
             }
@@ -664,7 +664,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: baseUrl + "get_sites",
+            url: baseUrl + "get_site",
             dataType: 'json',
             data: {
                 forest_id: forestData[i].id,
