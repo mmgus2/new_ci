@@ -19,13 +19,13 @@
     <div class="container">
         <input type="hidden" id="max_distance" />
         <input type="hidden" id="display_mode" value="distance" />
-        <div class="row">
+        <!--div class="row">
             <div class="col-sm-12 text-left">
                 <h3 class="section-subheading text-muted">Check out our website to know about the victorian forests.</h3>
             </div>
-        </div>
+        </div-->
         <div class="panel panel-default" id="menu_container">
-            <div class="row">
+            <div class="row" style="margin: 0 10px;">
                 <div class="col-sm-12">
                     <div id="input_info" hidden="true"></div>
                 </div>
@@ -33,9 +33,9 @@
                     <input class="form-control" id="input_loc" placeholder="Specify your location" type="text">
                 </div>
             </div>
-            <hr />
+            <hr  style="margin: 0 10px;" />
             <div class="row">
-                <div class="col-sm-10">
+                <div class="col-sm-10"  style="margin: 0 10px;">
                     <br />
                     <input type="range" min="0" step="1" id="range_slider">&nbsp;
                     <br />
@@ -49,8 +49,8 @@
                     <br />
                 </div>
             </div>
-            <hr />
-            <div class="row row-centered">
+            <hr  style="margin: 0 10px;" />
+            <div class="row row-centered"  style="margin: 0 10px;">
                 <?php
                     for ($i = 0; $i < sizeof($activity); $i++){
                         ?>
