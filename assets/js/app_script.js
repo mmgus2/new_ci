@@ -254,7 +254,7 @@ $(document).ready(function() {
         $r.rangeslider('update',true);
 
         //enable select unit dropdown
-        $("select#unit").attr("disabled","false");
+        $("select#unit").attr("disabled",false);
         
         //enable activity button list
         $('#activity_button_list').css('pointer-events','auto');
