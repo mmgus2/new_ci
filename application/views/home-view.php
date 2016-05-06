@@ -50,7 +50,7 @@
 </div><!-- /.carousel -->
 
 <!-- Portfolio Grid Section -->
-<section class="bg-light-gray">
+<section id="portfolio" class="bg-light-gray">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
