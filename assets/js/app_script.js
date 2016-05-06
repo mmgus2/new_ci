@@ -647,6 +647,9 @@ $(document).ready(function() {
         var unit = $("select#unit option:selected").val();
         var unitText = $("select#unit option:selected").text();
 
+        //disable autocomplete
+        $('#input_loc').attr('disabled',true);
+
         //disable slider
         var $r = $('input[type=range]');
         $r.prop('disabled', true);
