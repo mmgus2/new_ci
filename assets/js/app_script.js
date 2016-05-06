@@ -574,9 +574,13 @@ $(document).ready(function() {
             }
 
             if (type == 'site'){
-                popupInfo += '<p><a href="http://maps.google.com/maps?saddr=' + userLatitude + ',' + userLongitude +
+                /*popupInfo += '<p><a href="http://maps.google.com/maps?saddr=' + userLatitude + ',' + userLongitude +
                     '&daddr=' +  data[i].latitude + ',' +  data[i].longitude +
-                    '" target="_blank" class="btn btn-success">Get direction</a></p>'
+                    '" target="_blank" class="btn btn-success">Get direction</a></p>'*/
+                popupInfo += '<p><button class="btn btn-success" ' +
+                    'onclick="getDirection(' + userLatitude + ',' + userLongitude + ',' +
+                                            data[i].latitude + ',' +  data[i].longitude +')">' +
+                    'Get Direction</button></p>';
             }
 
             var marker_link = '';
@@ -597,6 +601,13 @@ $(document).ready(function() {
 
             map.fitBounds(bounds);
         }
+    }
+
+    //function to store get direction in iframe
+    function getDirection(srcLat,srcLng,destLat,destLng){
+        $('#iframe').attr("src",'http://maps.google.com/maps?saddr=' + srcLat + ',' + srcLng +
+        '&daddr=' +  destLat + ',' +  destLng);
+        $('#iframe_container').show('slow');
     }
 
     //triggered when unit is changed
