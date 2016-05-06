@@ -114,6 +114,7 @@ $(document).ready(function() {
     var map = null;
     var markers = [];
     var infoWindow = new google.maps.InfoWindow();
+    var theRadius = null;
 
     //array for selected activity
     var selectedActivity = [];
@@ -493,11 +494,6 @@ $(document).ready(function() {
 
         //clean the markers array
         markers = [];
-
-        //initalise circle object for forest
-        if(type == 'forest'){
-            var theRadius = null;
-        }
 
         if (type == "forest"){
             latitude = userLatitude;
