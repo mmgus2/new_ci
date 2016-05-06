@@ -29,9 +29,8 @@
 <!--Menu Section-->
 <section class="bg-light-gray">
     <div class="container">
-        <input type="hidden" id="latitude" />
-        <input type="hidden" id="longitude" />
         <input type="hidden" id="max_distance" />
+        <input type="hidden" id="activity" />
         <!--div class="row">
             <div class="col-sm-12 text-left">
                 <h3 class="section-subheading text-muted">Check out our website to know about the victorian forests.</h3>
@@ -76,7 +75,7 @@
                             <div><img src="../../assets/img/buttons/<?php echo $activity[$i]["activity_id"] ?>.png"
                                  alt="<?php echo $activity[$i]["activity_name"] ?>"
                                  class="img-responsive" id="<?php echo $activity[$i]["activity_id"] ?>"
-                                 onclick="displayDataActivity(this)"
+                                 onclick="acceptActivity(this)"
                             ></div>
                                  <p><?php echo $activity[$i]["activity_name"] ?></p>
                         </div>

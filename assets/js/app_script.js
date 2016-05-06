@@ -118,6 +118,14 @@ $(document).ready(function() {
     //array for selected activity
     var selectedActivity = [];
 
+    //variable to store distance value (current and max distance)
+    var distance = 0;
+    var maxDistance = 0;
+
+    //variable to store user current position
+    var userLatitude = 0;
+    var userLongitude = 0;
+
 
     //detect user current location
     window.detectLocation = function(){
@@ -176,24 +184,19 @@ $(document).ready(function() {
                     var val = place.address_components[i][componentForm[addressType]];
                     if(val == 'VIC')
                     {
-                        //store data inside hidden input tag
-                        $("#latitude").val(place.geometry.location.lat());
-                        $("#longitude").val(place.geometry.location.lng());
-
-                        //variable initialisation
-                        var latitude = $("#latitude").val();
-                        var longitude = $("#longitude").val();
-
+                        //store user location
+                        userLatitude = place.geometry.location.lat();
+                        userLongitude = place.geometry.location.lng();
 
                         //initiate selected address and show it in the page
                         informLocation("Your selected location:&nbsp;",place.formatted_address);
 
                         //set the controller (update slider)
-                        setupController(latitude,longitude);
+                        setupController(userLatitude,userLongitude);
 
                         //initialise map with user estimated location and add marker
-                        setMap(latitude,longitude);
-                        addMarker(latitude,longitude,'<b>You select this location!</b>');
+                        createMap(userLatitude,userLongitude);
+                        addMarker(userLatitude,userLongitude,'<b>You select this location!</b>');
 
                         return;
                     }
@@ -218,9 +221,9 @@ $(document).ready(function() {
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
 
-        //store data inside hidden input tag
-        $("#latitude").val(latitude);
-        $("#longitude").val(longitude);
+        //store user location data
+        userLatitude = latitude;
+        userLongitude = longitude;
 
         //initiate estimate address and show it in the page
         estimateAddress(latitude,longitude);
@@ -229,7 +232,7 @@ $(document).ready(function() {
         setupController(latitude,longitude);
 
         //initialise map with user estimated location and add marker
-        setMap(latitude,longitude);
+        createMap(latitude,longitude);
         addMarker(latitude,longitude,'<b>Your estimated location!</b>');
     }
 
@@ -271,15 +274,15 @@ $(document).ready(function() {
                     //update slider button
                     updateRangeSlider(data);
 
-                    //store max distance in hidden input tag
-                    $("#max_distance").val(data);
+                    //store max distance data
+                    maxDistance = data;
                 }
             }
         });
     }
 
     //function to set map with event listener
-    function setMap(latitude, longitude)
+    function createMap(latitude, longitude)
     {
         var mapInit = {
             zoom: 15,
@@ -338,7 +341,7 @@ $(document).ready(function() {
                 updateHandle($handle[0], this.value);
             },
             onSlideEnd: function(){
-                displayDataDistance(this.value);
+                displayForest(this.value);
             }
         });
     }
@@ -384,6 +387,152 @@ $(document).ready(function() {
         $('#input_info').addClass("alert alert-danger");
         $('#input_info').text(message);
         $('#input_info').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
+    }
+
+    //function that respond to activity button
+    window.acceptActivity = function(el)
+    {
+        //alert(el.alt);
+        if(el.src.match('_active')){
+            el.src = '../../assets/img/buttons/' + el.id + '.png';
+            var i = selectedActivity.indexOf(el.id);
+            if(i != -1) {
+                selectedActivity.splice(i, 1);
+            }
+        } else {
+            el.src = '../../assets/img/buttons/' + el.id + '_active.png';
+            selectedActivity.push(el.id);
+        }
+        if(selectedActivity.length > 0)
+        {
+            displayForest(selectedActivity);
+        }
+        if(selectedActivity.length <= 0)
+        {
+            //showing random location -- ADD FUNCTION HERE LATER
+        }
+    }
+
+    //display forest marker on the map and on the image list
+    function displayForest(variable){
+        //get the selected unit
+        var unit = $("select#unit option:selected").val();
+
+        //data for ajax request
+        var data = null;
+
+        if (!isArray(variable)) {//if the variable is distance (number)
+            //store the distance data
+            distance = variable;
+        }
+
+        if(selectedActivity.length > 0){
+            data = {distance: distance, unit: unit, latitude: userLatitude,
+                longitude: userLongitude, activity: selectedActivity}
+        }
+
+        if(selectedActivity.length <= 0){
+            data = {distance: distance, unit: unit, latitude: userLatitude, longitude: userLongitude}
+        }
+
+        $.ajax({
+            type: "POST",
+            url: baseUrl + "get_forest",
+            dataType: 'json',
+            data: data,
+            success: function (data) {
+                forestData = [];
+                $.each(data, function (index, record) {
+                    var forest = new Forest();
+                    forest.setId(record.id).setName(record.name).setLatitude(record.latitude)
+                        .setLongitude(record.longitude).setDescription(record.description)
+                        .setDistance(record.distance);
+                    for(var i = 0; i < record.activity.length; i++){
+                        forest.addActivity(record.activity[i]);
+                    }
+                    forestData.push(forest);
+                })
+            },
+            complete: function(jqXHR, status){
+                if(status == 'success'){
+                    drawMapMarker(forestData,"forest");
+                }
+            }
+        })
+    }
+
+    //function to check wether the variable is array
+    function isArray(x) {
+        return x.constructor.toString().indexOf("Array") > -1;
+    }
+
+    function drawMapMarker(data,type){
+        markers = [];
+        //get the selected unit
+        var unit = $("select#unit option:selected").val();
+        var unitText = $("select#unit option:selected").text();
+        var latitude = 0;
+        var longitude = 0;
+        if (type == "forest"){
+            latitude = userLatitude;
+            longitude = userLongitude;
+            //create circle marker
+            var boundary = 0;
+            var maxBoundary = 0;
+            if (unit == 'K')
+            {
+                boundary = 1000 * distance; //convert to meter
+                maxBoundary = 1000 * maxDistance; //convert to meter
+            }
+            if (unit == 'M')
+            {
+                boundary = 1.60934 * 1000 * distance; //convert to meter
+                maxBoundary = 1.60934 * 1000 * maxDistance; //convert to meter
+            }
+            var setRadius = 0;
+            if (boundary > maxBoundary) {
+                setRadius = maxBoundary;
+            }
+            else {
+                setRadius = boundary;
+            }
+            setRadius = parseInt(setRadius);
+            var theRadius = new google.maps.Circle({
+                center: new google.maps.LatLng(latitude,longitude),
+                radius: setRadius,
+                strokeOpacity: 0.8,
+                strokeWeight: 1,
+                fillOpacity: 0.1
+            });
+            theRadius.setMap(map);
+        }
+        //initialise map boundary
+        var bounds = new google.maps.LatLngBounds();
+        bounds.extend(new google.maps.LatLng(latitude,longitude));
+        for(var i = 0; i < data.length; i++){
+            bounds.extend(new google.maps.LatLng(data.latitude, data.longitude));
+
+            popupInfo = '<p><b>' + data.name + '</b></p>' +
+                '<p>' + data.description + '</p>';
+
+            for(var j = 0; j < data.activity.length; j++)
+            {
+                popupInfo += '<img src="../../assets/img/buttons/' + data.activity[j].activity_id + '.png" ' +
+                                  'height="25px" width="25px" />&nbsp;';
+            }
+
+            var marker_link = '';
+            if(type == 'forest'){
+                marker_link = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + i + '|7CC37C|000000';
+            }
+
+            var marker = addMarker(data.latitude, data.longitude,
+                popupInfo,marker_link);
+
+            markers.push(marker);
+
+            map.fitBounds(bounds);
+        }
     }
 
 })
