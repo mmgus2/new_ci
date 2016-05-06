@@ -89,12 +89,13 @@
 <section class="bg-light-gray">
     <div class="container">
         <div class="row">
-            <div class="col-md-12" style= "background-color:white" >
+            <div class="col-md-12">
                 <div class="fa-border" id="map" style="width: 100%; height: 600px;"></div>
             </div>
         </div>
+        <br />
         <div class="row text-left">
-            <div class="col-md-12" style= "background-color:white" >
+            <div class="col-md-12">
                 <strong>Legends</strong>
                 <hr>
                 <ul class="list-inline">
