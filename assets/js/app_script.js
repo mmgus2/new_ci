@@ -462,7 +462,11 @@ $(document).ready(function() {
             },
             complete: function(jqXHR, status){
                 if(status == 'success'){
+                    //draw on map
                     drawMapMarker(forestData,"forest");
+
+                    //populate the list
+
                 }
             }
         })
@@ -545,7 +549,8 @@ $(document).ready(function() {
 
             var marker_link = '';
             if(type == 'forest'){
-                marker_link = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + i + '|7CC37C|000000';
+                marker_link = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + (i + 1) +
+                    '|7CC37C|000000';
             }
 
             var marker = addMarker(data[i].latitude, data[i].longitude,
