@@ -770,12 +770,12 @@ $(document).ready(function() {
     //show forest image list
     function showForestImage(){
         for(var i = 0; i < forestData.length; i++){
-            /*forestList.add({forest_image:'../../assets/img/forest_images/' + forestData[i].id,
+            forestList.add({forest_image:'../../assets/img/forest_images/' + forestData[i].id,
                             forest_alt: forestData[i].name,
                             forest_name: forestData[i].name,
                             forest_id: forestData[i].id
-                            });*/
-            console.log('../../assets/img/forest_images/' + forestData[i].id + ',' + forestData[i].name);
+                            });
+            //console.log('../../assets/img/forest_images/' + forestData[i].id + ',' + forestData[i].name);
         }
     }
 
