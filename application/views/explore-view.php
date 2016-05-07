@@ -92,7 +92,7 @@
                 ?>
             </div-->
             <div class="row">
-                <div class="col-sm-10 col-sm-offset-1">
+                <div class="col-sm-10 col-sm-offset-1 table-responsive">
             <table class="table" style="margin: 10px 0; pointer-events: none; color: grey; text-align: center; width: 100%;"
                  id="activity_button_list">
                 <tr>
