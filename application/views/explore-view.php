@@ -137,7 +137,7 @@
                     <input class="search" placeholder="Search forest">
                     <button class="sort_name" data-sort="name">sort by name</button>
                 </div>
-                <div class="col-sm-4" style="text-align: right">
+                <div class="col-sm-4" style="text-align: right; position: relative; top: -10px;">
                     <ul class="pagination"></ul>
                 </div>
             </div>
