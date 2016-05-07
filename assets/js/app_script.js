@@ -756,6 +756,6 @@ $(document).ready(function() {
     function scrollPage(){
         $('html, body').animate({
             scrollTop: $("#map").offset().top
-        }, slow);
+        }, "slow");
     }
 })
