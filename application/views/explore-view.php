@@ -132,10 +132,21 @@
 <section id="portfolio" class="bg-light-gray forest_section">
     <div class="container">
         <div id="forest_list">
-            <input class="search" placeholder="Search forest">
-            <button class="sort_name" data-sort="name">sort by name</button>
-            <ul class="pagination" style="text-align: right;"></ul>
-            <ul class="list row pager"></ul>
+            <div class="row">
+                <div class="col-sm-8">
+                    <input class="search" placeholder="Search forest">
+                    <button class="sort_name" data-sort="name">sort by name</button>
+                </div>
+                <div class="col-sm-4" style="text-align: right">
+                    <ul class="pagination"></ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="list row pager"></ul>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
