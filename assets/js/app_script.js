@@ -486,6 +486,7 @@ $(document).ready(function() {
                 if(status == 'success'){
                     //draw on map
                     drawMapMarker(forestData,"forest",null);
+                    scrollPage();
 
                     //populate the list
 
@@ -701,7 +702,7 @@ $(document).ready(function() {
                 if(status == 'success'){
                     //draw on map
                     drawMapMarker(siteData,"site",forestData[i]);
-
+                    scrollPage();
                     //populate the list
 
                 }
@@ -714,6 +715,7 @@ $(document).ready(function() {
         $('#return_forest').hide('slow');
         $('#menu_container').show('slow');
         drawMapMarker(forestData,'forest',null);
+        scrollPage();
     }
 
     function enableMenu(){
@@ -748,5 +750,12 @@ $(document).ready(function() {
         //disable activity buttons
         $('#activity_button_list').css('pointer-events', 'none');
         $('#activity_button_list').css('color', 'grey');
+    }
+
+    //scroll to map section
+    function scrollPage(){
+        $('html, body').animate({
+            scrollTop: $("#map").offset().top
+        }, slow);
     }
 })
