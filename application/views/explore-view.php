@@ -9,8 +9,10 @@
         //initialise input auto complete from google
         initAutocomplete();
 
-        //add clear button (x) inside input auto complete
+        //add clear button (x) inside input
         $("#input_loc").addClear();
+        $('#search_list').addClear();
+
     });
 </script>
 <style>
@@ -139,7 +141,7 @@
         <div id="forest_list">
             <div class="row">
                 <div class="col-sm-12" style="text-align: center;">
-                    <input class="search" placeholder="Search forest">
+                    <input class="search" placeholder="Search forest" id="search_list">
                     <button class="sort" data-sort="forest_name">sort by name</button>
                 </div>
             </div>
