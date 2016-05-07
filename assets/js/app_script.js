@@ -675,8 +675,12 @@ $(document).ready(function() {
         //hide the menu
         $('#menu_container').hide('slow');
 
+        //hide forest image list
+        $('.forest_section').hide('slow');
+
         //show the return to forest button
         $('#return_forest').show('slow');
+
 
         addMarker(forestData[i].latitude,forestData[i].longitude,forestData[i].name,
             'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
@@ -722,6 +726,8 @@ $(document).ready(function() {
         enableMenu();
         $('#return_forest').hide('slow');
         $('#menu_container').show('slow');
+        //show forest image list
+        $('.forest_section').show('slow');
         drawMapMarker(forestData,'forest',null);
         scrollToMap();
     }

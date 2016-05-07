@@ -129,7 +129,7 @@
 </section>
 
 <!--Pictures Forest Section-->
-<section class="bg-light-gray">
+<section id="portfolio" class="bg-light-gray forest_section">
     <div class="container">
         <div id="forest_list">
             <input class="search" placeholder="Search forest">
