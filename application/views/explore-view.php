@@ -131,6 +131,11 @@
 <!--Pictures Forest Section-->
 <section id="portfolio" class="bg-light-gray forest_section">
     <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span id="list_info"</span>
+            </div>
+        </div>
         <div id="forest_list">
             <div class="row">
                 <div class="col-sm-12" style="text-align: center;">

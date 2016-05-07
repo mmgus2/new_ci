@@ -130,9 +130,6 @@ $(document).ready(function() {
     //initialise object for forest image list (using list.js library)
     initialiseForestList();
 
-
-
-
     //detect user current location
     window.detectLocation = function(){
         if (navigator.geolocation) {
@@ -197,24 +194,15 @@ $(document).ready(function() {
                         //initiate selected address and show it in the page
                         informLocation("Your selected location:&nbsp;",place.formatted_address);
 
-                        //set max distance data
-                        setMaxDistance(userLatitude,userLongitude);
-
-                        //set initial distance value to 0
-                        distance = 0;
-
-                        //update slider max value
-                        updateRangeSlider(maxDistance);
-
-                        //set slider value to 0
-                        setRangeSliderVal(0);
-
                         //clear activity and reset activity button - LATER
-
 
                         //initialise map with user estimated location and add marker
                         createMap(userLatitude,userLongitude);
                         addMarker(userLatitude,userLongitude,'<b>You select this location!</b>');
+
+                        //set max distance data
+                        setMaxDistance(userLatitude,userLongitude);
+
 
                         enableMenu();
                         scrollToMap();
@@ -249,12 +237,12 @@ $(document).ready(function() {
         //initiate estimate address and show it in the page
         estimateAddress(latitude,longitude);
 
-        //set max distance data
-        setMaxDistance(latitude,longitude);
-
         //initialise map with user estimated location and add marker
         createMap(latitude,longitude);
         addMarker(latitude,longitude,'<b>Your estimated location!</b>');
+
+        //set max distance data
+        setMaxDistance(latitude,longitude);
 
         enableMenu();
         scrollToMap();
@@ -299,7 +287,19 @@ $(document).ready(function() {
                     maxDistance = data;
 
                     //update range slider max value
-                    updateRangeSlider(data);
+                    updateRangeSlider(maxDistance);
+
+                    //set the distance to half maximum
+                    var halfMax = parseInt(data/2);
+
+                    //set global variable current distance
+                    distance = halfMax;
+
+                    //set the slider value to half max
+                    setRangeSliderVal(halfMax);
+
+                    //display the forest in the map
+                    displayForest(halfMax);
                 }
             }
         });
@@ -453,6 +453,7 @@ $(document).ready(function() {
     function displayForest(variable){
         //get the selected unit
         var unit = $("select#unit option:selected").val();
+        var unitText = $("select#unit option:selected").text();
 
         //data for ajax request
         var data = null;
@@ -491,10 +492,33 @@ $(document).ready(function() {
             },
             complete: function(jqXHR, status){
                 if(status == 'success'){
-                    //show forest image list
-                    showForestImage();
-                    //draw on map
-                    drawMapMarker(forestData,"forest",null);
+                    if(forestData.length > 0){
+                        var message = 'Showing forest within ' + distance + ' ' + unitText;
+                        if (selectedActivity.length > 0){
+                            message += ' for the following activity(es): ';
+                            for(var i = 0; i < selectedActivity.length; i++){
+                                message += ', ' + selectedActivity[i];
+                            }
+                        }
+                        message += '.';
+                        $('#list_info').html(message);
+                        $('#forest_list').show();
+                        //show forest image list
+                        showForestImage();
+                        //draw on map
+                        drawMapMarker(forestData,"forest",null);
+                    } else {
+                        $('#forest_list').hide();
+                        var message = 'No forest within ' + distance + ' ' + unitText;
+                        if (selectedActivity.length > 0){
+                            message += ' for the following activity(es): ';
+                            for(var i = 0; i < selectedActivity.length; i++){
+                                message += ', ' + selectedActivity[i];
+                            }
+                        }
+                        message += '.';
+                        $('#list_info').html(message);
+                    }
                     scrollToMap();
                 }
             }
@@ -509,7 +533,6 @@ $(document).ready(function() {
     function drawMapMarker(data,type,aMarker){
         //get the selected unit
         var unit = $("select#unit option:selected").val();
-        var unitText = $("select#unit option:selected").text();
 
         //initialise center map
         var latitude = 0;
@@ -633,28 +656,6 @@ $(document).ready(function() {
         //set max distance data
         setMaxDistance(userLatitude,userLongitude);
 
-        //update slider max value
-        updateRangeSlider(maxDistance);
-
-        //set initial distance value to 0
-        distance = 0;
-
-        //set slider value to 0
-        setRangeSliderVal(0);
-
-        //clear activity and reset activity button - LATER
-
-        //remove previous marker(s) (if any)
-        for(var i = 0; i < markers.length; i++){
-            markers[i].setMap(null);
-        }
-
-        //remove polyline (if any)
-        if(theRadius){
-            theRadius.setMap(null);
-        }
-
-        //clean / randomise the image list ?? -- IMPLEMENT LATER
     });
 
     //get site from specific forest
