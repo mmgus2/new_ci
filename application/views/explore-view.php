@@ -133,11 +133,11 @@
     <div class="container">
         <div id="forest_list">
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                     <input class="search" placeholder="Search forest">
                     <button class="sort_name" data-sort="name">sort by name</button>
                 </div>
-                <div class="col-sm-4" style="text-align: right; position: relative; top: -10px;">
+                <div class="col-sm-6" style="text-align: right; position: relative; top: -10px;">
                     <ul class="pagination"></ul>
                 </div>
             </div>
