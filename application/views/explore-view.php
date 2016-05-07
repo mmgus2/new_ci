@@ -74,7 +74,7 @@
                     <hr />
                 </div>
             </div>
-            <div class="row row-centered" style="margin: 10px 0; pointer-events: none; color: grey;"
+            <!--div class="row row-centered" style="margin: 10px 0; pointer-events: none; color: grey;"
                  id="activity_button_list">
                 <?php
                     for ($i = 0; $i < sizeof($activity); $i++){
@@ -90,7 +90,36 @@
                 <?php
                     }
                 ?>
-            </div>
+            </div-->
+            <table class="table" style="margin: 10px 0; pointer-events: none; color: grey; text-align: center;"
+                 id="activity_button_list">
+                <tr>
+                <?php
+                for ($i = 0; $i < sizeof($activity); $i++){
+                    ?>
+                    <td>
+                        <img src="../../assets/img/buttons/<?php echo $activity[$i]["activity_id"] ?>.png"
+                             alt="<?php echo $activity[$i]["activity_name"] ?>"
+                             class="img-responsive" id="<?php echo $activity[$i]["activity_id"] ?>"
+                             onclick="acceptActivity(this)"
+                        >
+                    </td>
+                    <?php
+                }
+                ?>
+                </tr>
+                <tr>
+                    <?php
+                    for ($i = 0; $i < sizeof($activity); $i++){
+                        ?>
+                        <td>
+                            <?php echo $activity[$i]["activity_name"] ?>
+                        </td>
+                        <?php
+                    }
+                    ?>
+                </tr>
+            </table>
         </div>
     </div>
 </section>
