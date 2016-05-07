@@ -35,6 +35,8 @@
 <script src="../../assets/js/dataTables.bootstrap.min.js"></script>
 <script src="../../assets/js/bootstrap-add-clear.min.js"></script>
 <!--script src="../../assets/js/ajax.js"></script-->
+<script src="../../assets/js/list.min.js"></script>
+<script src="../../assets/js/list.pagination.min.js"></script>
 <script src="../../assets/js/app_script.js"></script>
 <script src="../../assets/js/parallax.min.js"></script>
 

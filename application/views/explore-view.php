@@ -131,6 +131,12 @@
 <!--Pictures Forest Section-->
 <section class="bg-light-gray">
     <div class="container">
+        <div id="forest_list">
+            <input class="search" placeholder="Search forest">
+            <button class="sort_name" data-sort="name">sort by name</button>
+        </div>
+        <ul class="list row pager"></ul>
+        <ul class="pagination"></ul>
     </div>
 </section>
 

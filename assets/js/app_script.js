@@ -127,6 +127,11 @@ $(document).ready(function() {
     var userLatitude = 0;
     var userLongitude = 0;
 
+    //initialise object for forest image list (using list.js library)
+    initialiseList();
+
+
+
 
     //detect user current location
     window.detectLocation = function(){
@@ -490,7 +495,8 @@ $(document).ready(function() {
                     drawMapMarker(forestData,"forest",null);
                     scrollToMap();
 
-                    //populate the list
+                    //show forest image list
+                    showForestImage();
 
                 }
             }
@@ -760,4 +766,52 @@ $(document).ready(function() {
             scrollTop: $("#map").offset().top
         }, "slow");
     }
+
+    //show forest image list
+    function showForestImage(){
+
+    }
+
+    //-----------List object initialisation----
+    function initialiseList(){
+        var paginationOptions = {
+            name: "pagination",
+            paginationClass: "pagination",
+            innerWindow: 3,
+            left: 2,
+            right: 4
+        };
+
+        var item = '<div class="col-md-4 col-sm-6 portfolio-item">';
+            item +=     '<a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">';
+            item +=         '<div class="portfolio-hover">';
+            item +=             '<div class="portfolio-hover-content">';
+            item +=                 '<i class="fa fa-tree"></i>';
+            item +=             '</div>';
+            item +=         '</div>';
+            item +=         '<img class="img-responsive forest_image" src="" alt="">';
+            item +=     '</a>';
+            item +=     '<div class="portfolio-caption">';
+            item +=         '<h4 class="forest_name"></h4>';
+            //item +=         '<p class="text-muted">Explore the Activities for the Forest</p>';
+            item +=     '</div>';
+            item += '</div>';
+            item += '<input class="forest_id" type="hidden" value="">';
+
+        var listOptions = {
+            valueNames: [ {attr:'src',name:'forest_image'},
+                          'forest_name',
+                          {attr:'value',name:forest_id}
+                        ],
+            item: item,
+            page: 6,
+            plugins: [
+                ListPagination(paginationOptions)
+            ]
+        };
+
+        //global initalisation
+        forestList = new List('test-list', listOptions);
+    }
+
 })
