@@ -491,13 +491,11 @@ $(document).ready(function() {
             },
             complete: function(jqXHR, status){
                 if(status == 'success'){
+                    //show forest image list
+                    showForestImage();
                     //draw on map
                     drawMapMarker(forestData,"forest",null);
                     scrollToMap();
-
-                    //show forest image list
-                    showForestImage();
-
                 }
             }
         })
@@ -784,6 +782,7 @@ $(document).ready(function() {
                             });
             //console.log('../../assets/img/forest_images/' + forestData[i].id + ',' + forestData[i].name);
         }
+        forestList.update();
     }
 
     //-----------List object initialisation----

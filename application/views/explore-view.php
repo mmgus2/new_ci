@@ -50,7 +50,7 @@
         <div id="menu_container">
             <div class="row" style="margin: 10px 0;">
                 <div class="col-sm-10 col-sm-offset-1">
-                    <input class="form-control" id="input_loc" placeholder="Specify your location" type="text">
+                    <input class="form-control" id="input_loc" placeholder="Enter your address" type="text">
                 </div>
             </div>
             <div class="row">
@@ -135,7 +135,7 @@
             <div class="row">
                 <div class="col-sm-12" style="text-align: center;">
                     <input class="search" placeholder="Search forest">
-                    <button class="sort_name" data-sort="name">sort by name</button>
+                    <button class="sort" data-sort="forest_name">sort by name</button>
                 </div>
             </div>
             <div class="row">
