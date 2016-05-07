@@ -819,7 +819,7 @@ $(document).ready(function() {
         };
 
         //global initalisation
-        forestList = new List('test-list', listOptions);
+        forestList = new List('forest_list', listOptions);
     }
 
 })
