@@ -775,6 +775,7 @@ $(document).ready(function() {
 
     //show forest image list
     function showForestImage(){
+        forestList.clear();
         for(var i = 0; i < forestData.length; i++){
             forestList.add({forest_image:'../../assets/img/forest_images/' + forestData[i].id + '.png',
                             forest_alt: forestData[i].name,
