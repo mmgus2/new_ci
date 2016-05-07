@@ -212,6 +212,7 @@ $(document).ready(function() {
                         addMarker(userLatitude,userLongitude,'<b>You select this location!</b>');
 
                         enableMenu();
+                        scrollToMap();
 
                         return;
                     }
@@ -251,6 +252,7 @@ $(document).ready(function() {
         addMarker(latitude,longitude,'<b>Your estimated location!</b>');
 
         enableMenu();
+        scrollToMap();
     }
 
     //display address estimation to the page
@@ -486,7 +488,7 @@ $(document).ready(function() {
                 if(status == 'success'){
                     //draw on map
                     drawMapMarker(forestData,"forest",null);
-                    scrollPage();
+                    scrollToMap();
 
                     //populate the list
 
@@ -702,7 +704,7 @@ $(document).ready(function() {
                 if(status == 'success'){
                     //draw on map
                     drawMapMarker(siteData,"site",forestData[i]);
-                    scrollPage();
+                    scrollToMap();
                     //populate the list
 
                 }
@@ -715,7 +717,7 @@ $(document).ready(function() {
         $('#return_forest').hide('slow');
         $('#menu_container').show('slow');
         drawMapMarker(forestData,'forest',null);
-        scrollPage();
+        scrollToMap();
     }
 
     function enableMenu(){
@@ -753,7 +755,7 @@ $(document).ready(function() {
     }
 
     //scroll to map section
-    function scrollPage(){
+    function scrollToMap(){
         $('html, body').animate({
             scrollTop: $("#map").offset().top
         }, "slow");
