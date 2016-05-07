@@ -795,7 +795,7 @@ $(document).ready(function() {
             right: 4
         };
 
-        var item = '<div class="col-md-4 col-sm-6 portfolio-item">';
+        var item = '<div class="col-md-4 col-sm-4 portfolio-item">';
             item +=     '<a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">';
             item +=         '<div class="portfolio-hover">';
             item +=             '<div class="portfolio-hover-content">';
