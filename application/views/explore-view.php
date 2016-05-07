@@ -133,20 +133,21 @@
     <div class="container">
         <div id="forest_list">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-12" style="text-align: center;">
                     <input class="search" placeholder="Search forest">
                     <button class="sort_name" data-sort="name">sort by name</button>
                 </div>
-                <div class="col-sm-6" style="text-align: right; position: relative; top: -10px;">
-                    <ul class="pagination"></ul>
-                </div>
             </div>
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12" style="text-align: center;">
                     <ul class="list row pager"></ul>
                 </div>
             </div>
-
+            <div class="row">
+                <div class="col-sm-12" style="text-align: center;">
+                    <ul class="pagination"></ul>
+                </div>
+            </div>
         </div>
     </div>
 </section>
