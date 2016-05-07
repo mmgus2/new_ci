@@ -128,7 +128,7 @@ $(document).ready(function() {
     var userLongitude = 0;
 
     //initialise object for forest image list (using list.js library)
-    initialiseList();
+    initialiseForestList();
 
 
 
@@ -769,11 +769,17 @@ $(document).ready(function() {
 
     //show forest image list
     function showForestImage(){
-
+        for(var i = 0; i < forestData.length; i++){
+            forestList.add({forest_image:'../../assets/img/forest_images/' + forestData[i].id,
+                            forest_alt: forestData[i].name,
+                            forest_name: forestData[i].name,
+                            forest_id: forestData[i].id
+                            });
+        }
     }
 
     //-----------List object initialisation----
-    function initialiseList(){
+    function initialiseForestList(){
         var paginationOptions = {
             name: "pagination",
             paginationClass: "pagination",
@@ -789,7 +795,7 @@ $(document).ready(function() {
             item +=                 '<i class="fa fa-tree"></i>';
             item +=             '</div>';
             item +=         '</div>';
-            item +=         '<img class="img-responsive forest_image" src="" alt="">';
+            item +=         '<img class="img-responsive forest_image forest_alt" src="" alt="">';
             item +=     '</a>';
             item +=     '<div class="portfolio-caption">';
             item +=         '<h4 class="forest_name"></h4>';
@@ -800,6 +806,7 @@ $(document).ready(function() {
 
         var listOptions = {
             valueNames: [ {attr:'src',name:'forest_image'},
+                          {attr:'alt',name:'forest_alt'},
                           'forest_name',
                           {attr:'value',name:'forest_id'}
                         ],
