@@ -133,8 +133,8 @@
     <div class="container">
         <div id="forest_list">
             <input class="search" placeholder="Search forest">
-            <ul class="pagination" style="text-align: right;"></ul>
             <button class="sort_name" data-sort="name">sort by name</button>
+            <ul class="pagination" style="text-align: right;"></ul>
             <ul class="list row pager"></ul>
         </div>
     </div>
