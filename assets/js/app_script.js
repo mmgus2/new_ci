@@ -504,7 +504,7 @@ $(document).ready(function() {
                         var message = 'Showing forest within ' + distance + ' ' + unitText;
                         if (selectedActivity.length == 1){
                             message += ' for the following activity: ';
-                            message += selectedActivity[i].activity_name;
+                            message += selectedActivity[0].activity_name;
                         }
                         if (selectedActivity.length > 1){
                             message += ' for the following activities: ';
@@ -528,7 +528,7 @@ $(document).ready(function() {
                         var message = 'No forest within ' + distance + ' ' + unitText;
                         if (selectedActivity.length == 1){
                             message += ' for the following activity: ';
-                            message += selectedActivity[i].activity_name;
+                            message += selectedActivity[0].activity_name;
                         }
                         if (selectedActivity.length > 1){
                             message += ' for the following activities: ';
