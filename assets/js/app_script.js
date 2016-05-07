@@ -468,8 +468,12 @@ $(document).ready(function() {
         }
 
         if(selectedActivity.length > 0){
+            activity_id = [];
+            for(var i = 0; i < selectedActivity.length; i++){
+                activity_id.push(selectedActivity[i].activity_id);
+            }
             data = {distance: distance, unit: unit, latitude: userLatitude,
-                longitude: userLongitude, activity: selectedActivity}
+                longitude: userLongitude, activity: activity_id}
         }
 
         if(selectedActivity.length <= 0){
