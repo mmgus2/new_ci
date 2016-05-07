@@ -416,6 +416,7 @@ $(document).ready(function() {
     {
         if(distance == 0){
             setRangeSliderVal(maxDistance);
+            distance = maxDistance;
         } else {
             setRangeSliderVal(distance);
         }
