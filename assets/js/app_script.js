@@ -414,7 +414,12 @@ $(document).ready(function() {
     //function that respond to activity button
     window.acceptActivity = function(el)
     {
-        setRangeSliderVal(distance);
+        if(distance == 0){
+            setRangeSliderVal(maxDistance);
+        } else {
+            setRangeSliderVal(distance);
+        }
+
         //alert(el.alt);
         if(el.src.match('_active')){
             el.src = '../../assets/img/buttons/' + el.id + '.png';
