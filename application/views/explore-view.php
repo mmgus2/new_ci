@@ -134,9 +134,9 @@
         <div id="forest_list">
             <input class="search" placeholder="Search forest">
             <button class="sort_name" data-sort="name">sort by name</button>
+            <ul class="list row pager"></ul>
+            <ul class="pagination"></ul>
         </div>
-        <ul class="list row pager"></ul>
-        <ul class="pagination"></ul>
     </div>
 </section>
 
