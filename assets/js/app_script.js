@@ -195,13 +195,17 @@ $(document).ready(function() {
                         //set max distance data
                         setMaxDistance(userLatitude,userLongitude);
 
+                        //set initial distance value to 0
+                        distance = 0;
+
                         //update slider max value
                         updateRangeSlider(maxDistance);
 
                         //set slider value to 0
                         setRangeSliderVal(0);
 
-                        distance = 0;
+                        //clear activity and reset activity button - LATER
+
 
                         //initialise map with user estimated location and add marker
                         createMap(userLatitude,userLongitude);
@@ -619,12 +623,13 @@ $(document).ready(function() {
         //update slider max value
         updateRangeSlider(maxDistance);
 
+        //set initial distance value to 0
+        distance = 0;
+
         //set slider value to 0
         setRangeSliderVal(0);
 
-        distance = 0;
-
-        //set act button to inactive ???
+        //clear activity and reset activity button - LATER
 
         //remove previous marker(s) (if any)
         for(var i = 0; i < markers.length; i++){
@@ -635,9 +640,6 @@ $(document).ready(function() {
         if(theRadius){
             theRadius.setMap(null);
         }
-
-        //clean the markers array
-        markers = [];
 
         //clean / randomise the image list ?? -- IMPLEMENT LATER
     });
