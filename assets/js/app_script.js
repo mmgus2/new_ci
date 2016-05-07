@@ -502,10 +502,18 @@ $(document).ready(function() {
                 if(status == 'success'){
                     if(forestData.length > 0){
                         var message = 'Showing forest within ' + distance + ' ' + unitText;
-                        if (selectedActivity.length > 0){
-                            message += ' for the following activity(es): ';
+                        if (selectedActivity.length == 1){
+                            message += ' for the following activity: ';
+                            message += selectedActivity[i].activity_name;
+                        }
+                        if (selectedActivity.length > 1){
+                            message += ' for the following activities: ';
                             for(var i = 0; i < selectedActivity.length; i++){
-                                message += ', ' + selectedActivity[i].activity_name;
+                                if(i == 0) {
+                                    message += selectedActivity[i].activity_name;
+                                } else {
+                                    message += ', ' + selectedActivity[i].activity_name;
+                                }
                             }
                         }
                         message += '.';
@@ -518,10 +526,18 @@ $(document).ready(function() {
                     } else {
                         $('#forest_list').hide();
                         var message = 'No forest within ' + distance + ' ' + unitText;
-                        if (selectedActivity.length > 0){
-                            message += ' for the following activity(es): ';
+                        if (selectedActivity.length == 1){
+                            message += ' for the following activity: ';
+                            message += selectedActivity[i].activity_name;
+                        }
+                        if (selectedActivity.length > 1){
+                            message += ' for the following activities: ';
                             for(var i = 0; i < selectedActivity.length; i++){
-                                message += ', ' + selectedActivity[i].activity_name;
+                                if(i == 0) {
+                                    message += selectedActivity[i].activity_name;
+                                } else {
+                                    message += ', ' + selectedActivity[i].activity_name;
+                                }
                             }
                         }
                         message += '.';

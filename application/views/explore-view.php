@@ -135,7 +135,8 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <span id="list_info"</span>
+                <strong><span id="list_info"</span></strong>
+                <br />
             </div>
         </div>
         <div id="forest_list">
