@@ -343,14 +343,7 @@ $(document).ready(function() {
             infoWindow.open(map, marker);
             // if 5 arguments
             if (arguments.length == 5){
-                //update the search list so that only displaying this location
-                var aList = forestList.get("forest_id",index)[0].values();
-                var name = aList.forest_name;
-                $('#search_list').val(name);
-                forestList.search(name);
-
-                //focus to image list section
-                //scrollToImageList();
+                triggerSearch(index);
             }
         });
         return marker;
@@ -890,10 +883,7 @@ $(document).ready(function() {
     //function to respond to user click in the image
     window.mapLocate = function (i) {
         //update the search list so that only displaying this location
-        var aList = forestList.get("forest_id",i)[0].values();
-        var name = aList.forest_name;
-        $('#search_list').val(name);
-        forestList.search(name);
+        triggerSearch(i);
 
         //show info window on the map and center the that specific marker
         google.maps.event.trigger(markers[i], 'click');
@@ -902,5 +892,16 @@ $(document).ready(function() {
 
         scrollToMap();
     };
+
+    window.triggerSearch = function (index) {
+        //update the search list so that only displaying this location
+        var aList = forestList.get("forest_id",index)[0].values();
+        var name = aList.forest_name;
+        $('#search_list').val(name);
+        forestList.search(name);
+
+        //focus to image list section
+        //scrollToImageList();
+    }
 
 })
