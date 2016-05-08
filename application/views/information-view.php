@@ -9,7 +9,7 @@
 </header>
 <section class="bg-light-gray">
     <div class="container">
-        <div id="forest_list" hidden="true">
+        <div id="info_list">
             <div class="row row-centered">
                 <div class="col-sm-3 col-centered">
                     <input class="search form-control" placeholder="Search forest" id="search_list">
