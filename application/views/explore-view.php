@@ -149,8 +149,8 @@
                     <input class="search form-control" placeholder="Search forest" id="search_list">
                 </div>
                 <div class="col-sm-3 col-centered">
-                    <button class="sort" data-sort="forest_name">sort by name</button>
-                    <button class="sort" data-sort="distance">sort by distance</button>
+                    <button class="btn btn-success sort" data-sort="forest_name">sort by name</button>
+                    <button class="btn btn-success sort" data-sort="distance">sort by distance</button>
                 </div>
             </div>
             <!--div class="row" style="text-align: center"-->
