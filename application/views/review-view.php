@@ -1,4 +1,4 @@
-<header class="location">
+<!--header class="location">
     <div class="parallax-window" data-parallax="scroll" data-image-src="../../assets/img/page/Michael Greenhill billy.jpg">
         <div class="container">
             <div class="intro-text">
@@ -6,7 +6,7 @@
             </div>
         </div>
     </div>
-</header>
+</header-->
 <div id="fb-root"></div>
 <script>
     (function(d, s, id) {
