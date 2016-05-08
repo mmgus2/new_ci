@@ -96,5 +96,11 @@
         };
         //global initalisation
         var infoList = new List('info_list', listOptions);
+
+        $('#search_list').addClear({
+            onClear: function () {
+                infoList.search();
+            }
+        });
     })
 </script>
