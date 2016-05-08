@@ -207,7 +207,7 @@ $(document).ready(function() {
                         $('.forest_section').show();
 
                         enableMenu();
-                        scrollToMap();
+                        scrollToImageList();
 
                         return;
                     }
@@ -250,7 +250,7 @@ $(document).ready(function() {
         $('.forest_section').show();
 
         enableMenu();
-        scrollToMap();
+        scrollToImageList();
     }
 
     //display address estimation to the page
@@ -564,7 +564,6 @@ $(document).ready(function() {
                         message += '.';
                         $('#list_info').html(message);
                     }
-                    scrollToMap();
                 }
             }
         })
@@ -725,6 +724,8 @@ $(document).ready(function() {
         //show the return to forest button
         $('#return_forest').show('slow');
 
+        //scroll to menu section
+        scrollToMenu();
 
         addMarker(forestData[i].latitude,forestData[i].longitude,forestData[i].name,
             'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
@@ -758,9 +759,6 @@ $(document).ready(function() {
                 if(status == 'success'){
                     //draw on map
                     drawMapMarker(siteData,"site",forestData[i]);
-                    scrollToMap();
-                    //populate the list
-
                 }
             }
         })
@@ -821,6 +819,13 @@ $(document).ready(function() {
     function scrollToImageList(){
         $('html, body').animate({
             scrollTop: $(".forest_section").offset().top
+        }, "slow");
+    }
+
+    //scroll to menu
+    function scrollToMenu(){
+        $('html, body').animate({
+            scrollTop: $("#menu_section").offset().top
         }, "slow");
     }
 

@@ -33,7 +33,7 @@
     </div>
 </header>
 <!--Menu Section-->
-<section class="bg-light-gray">
+<section id="menu_section" class="bg-light-gray">
     <div class="container">
         <!--div class="row">
             <div class="col-sm-12 text-left">
