@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="row">
-            <ul class="list list-inline class="col-sm-12 col-md-6"">
+            <ul class="list list-inline col-sm-12 col-md-6">
                 <?php
                 for ($i=0; $i < sizeof($allforests); $i++) {
                 ?>
