@@ -821,7 +821,7 @@ $(document).ready(function() {
         forestList.clear();
         for(var i = 0; i < forestData.length; i++){
             var aList = {
-                link: 'javascript:mapLocate(' + i + ')',
+                'portfolio-link': 'javascript:mapLocate(' + i + ')',
                 forest_image:'../../assets/img/forest_images/' + forestData[i].id + '.png',
                 forest_alt: forestData[i].name,
                 forest_name: forestData[i].name,
@@ -844,7 +844,7 @@ $(document).ready(function() {
         };
         var item = '<li class="col-md-4 col-sm-4">';
             item += '<div class="portfolio-item">';
-            item +=     '<a href="" class="portfolio-link link" data-toggle="modal">';
+            item +=     '<a href="" class="portfolio-link" data-toggle="modal">';
             item +=         '<div class="portfolio-hover">';
             item +=             '<div class="portfolio-hover-content>';
             item +=                 '<i class="fa fa-tree"></i>';
@@ -861,7 +861,7 @@ $(document).ready(function() {
             item += '</li>';
 
         var listOptions = {
-            valueNames: [ {attr:'href',name:'link'},
+            valueNames: [ {attr:'href',name:'portfolio-link'},
                           {attr:'src',name:'forest_image'},
                           {attr:'alt',name:'forest_alt'},
                           'forest_name',
@@ -880,6 +880,7 @@ $(document).ready(function() {
 
     //function to respond to user click in the image
     window.mapLocate = function (i) {
+        alert("your id :" + i);
         //update the search list so that only displaying this location
         var aList = forestList.get("id",id)[0].values();
         var name = aList.name;
