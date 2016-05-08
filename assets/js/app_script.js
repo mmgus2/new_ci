@@ -840,8 +840,8 @@ $(document).ready(function() {
             right: 4
         };
 
-        var item = '<div class="col-md-4 col-sm-4 portfolio-item">';
-            item +=     '<a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">';
+        var item = '<li class="col-md-4 col-sm-4 portfolio-item">';
+            item +=     '<a href="" class="portfolio-link" data-toggle="modal">';
             item +=         '<div class="portfolio-hover">';
             item +=             '<div class="portfolio-hover-content">';
             item +=                 '<i class="fa fa-tree"></i>';
@@ -853,7 +853,7 @@ $(document).ready(function() {
             item +=         '<h4 class="forest_name"></h4>';
             //item +=         '<p class="text-muted">Explore the Activities for the Forest</p>';
             item +=     '</div>';
-            item += '</div>';
+            item += '</li>';
             item += '<input class="forest_id" type="hidden" value="">';
 
         var listOptions = {
