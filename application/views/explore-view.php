@@ -143,7 +143,8 @@
                 <hr>
             </div>
         </div>
-        <div id="forest_list" hidden="true">
+        <div id="forest_list" hidden="true" style="width: 100%; min-height: 200px;
+                     background:url(../../assets/img/ajax-loader.gif) no-repeat center center;">
             <div class="row row-centered">
                 <div class="col-sm-3 col-centered">
                     <input class="search form-control" placeholder="Search forest" id="search_list">
@@ -172,7 +173,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="fa-border" id="map"
-                     style="width: 100%; height: 600px; background:url(../../assets/img/ajax-loader.gif) no-repeat center center;">
+                     style="width: 100%; height: 600px;
+                     background:url(../../assets/img/ajax-loader.gif) no-repeat center center;">
                     <!--img src="../../assets/img/ajax-loader.gif" style="display:block; margin:auto auto;" /-->
                 </div>
             </div>
