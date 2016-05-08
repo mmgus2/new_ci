@@ -910,8 +910,8 @@ $(document).ready(function() {
         $('#search_list').val(name);
         forestList.search(name);
 
-        //focus to image list section
-        //scrollToImageList();
+        //focus to the top of map
+        scrollToMap();
     }
 
 })
