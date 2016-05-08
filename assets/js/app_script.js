@@ -880,9 +880,8 @@ $(document).ready(function() {
 
     //function to respond to user click in the image
     window.mapLocate = function (i) {
-        alert("your id :" + i);
         //update the search list so that only displaying this location
-        var aList = forestList.get("id",id)[0].values();
+        var aList = forestList.get("forest_id",id)[0].values();
         var name = aList.name;
         forestList.search(name);
 
