@@ -23,13 +23,13 @@
                 for ($i=0; $i < sizeof($allforests); $i++) {
                 ?>
                     <li class="col-sm-12 col-md-6">
-                        <table class="table-responsive" style="padding: 10px;">
+                        <table class="table-responsive">
                             <tr>
-                                <td>
+                                <td valign="top" style="padding: 10px;">
                                     <img  src="<?php echo base_url() ?>assets/img/forest_images/<?php echo $allforests[$i]['id'] ?>.png"
                                           class="img-responsive" alt="<?php echo $allforests[$i]['name'] ?>" >
                                 </td>
-                                <td>
+                                <td valign="top" style="padding: 10px;">
                                     <h4><?php echo $allforests[$i]['name'] ?></h4>
                                     <hr>
                                     <p class="text-muted"><?php echo $allforests[$i]['description'] ?></p>
