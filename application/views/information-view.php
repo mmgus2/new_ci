@@ -87,7 +87,6 @@
             'forest_name',
             {attr:'href',name:'review'}
         ],
-        item: item,
         page: 6,
         plugins: [
             ListPagination(paginationOptions)
