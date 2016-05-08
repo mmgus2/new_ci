@@ -331,10 +331,16 @@ $(document).ready(function() {
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(latitude, longitude)
             });
-        } else { // 4 arguments or 5 arguments
+        } else if (arguments.length == 4) { // 4 arguments
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(latitude, longitude),
                 icon: icon
+            });
+        } else { //5 arguments
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(latitude, longitude),
+                icon: icon,
+                index: index
             });
         }
         marker.setMap(map);
@@ -342,8 +348,8 @@ $(document).ready(function() {
             infoWindow.setContent(markerContent);
             infoWindow.open(map, marker);
             // if 5 arguments
-            if (arguments.length == 5){
-                triggerSearch(index);
+            if (isset(this.index)){
+                triggerSearch(this.index);
             }
         });
         return marker;
