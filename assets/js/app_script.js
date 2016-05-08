@@ -839,8 +839,8 @@ $(document).ready(function() {
             left: 2,
             right: 4
         };
-
-        var item = '<li class="col-md-4 col-sm-4 portfolio-item">';
+        var item = '<li class="col-md-4 col-sm-4">';
+            item += '<div class="portfolio-item">';
             item +=     '<a href="" class="portfolio-link" data-toggle="modal">';
             item +=         '<div class="portfolio-hover">';
             item +=             '<div class="portfolio-hover-content">';
@@ -853,8 +853,9 @@ $(document).ready(function() {
             item +=         '<h4 class="forest_name"></h4>';
             //item +=         '<p class="text-muted">Explore the Activities for the Forest</p>';
             item +=     '</div>';
-            item += '</li>';
+            item += '</div>';
             item += '<input class="forest_id" type="hidden" value="">';
+            item += '</li>';
 
         var listOptions = {
             valueNames: [ {attr:'src',name:'forest_image'},
