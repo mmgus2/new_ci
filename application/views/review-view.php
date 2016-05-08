@@ -158,6 +158,7 @@
                 </p>
             </div>
         </div>
+        <hr>
         <div class="row">
             <div class="col-md-12">
                 <div class="fb-like" data-href="<?php echo base_url(); ?>review/<?php echo $aforest["id"]?>"data-layout="standard"
