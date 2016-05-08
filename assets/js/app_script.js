@@ -659,13 +659,13 @@ $(document).ready(function() {
             }
 
             if (type == 'site'){
-                /*popupInfo += '<p><a href="http://maps.google.com/maps?saddr=' + userLatitude + ',' + userLongitude +
+                popupInfo += '<p><a href="http://maps.google.com/maps?saddr=' + userLatitude + ',' + userLongitude +
                     '&daddr=' +  data[i].latitude + ',' +  data[i].longitude +
-                    '" target="_blank" class="btn btn-success">Get direction</a></p>'*/
-                popupInfo += '<p><button class="btn btn-success" ' +
+                    '" target="_blank" class="btn btn-success">Get direction</a></p>'
+                /*popupInfo += '<p><button class="btn btn-success" ' +
                     'onclick="getDirection(' + userLatitude + ',' + userLongitude + ',' +
                                             data[i].latitude + ',' +  data[i].longitude +')">' +
-                    'Get Direction</button></p>';
+                    'Get Direction</button></p>';*/
             }
 
             var marker_link = '';
