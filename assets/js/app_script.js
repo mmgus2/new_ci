@@ -525,6 +525,17 @@ $(document).ready(function() {
                         drawMapMarker(forestData,"forest",null);
                     } else {
                         $('#forest_list').hide();
+
+                        //remove previous marker(s) (if any)
+                        for(var i = 0; i < markers.length; i++){
+                            markers[i].setMap(null);
+                        }
+
+                        //remove polyline (if any)
+                        if(theRadius){
+                            theRadius.setMap(null);
+                        }
+
                         var message = 'No forest within ' + distance + ' ' + unitText;
                         if (selectedActivity.length == 1){
                             message += ' for the following activity: ';
