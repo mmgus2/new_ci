@@ -203,6 +203,8 @@ $(document).ready(function() {
                         //set max distance data
                         setMaxDistance(userLatitude,userLongitude);
 
+                        //show forest section
+                        $('.forest_section').show();
 
                         enableMenu();
                         scrollToMap();
@@ -243,6 +245,9 @@ $(document).ready(function() {
 
         //set max distance data
         setMaxDistance(latitude,longitude);
+
+        //show forest section
+        $('.forest_section').show();
 
         enableMenu();
         scrollToMap();

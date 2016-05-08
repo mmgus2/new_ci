@@ -131,7 +131,7 @@
 </section>
 
 <!--Pictures Forest Section-->
-<section id="portfolio" class="bg-light-gray forest_section">
+<section id="portfolio" class="bg-light-gray forest_section" hidden="true">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
