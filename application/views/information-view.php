@@ -71,29 +71,30 @@
     </div>
 </section>
 <script>
-    var paginationOptions = {
-        name: "pagination",
-        paginationClass: "pagination",
-        innerWindow: 3,
-        left: 2,
-        right: 4
-    };
-    var listOptions = {
-        valueNames: [ {attr:'src',name:'img_src'},
-            {attr:'alt',name:'img_alt'},
-            'name',
-            'description',
-            'site_list',
-            {attr:'href',name:'download'},
-            'forest_name',
-            {attr:'href',name:'review'}
-        ],
-        page: 6,
-        plugins: [
-            ListPagination(paginationOptions)
-        ]
-    };
-
-    //global initalisation
-    var infoList = new List('info_list', listOptions);
+    $(document).ready(function() {
+        var paginationOptions = {
+            name: "pagination",
+            paginationClass: "pagination",
+            innerWindow: 3,
+            left: 2,
+            right: 4
+        };
+        var listOptions = {
+            valueNames: [ {attr:'src',name:'img_src'},
+                {attr:'alt',name:'img_alt'},
+                'name',
+                'description',
+                'site_list',
+                {attr:'href',name:'download'},
+                'forest_name',
+                {attr:'href',name:'review'}
+            ],
+            page: 6,
+            plugins: [
+                ListPagination(paginationOptions)
+            ]
+        };
+        //global initalisation
+        var infoList = new List('info_list', listOptions);
+    })
 </script>
