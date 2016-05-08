@@ -882,6 +882,7 @@ $(document).ready(function() {
     window.mapLocate = function (i) {
         //update the search list so that only displaying this location
         var aList = forestList.get("forest_id",i)[0].values();
+        console.log(aList);
         var name = aList.name;
         forestList.search(name);
 
