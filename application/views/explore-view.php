@@ -10,11 +10,8 @@
         initAutocomplete();
 
         //add clear button (x) inside input
-        $("#input_loc").addClear({
-            hideOnBlur: true,
-        });
+        $("#input_loc").addClear();
         $('#search_list').addClear({
-            hideOnBlur: true,
             onClear: function () {
                 forestList.search();
             }
