@@ -348,7 +348,7 @@ $(document).ready(function() {
             infoWindow.setContent(markerContent);
             infoWindow.open(map, marker);
             // if 5 arguments
-            if (this.index){
+            if (this.index || this.index == 0){
                 triggerSearch(this.index);
             }
         });
