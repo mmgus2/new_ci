@@ -529,7 +529,9 @@ $(document).ready(function() {
                         //draw on map
                         drawMapMarker(forestData,"forest",null);
                     } else {
-                            $('#forest_list').hide();
+                        $('#forest_list').hide();
+
+                        map.setCenter(userLatitude,userLongitude);
 
                         //remove previous marker(s) (if any)
                         for(var i = 0; i < markers.length; i++){
