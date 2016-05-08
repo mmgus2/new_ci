@@ -36,11 +36,7 @@
         margin: 0px;
         text-align: center;
         text-transform: uppercase;
-        background-image: url(../../assets/img/forest_images/<?php echo $aforest["id"]; ?>.png)  no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
+        background-image: url(../../assets/img/forest_images/<?php echo $aforest["id"]; ?>.png);
     }
 
     i {
