@@ -197,18 +197,18 @@
                         <p>Recreation Site</p>
                     </li>
                     <?php
-                    for ($i = 0; $i < sizeof($activity); $i++){
+                    //for ($i = 0; $i < sizeof($activity); $i++){
                         ?>
-                        <li>
+                        <!--li>
                             <img src="../../assets/img/buttons/<?php echo $activity[$i]["activity_id"] ?>.png"
                                  class="img-responsive"
                                  alt="<?php echo $activity[$i]["activity_name"] ?>"
                                  height="20"
                             >
                             <p><?php echo $activity[$i]["activity_name"] ?></p>
-                        </li>
+                        </li-->
                         <?php
-                    }
+                    //}
                     ?>
                 </ul>
             </div>
