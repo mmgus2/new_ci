@@ -50,14 +50,14 @@
                                         </a>&nbsp;
                                         <a class="btn btn-default review"
                                            href="<?php echo base_url() ?>review/<?php echo $allforests[$i]['id'] ?>"
-                                           role="button" download>Review &raquo;
+                                           role="button">Review &raquo;
                                         </a>
                                     </p>
                                 </td>
                             </tr>
                         </table>
+                        <hr>
                     </li>
-                    <hr>
                 <?php
                 }
                 ?>
