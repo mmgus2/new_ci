@@ -162,7 +162,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="fb-like" data-href="<?php echo base_url(); ?>review/<?php echo $aforest["id"]?>"data-layout="standard"
-                     data-action="recommend" data-show-faces="true" data-share="false"></div>
+                     data-action="recommend" data-show-faces="true" data-share="false" style="z-index: 9999;"></div>
             </div>
         </div>
         <div class="row">
