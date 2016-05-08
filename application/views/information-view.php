@@ -22,7 +22,7 @@
                 <?php
                 for ($i=0; $i < sizeof($allforests); $i++) {
                 ?>
-                    <li class="col-sm-12 col-md-6">
+                    <li class="col-sm-12 col-md-12">
                         <table class="table-responsive">
                             <tr>
                                 <td valign="top" style="padding: 10px;">
@@ -57,6 +57,7 @@
                             </tr>
                         </table>
                     </li>
+                    <hr>
                 <?php
                 }
                 ?>
