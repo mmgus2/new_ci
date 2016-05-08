@@ -140,8 +140,8 @@
             </div>
         </div>
         <div id="forest_list" hidden="true">
-            <div class="row" style="text-align: center;">
-                <div class="col-sm-6">
+            <div class="row row-centered">
+                <div class="col-sm-6 col-centered">
                     <input class="search form-control" placeholder="Search forest" id="search_list">
                     <button class="sort" data-sort="forest_name">sort by name</button>
                 </div>
