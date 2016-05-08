@@ -9,54 +9,62 @@
 </header>
 <section class="bg-light-gray">
     <div class="container">
-        <table id="info_table" class="table table-striped" cellspacing="0" width="100%"></table>
-        <div id="#test_display"></div>
+        <div id="forest_list" hidden="true">
+            <div class="row row-centered">
+                <div class="col-sm-3 col-centered">
+                    <input class="search form-control" placeholder="Search forest" id="search_list">
+                </div>
+                <div class="col-sm-3 col-centered">
+                    <button class="sort" data-sort="forest_name">sort by name</button>
+                </div>
+            </div>
+            <ul class="list row">
+                <?php
+                for ($i=0; $i < sizeof($allforests); $i++) {
+                ?>
+                    <li class="col-sm-12 col-md-6">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-3" style= "background-color:white" >
+                                <img  src="<?php echo base_url() ?>asset/img/forest_images/<?php echo $allforests['id'] ?>.png"
+                                      class="img-responsive" alt="<?php echo $allforests['name'] ?>" >
+                            </div>
+                            <div class="col-sm-6 col-md-3" style= "background-color:white" >
+                                <h4><?php echo $allforests['name'] ?></h4>
+                                <hr>
+                                <p class="text-muted"><?php echo $allforests['description'] ?></p>
+                                <p><strong>Recreation sites</strong></p>
+                                <?php
+                                    for($j = 0; $j < sizeof($allforests[$i]['sites']); $j++){
+                                ?>
+                                        <p class="text-muted"><?php echo $allforests[$i]['sites'][$j]['site_name'] ?></p>
+                                <?php
+                                    }
+                                ?>
+                                <p>
+                                    <a class="btn btn-default"
+                                      href="<?php echo base_url() ?>asset/forest_map/<?php echo $allforests['id'] ?>.pdf"
+                                      role="button" download>Download Map &raquo;
+                                    </a>&nbsp;
+                                    <a class="btn btn-default"
+                                       href="<?php echo base_url() ?>review/<?php echo $allforests['id'] ?>"
+                                       role="button" download>Review &raquo;
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                <?php
+                }
+                ?>
+            </ul>
+            <div class="row">
+                <div class="col-sm-12" style="text-align: center;">
+                    <ul class="pagination"></ul>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 <script>
-    $(document).ready(function() {
-        var downloadpath = '../../assets/forest_map/';
-        var imagepath = '../../assets/img/forest_images/';
-        var baseUrl = window.location.protocol + "//" + window.location.host + "/";
-        //var baseUrl = "http://localhost/index.php/";
-
-        var forests = <?php echo json_encode($allforests) ?>;
-        var table = $('#info_table').DataTable({
-            destroy: true,
-            columns: [
-                {title: '<div class="green-font">Forest</div>'},
-                {title: '<div class="green-font">Recreation sites</div>'},
-                {title: '<div class="green-font">Further Actions</div>'}
-            ],
-            "columns": [
-                null,
-                { "orderable": false },
-                { "orderable": false },
-                ],
-            "pagingType": "simple",
-            "lengthMenu": [5, 10]
-        });
-        for(var i = 0; i < forests.length ; i++)
-        {
-            var firstColumn = '<div>';
-            firstColumn += '<img src="' + imagepath + forests[i].id + '.png" class="img-responsive" alt="'
-            + forests[i].name +'">';
-            firstColumn += '</div>';
-            firstColumn += '<div>';
-            firstColumn += '<h4>' + forests[i].name + '</h4>';
-            firstColumn += '<hr>';
-            firstColumn += '<p class="text-muted">' + forests[i].description + '</p>';
-            var secondColumn = '<p class="text-muted"><strong>Recreation Sites</strong></p>';
-                secondColumn += '<ul>';
-            for(var j = 0; j < forests[i].sites.length; j++){
-                secondColumn += '<li>' + forests[i].sites[j].site_name + '</li>';
-            }
-            secondColumn += '</ul>';
-            thirdColumn = '<p><a href="' + downloadpath + forests[i].id + '.pdf" download>Download Map</a></p>';
-            thirdColumn += '<p><a href="' + baseUrl + 'review/' + forests[i].id +'">Review Forest</a></p>';
-            table.row.add([firstColumn,secondColumn, thirdColumn]).draw();
-            //console.log(infoData[i]);
-        }
-    });
 
 </script>
