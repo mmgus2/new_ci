@@ -847,7 +847,8 @@ $(document).ready(function() {
                 forest_image:'../../assets/img/forest_images/' + forestData[i].id + '.png',
                 forest_alt: forestData[i].name,
                 forest_name: forestData[i].name,
-                forest_id: i
+                forest_id: i,
+                distance: forestData.distance
             };
             forestList.add(aList);
             //console.log('../../assets/img/forest_images/' + forestData[i].id + ',' + forestData[i].name);
@@ -881,6 +882,7 @@ $(document).ready(function() {
             item +=     '</div>';
             item += '</div>';
             item += '<input class="forest_id" type="hidden" value="">';
+            item += '<input class="distance" type="hidden" value="">';
             item += '</li>';
 
         var listOptions = {
@@ -888,7 +890,8 @@ $(document).ready(function() {
                           {attr:'src',name:'forest_image'},
                           {attr:'alt',name:'forest_alt'},
                           'forest_name',
-                          {attr:'value',name:'forest_id'}
+                          {attr:'value',name:'forest_id'},
+                          {attr:'value',name:'distance'}
                         ],
             item: item,
             page: 6,

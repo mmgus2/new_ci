@@ -150,6 +150,7 @@
                 </div>
                 <div class="col-sm-3 col-centered">
                     <button class="sort" data-sort="forest_name">sort by name</button>
+                    <button class="sort" data-sort="distance">sort by distance</button>
                 </div>
             </div>
             <div class="row">
