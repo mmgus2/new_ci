@@ -154,7 +154,7 @@
                 </div>
             </div>
             <!--div class="row" style="text-align: center"-->
-                <ul class="list row"></ul>
+                <ul class="list list-inline row"></ul>
             <!--/div-->
             <div class="row">
                 <div class="col-sm-12" style="text-align: center;">
