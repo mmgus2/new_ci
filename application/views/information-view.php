@@ -27,26 +27,28 @@
                             <tr>
                                 <td valign="top" style="padding: 10px;">
                                     <img  src="<?php echo base_url() ?>assets/img/forest_images/<?php echo $allforests[$i]['id'] ?>.png"
-                                          class="img-responsive" alt="<?php echo $allforests[$i]['name'] ?>" >
+                                          class="img-responsive img_src img_alt" alt="<?php echo $allforests[$i]['name'] ?>" >
                                 </td>
                                 <td valign="top" style="padding: 10px;">
-                                    <h4><?php echo $allforests[$i]['name'] ?></h4>
+                                    <h4 class="name"><?php echo $allforests[$i]['name'] ?></h4>
                                     <hr>
-                                    <p class="text-muted"><?php echo $allforests[$i]['description'] ?></p>
+                                    <p class="text-muted description"><?php echo $allforests[$i]['description'] ?></p>
                                     <p><strong>Recreation sites</strong></p>
+                                    <p class="text-muted site_list">
                                     <?php
                                     for($j = 0; $j < sizeof($allforests[$i]['sites']); $j++){
                                         ?>
-                                        <p class="text-muted"><?php echo $allforests[$i]['sites'][$j]['site_name'] ?></p>
+                                        <?php echo $allforests[$i]['sites'][$j]['site_name'] ?><br />
                                         <?php
                                     }
                                     ?>
+                                    </p>
                                     <p>
-                                        <a class="btn btn-default"
+                                        <a class="btn btn-default download"
                                            href="<?php echo base_url() ?>assets/forest_map/<?php echo $allforests[$i]['id'] ?>.pdf"
                                            role="button" download>Download Map &raquo;
                                         </a>&nbsp;
-                                        <a class="btn btn-default"
+                                        <a class="btn btn-default review"
                                            href="<?php echo base_url() ?>review/<?php echo $allforests[$i]['id'] ?>"
                                            role="button" download>Review &raquo;
                                         </a>
@@ -68,5 +70,30 @@
     </div>
 </section>
 <script>
+    var paginationOptions = {
+        name: "pagination",
+        paginationClass: "pagination",
+        innerWindow: 3,
+        left: 2,
+        right: 4
+    };
+    var listOptions = {
+        valueNames: [ {attr:'src',name:'img_src'},
+            {attr:'alt',name:'img_alt'},
+            'name',
+            'description',
+            'site_list',
+            {attr:'href',name:'download'},
+            'forest_name',
+            {attr:'href',name:'review'}
+        ],
+        item: item,
+        page: 6,
+        plugins: [
+            ListPagination(paginationOptions)
+        ]
+    };
 
+    //global initalisation
+    var infoList = new List('info_list', listOptions);
 </script>
