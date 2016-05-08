@@ -31,6 +31,7 @@
                                 </td>
                                 <td>
                                     <h4><?php echo $allforests[$i]['name'] ?></h4>
+                                    <hr>
                                     <p class="text-muted"><?php echo $allforests[$i]['description'] ?></p>
                                     <p><strong>Recreation sites</strong></p>
                                     <?php
@@ -54,7 +55,6 @@
                             </tr>
                         </table>
                     </li>
-                    <hr>
                 <?php
                 }
                 ?>
