@@ -32,6 +32,7 @@
 
     #weather {
         /*margin: 0px auto;*/
+        height: 300px;
         margin: 0px;
         text-align: center;
         text-transform: uppercase;
