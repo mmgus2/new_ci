@@ -11,7 +11,7 @@
 
         //add clear button (x) inside input
         $("#input_loc").addClear();
-        //$('#search_list').addClear();
+        $('#search_list').addClear();
 
     });
 </script>
@@ -142,7 +142,7 @@
         <div id="forest_list" hidden="true">
             <div class="row">
                 <div class="col-sm-12" style="text-align: center;">
-                    <input class="search" placeholder="Search forest" id="search_list">
+                    <input class="search form-control" placeholder="Search forest" id="search_list">
                     <button class="sort" data-sort="forest_name">sort by name</button>
                 </div>
             </div>
