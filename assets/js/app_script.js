@@ -820,11 +820,14 @@ $(document).ready(function() {
     function showForestImage(){
         forestList.clear();
         for(var i = 0; i < forestData.length; i++){
-            forestList.add({forest_image:'../../assets/img/forest_images/' + forestData[i].id + '.png',
-                            forest_alt: forestData[i].name,
-                            forest_name: forestData[i].name,
-                            forest_id: forestData[i].id
-                            });
+            var aList = {
+                link: 'javascript:mapLocate(' + i + ')',
+                forest_image:'../../assets/img/forest_images/' + forestData[i].id + '.png',
+                forest_alt: forestData[i].name,
+                forest_name: forestData[i].name,
+                forest_id: i
+            };
+            forestList.add(aList);
             //console.log('../../assets/img/forest_images/' + forestData[i].id + ',' + forestData[i].name);
         }
         forestList.update();
@@ -841,7 +844,7 @@ $(document).ready(function() {
         };
         var item = '<li class="col-md-4 col-sm-4">';
             item += '<div class="portfolio-item">';
-            item +=     '<a href="" class="portfolio-link" data-toggle="modal">';
+            item +=     '<a href="" class="portfolio-link link" data-toggle="modal">';
             item +=         '<div class="portfolio-hover">';
             item +=             '<div class="portfolio-hover-content">';
             item +=                 '<i class="fa fa-tree"></i>';
@@ -858,7 +861,8 @@ $(document).ready(function() {
             item += '</li>';
 
         var listOptions = {
-            valueNames: [ {attr:'src',name:'forest_image'},
+            valueNames: [ {attr:'href',name:'link'},
+                          {attr:'src',name:'forest_image'},
                           {attr:'alt',name:'forest_alt'},
                           'forest_name',
                           {attr:'value',name:'forest_id'}
@@ -873,5 +877,18 @@ $(document).ready(function() {
         //global initalisation
         forestList = new List('forest_list', listOptions);
     }
+
+    //function to respond to user click in the image
+    window.mapLocate = function (i) {
+        //update the search list so that only displaying this location
+        var aList = forestList.get("id",id)[0].values();
+        var name = aList.name;
+        forestList.search(name);
+
+        //show info window on the map and center the that specific marker
+        google.maps.event.trigger(markers[i], 'click');
+        //map.setZoom(12);
+        map.setCenter(markers[i].getPosition());
+    };
 
 })
