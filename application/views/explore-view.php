@@ -11,10 +11,10 @@
 
         //add clear button (x) inside input
         $("#input_loc").addClear({
-            hideOnBlur: true;
+            hideOnBlur: true,
         });
         $('#search_list').addClear({
-            hideOnBlur: true;
+            hideOnBlur: true,
             onClear: function () {
                 forestList.search();
             }
