@@ -11,10 +11,11 @@
 
         //add clear button (x) inside input
         $("#input_loc").addClear();
-        $('#search_list').addClear();
-        $('#search_list').onClear(function () {
-            forestList.search();
-        })
+        $('#search_list').addClear({
+            onClear: function () {
+                forestList.search();
+            }
+        });
 
     });
 </script>
