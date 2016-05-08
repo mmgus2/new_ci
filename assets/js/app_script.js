@@ -844,9 +844,9 @@ $(document).ready(function() {
         };
         var item = '<li class="col-md-4 col-sm-4">';
             item += '<div class="portfolio-item">';
-            item +=     '<a href="" class="portfolio-link" data-toggle="modal">';
+            item +=     '<a href="" class="portfolio-link link" data-toggle="modal">';
             item +=         '<div class="portfolio-hover">';
-            item +=             '<div class="portfolio-hover-content link"  onclick="">';
+            item +=             '<div class="portfolio-hover-content>';
             item +=                 '<i class="fa fa-tree"></i>';
             item +=             '</div>';
             item +=         '</div>';
@@ -861,7 +861,7 @@ $(document).ready(function() {
             item += '</li>';
 
         var listOptions = {
-            valueNames: [ {attr:'onclick',name:'link'},
+            valueNames: [ {attr:'href',name:'link'},
                           {attr:'src',name:'forest_image'},
                           {attr:'alt',name:'forest_alt'},
                           'forest_name',
