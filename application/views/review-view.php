@@ -132,32 +132,31 @@
             <div class="col-sm-6">
                 <div id="weather"> </div>
             </div>
-        </div>
-
-        <div>
-            <h4><?php echo $aforest["name"]; ?></h4>
-            <hr>
-            <p class="text-muted"><?php echo $aforest["description"]; ?></p>
-            <p class="text-muted">
-                <strong>Recreation Sites</strong><br />
+            <div class="col-sm-6">
+                <h4><?php echo $aforest["name"]; ?></h4>
+                <hr>
+                <p class="text-muted"><?php echo $aforest["description"]; ?></p>
+                <p class="text-muted">
+                    <strong>Recreation Sites</strong><br />
                 <ul>
-                <?php
+                    <?php
                     for ($i = 0; $i < sizeof($aforest["sites"]); $i++){
                         echo '<li>' . $aforest["sites"][$i]["site_name"] . '</li>';
                     }
-                ?>
+                    ?>
                 </ul>
-            </p>
-            <p class="text-muted">
-                <strong>Activites</strong><br />
-            <ul>
-                <?php
-                for ($i = 0; $i < sizeof($aforest["activities"]); $i++){
-                    echo '<li>' . $aforest["activities"][$i]["activity_name"] . '</li>';
-                }
-                ?>
-            </ul>
-            </p>
+                </p>
+                <p class="text-muted">
+                    <strong>Activites</strong><br />
+                <ul>
+                    <?php
+                    for ($i = 0; $i < sizeof($aforest["activities"]); $i++){
+                        echo '<li>' . $aforest["activities"][$i]["activity_name"] . '</li>';
+                    }
+                    ?>
+                </ul>
+                </p>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-12">
