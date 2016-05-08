@@ -826,6 +826,9 @@ $(document).ready(function() {
 
     //show forest image list
     function showForestImage(){
+        //clear the search forest input
+        $('#search_list').val('');
+
         forestList.clear();
         for(var i = 0; i < forestData.length; i++){
             var aList = {
@@ -839,6 +842,7 @@ $(document).ready(function() {
             //console.log('../../assets/img/forest_images/' + forestData[i].id + ',' + forestData[i].name);
         }
         forestList.update();
+        forestList.search();
     }
 
     //-----------List object initialisation----
