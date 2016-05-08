@@ -18,12 +18,11 @@
                     <button class="sort" data-sort="forest_name">sort by name</button>
                 </div>
             </div>
-            <div class="row">
-            <ul class="list list-inline col-sm-12 col-md-6">
+            <ul class="list list-inline row">
                 <?php
                 for ($i=0; $i < sizeof($allforests); $i++) {
                 ?>
-                    <li>
+                    <li class="col-sm-12 col-md-6">
                         <div class="col-sm-6 col-md-3">
                             <img  src="<?php echo base_url() ?>assets/img/forest_images/<?php echo $allforests[$i]['id'] ?>.png"
                                   class="img-responsive" alt="<?php echo $allforests[$i]['name'] ?>" >
@@ -57,7 +56,6 @@
                 }
                 ?>
             </ul>
-            </div>
             <div class="row">
                 <div class="col-sm-12" style="text-align: center;">
                     <ul class="pagination"></ul>
