@@ -25,7 +25,7 @@
                     <li class="col-sm-12 col-md-6">
                         <div class="row">
                             <div class="col-sm-6 col-md-3" style= "background-color:white" >
-                                <img  src="<?php echo base_url() ?>asset/img/forest_images/<?php echo $allforests['id'] ?>.png"
+                                <img  src="<?php echo base_url() ?>asset/img/forest_images/<?php echo $allforests[$i]['id'] ?>.png"
                                       class="img-responsive" alt="<?php echo $allforests[$i]['name'] ?>" >
                             </div>
                             <div class="col-sm-6 col-md-3" style= "background-color:white" >
