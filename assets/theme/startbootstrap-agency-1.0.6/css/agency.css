@@ -981,8 +981,8 @@ body {
     right:-5px;
 }
 
-#map img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+#map {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
 }
