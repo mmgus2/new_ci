@@ -29,6 +29,13 @@ class Database_model extends CI_Model {
         return $query->result_array();
     }
 
+    //get a single forest from database
+    public function read_a_forest($id){
+        $sql = "select * from forest where forest_id = ? ";
+        $query = $this->db->query($sql, array($id));
+        return $query;
+    }
+
     //get site data from site table in database according to a specific forest ID
     public function read_site($forestID)
     {
