@@ -108,7 +108,7 @@
                     <td>
                         <img src="../../assets/img/buttons/<?php echo $activity[$i]["activity_id"] ?>.png"
                              alt="<?php echo $activity[$i]["activity_name"] ?>"
-                             class="img-responsive img-button" id="<?php echo $activity[$i]["activity_id"] ?>"
+                             class="img-responsive img-button img-responsive-icon" id="<?php echo $activity[$i]["activity_id"] ?>"
                              onclick="acceptActivity(this)"
                         >
                     </td>
