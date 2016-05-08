@@ -140,7 +140,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <strong><span id="list_info"</span></strong>
-                <br />
+                <hr>
             </div>
         </div>
         <div id="forest_list" hidden="true">
