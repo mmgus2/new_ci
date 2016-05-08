@@ -982,9 +982,9 @@ body {
 }
 
 .img-button {
-    opacity: 0.4;
+    opacity: 0.8;
 }
 
 .img-button:hover{
-    opacity: 0.6;
+    opacity: 1;
 }
