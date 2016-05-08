@@ -167,7 +167,7 @@
 </section>
 
 <!-- Map Section -->
-<section class="bg-light-gray">
+<section id="map_section" class="bg-light-gray">
     <div class="container">
         <div class="row">
             <div class="col-md-12">

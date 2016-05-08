@@ -342,6 +342,9 @@ $(document).ready(function() {
                 var name = aList.forest_name;
                 $('#search_list').val(name);
                 forestList.search(name);
+
+                //focus to image list section
+                //scrollToImageList();
             });
             return marker;
         }
@@ -818,7 +821,14 @@ $(document).ready(function() {
     //scroll to map section
     function scrollToMap(){
         $('html, body').animate({
-            scrollTop: $("#map").offset().top
+            scrollTop: $("#map_section").offset().top
+        }, "slow");
+    }
+    
+    //scroll to image list section
+    function scrollToImageList(){
+        $('html, body').animate({
+            scrollTop: $(".forest_section").offset().top
         }, "slow");
     }
 
