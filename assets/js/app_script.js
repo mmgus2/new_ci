@@ -115,6 +115,7 @@ $(document).ready(function() {
     var markers = [];
     var infoWindow = new google.maps.InfoWindow();
     var theRadius = null;
+    var forestMarker = null;
 
     //array for selected activity
     var selectedActivity = [];
