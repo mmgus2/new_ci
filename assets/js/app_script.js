@@ -868,7 +868,7 @@ $(document).ready(function() {
             left: 2,
             right: 4
         };
-        var item = '<li class="col-md-4">';
+        var item = '<li class="col-md-4" style="height: 200px">';
             item += '<div class="portfolio-item">';
             item +=     '<a href="" class="portfolio-link link">';
             item +=         '<div class="portfolio-hover">';
