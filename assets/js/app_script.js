@@ -531,7 +531,9 @@ $(document).ready(function() {
                     } else {
                         $('#forest_list').hide();
 
-                        map.setCenter(userLatitude,userLongitude);
+                        //center the map to user current location
+                        map.setZoom(12);
+                        map.setCenter(new google.maps.LatLng(userLatitude, userLongitude));
 
                         //remove previous marker(s) (if any)
                         for(var i = 0; i < markers.length; i++){
