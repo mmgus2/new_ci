@@ -198,7 +198,7 @@ $(document).ready(function() {
 
                         //initialise map with user estimated location and add marker
                         createMap(userLatitude,userLongitude);
-                        addMarker(-1, userLatitude,userLongitude,'<b>You select this location!</b>');
+                        addMarker(userLatitude,userLongitude,'<b>You select this location!</b>');
 
                         //set max distance data
                         setMaxDistance(userLatitude,userLongitude);
@@ -241,7 +241,7 @@ $(document).ready(function() {
 
         //initialise map with user estimated location and add marker
         createMap(latitude,longitude);
-        addMarker(-1, latitude,longitude,'<b>Your estimated location!</b>');
+        addMarker(latitude,longitude,'<b>Your estimated location!</b>');
 
         //set max distance data
         setMaxDistance(latitude,longitude);
@@ -325,18 +325,24 @@ $(document).ready(function() {
     }
 
     //function to add marker with event listener
-    function addMarker(index, latitude, longitude, markerContent, icon)
+    function addMarker(latitude, longitude, markerContent, icon, index)
     {
-        if (arguments.length == 4)
-        {
+        if(arguments.length == 3){
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(latitude, longitude)
             });
-            marker.setMap(map);
-            marker.addListener('click', function () {
-                infoWindow.setContent(markerContent);
-                infoWindow.open(map, marker);
-
+        } else { // 4 arguments or 5 arguments
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(latitude, longitude),
+                icon: icon
+            });
+        }
+        marker.setMap(map);
+        marker.addListener('click', function () {
+            infoWindow.setContent(markerContent);
+            infoWindow.open(map, marker);
+            // if 5 arguments
+            if (arguments.length == 5){
                 //update the search list so that only displaying this location
                 var aList = forestList.get("forest_id",index)[0].values();
                 var name = aList.forest_name;
@@ -345,22 +351,9 @@ $(document).ready(function() {
 
                 //focus to image list section
                 //scrollToImageList();
-            });
-            return marker;
-        }
-        else //all 5 arguments is used
-        {
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(latitude, longitude),
-                icon: icon
-            });
-            marker.setMap(map);
-            marker.addListener('click', function () {
-                infoWindow.setContent(markerContent);
-                infoWindow.open(map, marker);
-            });
-            return marker;
-        }
+            }
+        });
+        return marker;
     }
 
     //----------------Slider function using rangeslider.js-------------
@@ -687,8 +680,8 @@ $(document).ready(function() {
                     '|FFDE00|000000';
             }
 
-            var marker = addMarker(i, data[i].latitude, data[i].longitude,
-                popupInfo,marker_link);
+            var marker = addMarker(data[i].latitude, data[i].longitude,
+                popupInfo, marker_link, i);
 
             markers.push(marker);
 
@@ -734,7 +727,7 @@ $(document).ready(function() {
         $('#return_forest').show('slow');
 
 
-        addMarker(-1, forestData[i].latitude,forestData[i].longitude,forestData[i].name,
+        addMarker(forestData[i].latitude,forestData[i].longitude,forestData[i].name,
             'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
             (i + 1) + '|7CC37C|000000');
 
