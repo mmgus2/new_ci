@@ -31,12 +31,12 @@
     }
 
     #weather {
-        width: 500px;
         /*margin: 0px auto;*/
         margin: 0px;
         text-align: center;
         text-transform: uppercase;
         background-image: url(../../assets/img/forest_images/<?php echo $aforest["id"]; ?>.png);
+        background-size: cover;
     }
 
     i {
@@ -127,9 +127,10 @@
 </style>
 <section class="bg-light-gray">
     <div class="container">
-        <div id="weather"> </div>
         <div class="row">
-
+            <div class="col-sm-6">
+                <div id="weather"> </div>
+            </div>
         </div>
 
         <div>
