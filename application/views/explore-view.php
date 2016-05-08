@@ -143,8 +143,7 @@
                 <hr>
             </div>
         </div>
-        <div id="forest_list" hidden="true" style="width: 100%; min-height: 200px;
-                     background:url(../../assets/img/ajax-loader.gif) no-repeat center center;">
+        <div id="forest_list" hidden="true">
             <div class="row row-centered">
                 <div class="col-sm-3 col-centered">
                     <input class="search form-control" placeholder="Search forest" id="search_list">
