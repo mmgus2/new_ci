@@ -821,7 +821,7 @@ $(document).ready(function() {
         forestList.clear();
         for(var i = 0; i < forestData.length; i++){
             var aList = {
-                'portfolio-link': 'javascript:mapLocate(' + i + ')',
+                //link: 'javascript:mapLocate(' + i + ')',
                 forest_image:'../../assets/img/forest_images/' + forestData[i].id + '.png',
                 forest_alt: forestData[i].name,
                 forest_name: forestData[i].name,
@@ -844,7 +844,7 @@ $(document).ready(function() {
         };
         var item = '<li class="col-md-4 col-sm-4">';
             item += '<div class="portfolio-item">';
-            item +=     '<a href="" class="portfolio-link" data-toggle="modal">';
+            item +=     '<a href="www.google.com" class="portfolio-link" data-toggle="modal">';
             item +=         '<div class="portfolio-hover">';
             item +=             '<div class="portfolio-hover-content>';
             item +=                 '<i class="fa fa-tree"></i>';
@@ -853,7 +853,7 @@ $(document).ready(function() {
             item +=         '<img class="img-responsive forest_image forest_alt" src="" alt="">';
             item +=     '</a>';
             item +=     '<div class="portfolio-caption">';
-            item +=         '<h4 class="forest_name"></h4>';
+            item +=         '<h6 class="forest_name"></h6>';
             //item +=         '<p class="text-muted">Explore the Activities for the Forest</p>';
             item +=     '</div>';
             item += '</div>';
@@ -861,7 +861,7 @@ $(document).ready(function() {
             item += '</li>';
 
         var listOptions = {
-            valueNames: [ {attr:'href',name:'portfolio-link'},
+            valueNames: [ //{attr:'href',name:'link'},
                           {attr:'src',name:'forest_image'},
                           {attr:'alt',name:'forest_alt'},
                           'forest_name',
