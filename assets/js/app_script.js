@@ -846,8 +846,8 @@ $(document).ready(function() {
             item += '<div class="portfolio-item">';
             item +=     '<a href="" class="portfolio-link" data-toggle="modal">';
             item +=         '<div class="portfolio-hover">';
-            item +=             '<div class="portfolio-hover-content">';
-            item +=                 '<i class="fa fa-tree link" onclick=""></i>';
+            item +=             '<div class="portfolio-hover-content link"  onclick="">';
+            item +=                 '<i class="fa fa-tree"></i>';
             item +=             '</div>';
             item +=         '</div>';
             item +=         '<img class="img-responsive forest_image forest_alt" src="" alt="">';
