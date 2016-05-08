@@ -19,12 +19,11 @@
                 </div>
             </div>
             <div class="row">
-            <ul class="list list-inline">
+            <ul class="list list-inline class="col-sm-12 col-md-6"">
                 <?php
                 for ($i=0; $i < sizeof($allforests); $i++) {
                 ?>
                     <li>
-                        <div class="col-sm-12 col-md-6">
                         <div class="col-sm-6 col-md-3">
                             <img  src="<?php echo base_url() ?>assets/img/forest_images/<?php echo $allforests[$i]['id'] ?>.png"
                                   class="img-responsive" alt="<?php echo $allforests[$i]['name'] ?>" >
@@ -51,7 +50,6 @@
                                    role="button" download>Review &raquo;
                                 </a>
                             </p>
-                        </div>
                         </div>
                     </li>
                     <hr>
