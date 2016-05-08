@@ -882,8 +882,7 @@ $(document).ready(function() {
     window.mapLocate = function (i) {
         //update the search list so that only displaying this location
         var aList = forestList.get("forest_id",i)[0].values();
-        console.log(aList);
-        var name = aList.name;
+        var name = aList.forest_name;
         forestList.search(name);
 
         //show info window on the map and center the that specific marker
