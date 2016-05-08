@@ -727,7 +727,12 @@ $(document).ready(function() {
         //scroll to menu section
         scrollToMenu();
 
-        addMarker(forestData[i].latitude,forestData[i].longitude,forestData[i].name,
+        //clear forest marker if exist before
+        if(forestMarker){
+            forestMarker.setMap(null);
+        }
+
+        forestMarker = addMarker(forestData[i].latitude,forestData[i].longitude,forestData[i].name,
             'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
             (i + 1) + '|7CC37C|000000');
 
