@@ -693,6 +693,7 @@ $(document).ready(function() {
     window.getReview = function(link){
         $('#iframe').attr("src",link);
         $('#iframe_container').show('slow');
+        scrollToIframe();
     }
 
     //triggered when unit is changed
@@ -832,6 +833,13 @@ $(document).ready(function() {
     function scrollToMenu(){
         $('html, body').animate({
             scrollTop: $("#menu_section").offset().top
+        }, "slow");
+    }
+
+    //scroll to iframe
+    function scrollToIframe(){
+        $('html, body').animate({
+            scrollTop: $("#iframe_container").offset().top
         }, "slow");
     }
 
