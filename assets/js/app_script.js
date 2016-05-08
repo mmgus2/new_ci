@@ -840,6 +840,8 @@ $(document).ready(function() {
         //clear the search forest input
         $('#search_list').val('');
 
+        var unitText = $("select#unit option:selected").text();
+
         forestList.clear();
         for(var i = 0; i < forestData.length; i++){
             var aList = {
@@ -848,7 +850,7 @@ $(document).ready(function() {
                 forest_alt: forestData[i].name,
                 forest_name: forestData[i].name,
                 forest_id: i,
-                distance: forestData.distance
+                distance: 'distance ' + forestData[i] + ' ' + unitText
             };
             forestList.add(aList);
             //console.log('../../assets/img/forest_images/' + forestData[i].id + ',' + forestData[i].name);
@@ -878,11 +880,11 @@ $(document).ready(function() {
             item +=     '</a>';
             item +=     '<div class="portfolio-caption">';
             item +=         '<h6 class="forest_name"></h6>';
-            //item +=         '<p class="text-muted">Explore the Activities for the Forest</p>';
+            item +=         '<p class="distance"></p>';
             item +=     '</div>';
             item += '</div>';
             item += '<input class="forest_id" type="hidden" value="">';
-            item += '<input class="distance" type="hidden" value="">';
+            //item += '<input class="distance" type="hidden" value="">';
             item += '</li>';
 
         var listOptions = {
@@ -891,7 +893,7 @@ $(document).ready(function() {
                           {attr:'alt',name:'forest_alt'},
                           'forest_name',
                           {attr:'value',name:'forest_id'},
-                          {attr:'value',name:'distance'}
+                          'distance'
                         ],
             item: item,
             page: 6,
