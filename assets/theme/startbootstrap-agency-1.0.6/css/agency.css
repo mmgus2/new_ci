@@ -988,3 +988,8 @@ body {
 .img-button:hover{
     opacity: 1;
 }
+
+.img-responsive {
+    height: 30px;
+    width: 30px;
+}
