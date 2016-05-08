@@ -951,6 +951,13 @@ body {
     /* inline-block space fix */
     margin-right:-4px;
 }
+/*style taken from http://getbootstrap.com.vn/examples/equal-height-columns/equal-height-columns.css*/
+.row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+}
 
 /* style for info window */
 .gm-style-iw {

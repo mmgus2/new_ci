@@ -155,7 +155,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12" style="text-align: center;">
-                    <ul class="list row pager"></ul>
+                    <ul class="list row row-eq-height pager"></ul>
                 </div>
             </div>
             <div class="row">

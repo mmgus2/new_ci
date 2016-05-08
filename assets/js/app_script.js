@@ -850,7 +850,7 @@ $(document).ready(function() {
                 forest_alt: forestData[i].name,
                 forest_name: forestData[i].name,
                 forest_id: i,
-                distance: 'distance ' + forestData[i] + ' ' + unitText
+                distance: 'distance ' + forestData[i].distance + ' ' + unitText
             };
             forestList.add(aList);
             //console.log('../../assets/img/forest_images/' + forestData[i].id + ',' + forestData[i].name);
