@@ -200,12 +200,12 @@
                     //for ($i = 0; $i < sizeof($activity); $i++){
                         ?>
                         <!--li>
-                            <img src="../../assets/img/buttons/<?php echo $activity[$i]["activity_id"] ?>.png"
+                            <img src="../../assets/img/buttons/<?php //echo $activity[$i]["activity_id"] ?>.png"
                                  class="img-responsive"
-                                 alt="<?php echo $activity[$i]["activity_name"] ?>"
+                                 alt="<?php //echo $activity[$i]["activity_name"] ?>"
                                  height="20"
                             >
-                            <p><?php echo $activity[$i]["activity_name"] ?></p>
+                            <p><?php //echo $activity[$i]["activity_name"] ?></p>
                         </li-->
                         <?php
                     //}
