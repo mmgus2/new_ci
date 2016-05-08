@@ -153,6 +153,7 @@
                     <button class="btn btn-success sort" data-sort="distance">sort by distance</button>
                 </div>
             </div>
+            <hr>
             <!--div class="row" style="text-align: center"-->
                 <ul class="list list-inline row"></ul>
             <!--/div-->
