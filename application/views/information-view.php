@@ -48,10 +48,10 @@
                                            href="<?php echo base_url() ?>assets/forest_map/<?php echo $allforests[$i]['id'] ?>.pdf"
                                            role="button" download>Download Map &raquo;
                                         </a>&nbsp;
-                                        <a class="btn btn-default review"
-                                           href="<?php echo base_url() ?>review/<?php echo $allforests[$i]['id'] ?>"
+                                        <!--a class="btn btn-default review"
+                                           href="<?php //echo base_url() ?>review/<?php //echo $allforests[$i]['id'] ?>"
                                            role="button">Review &raquo;
-                                        </a>
+                                        </a-->
                                     </p>
                                 </td>
                             </tr>
@@ -86,8 +86,8 @@
                 'description',
                 'site_list',
                 {attr:'href',name:'download'},
-                'forest_name',
-                {attr:'href',name:'review'}
+                'forest_name'
+                //{attr:'href',name:'review'}
             ],
             page: 5,
             plugins: [

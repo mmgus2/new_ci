@@ -49,7 +49,7 @@ class Review extends CI_Controller {
 
         $data['aforest'] = $forest;
         $this->load->view('header');
-        $this->load->view('menu');
+        //$this->load->view('menu');
         $this->load->view('review-view',$data);
         $this->load->view('footer');
 
