@@ -879,7 +879,7 @@ $(document).ready(function() {
             item +=         '<img class="img-responsive forest_image forest_alt" src="" alt="">';
             item +=     '</a>';
             item +=     '<div class="portfolio-caption">';
-            item +=         '<h6 class="forest_name"></h6>';
+            item +=         '<h4 class="forest_name"></h4>';
             item +=         '<p class="distance"></p>';
             item +=     '</div>';
             item += '</div>';
