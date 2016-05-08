@@ -24,36 +24,32 @@
                 for ($i=0; $i < sizeof($allforests); $i++) {
                 ?>
                     <li>
-                        <div class="col-sm-12 col-md-6">
-                        <div class="row">
-                            <div class="col-sm-6 col-md-3" style= "background-color:white" >
-                                <img  src="<?php echo base_url() ?>assets/img/forest_images/<?php echo $allforests[$i]['id'] ?>.png"
-                                      class="img-responsive" alt="<?php echo $allforests[$i]['name'] ?>" >
-                            </div>
-                            <div class="col-sm-6 col-md-3" style= "background-color:white" >
-                                <h4><?php echo $allforests[$i]['name'] ?></h4>
-                                <hr>
-                                <p class="text-muted"><?php echo $allforests[$i]['description'] ?></p>
-                                <p><strong>Recreation sites</strong></p>
-                                <?php
-                                    for($j = 0; $j < sizeof($allforests[$i]['sites']); $j++){
-                                ?>
-                                        <p class="text-muted"><?php echo $allforests[$i]['sites'][$j]['site_name'] ?></p>
-                                        <p>
-                                            <a class="btn btn-default"
-                                               href="<?php echo base_url() ?>assets/forest_map/<?php echo $allforests[$i]['id'] ?>.pdf"
-                                               role="button" download>Download Map &raquo;
-                                            </a>&nbsp;
-                                            <a class="btn btn-default"
-                                               href="<?php echo base_url() ?>review/<?php echo $allforests[$i]['id'] ?>"
-                                               role="button" download>Review &raquo;
-                                            </a>
-                                        </p>
-                                <?php
-                                    }
-                                ?>
-                            </div>
+                        <div class="col-sm-12 col-md-6" style= "background-color:white" >
+                            <img  src="<?php echo base_url() ?>assets/img/forest_images/<?php echo $allforests[$i]['id'] ?>.png"
+                                  class="img-responsive" alt="<?php echo $allforests[$i]['name'] ?>" >
                         </div>
+                        <div class="col-sm-6 col-md-3" style= "background-color:white" >
+                            <h4><?php echo $allforests[$i]['name'] ?></h4>
+                            <hr>
+                            <p class="text-muted"><?php echo $allforests[$i]['description'] ?></p>
+                            <p><strong>Recreation sites</strong></p>
+                            <?php
+                            for($j = 0; $j < sizeof($allforests[$i]['sites']); $j++){
+                                ?>
+                                <p class="text-muted"><?php echo $allforests[$i]['sites'][$j]['site_name'] ?></p>
+                                <p>
+                                    <a class="btn btn-default"
+                                       href="<?php echo base_url() ?>assets/forest_map/<?php echo $allforests[$i]['id'] ?>.pdf"
+                                       role="button" download>Download Map &raquo;
+                                    </a>&nbsp;
+                                    <a class="btn btn-default"
+                                       href="<?php echo base_url() ?>review/<?php echo $allforests[$i]['id'] ?>"
+                                       role="button" download>Review &raquo;
+                                    </a>
+                                </p>
+                                <?php
+                            }
+                            ?>
                         </div>
                     </li>
                 <?php
