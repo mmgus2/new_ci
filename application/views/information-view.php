@@ -15,7 +15,7 @@
                     <input class="search form-control" placeholder="Search forest" id="search_list">
                 </div>
                 <div class="col-sm-3 col-centered">
-                    <button class="sort" data-sort="forest_name">sort by name</button>
+                    <button class="sort" data-sort="name">sort by name</button>
                 </div>
             </div>
             <ul class="list list-inline row">
@@ -89,7 +89,7 @@
                 'forest_name',
                 {attr:'href',name:'review'}
             ],
-            page: 6,
+            page: 5,
             plugins: [
                 ListPagination(paginationOptions)
             ]
