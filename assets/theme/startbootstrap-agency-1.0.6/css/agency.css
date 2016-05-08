@@ -980,9 +980,3 @@ body {
     top:-10px;
     right:-5px;
 }
-
-#map {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-}

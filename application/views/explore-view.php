@@ -171,8 +171,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="fa-border" id="map" style="width: 100%; height: 600px;">
-                    <img src="../../assets/img/ajax-loader.gif" style="display:block; margin:auto auto;" />
+                <div class="fa-border" id="map"
+                     style="width: 100%; height: 600px; background:url(../../assets/img/ajax-loader.gif) no-repeat center center;">
+                    <!--img src="../../assets/img/ajax-loader.gif" style="display:block; margin:auto auto;" /-->
                 </div>
             </div>
         </div>
