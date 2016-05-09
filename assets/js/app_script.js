@@ -734,6 +734,9 @@ $(document).ready(function() {
             forestMarker.setMap(null);
         }
 
+        //clear previous site data
+        siteData = [];
+
         forestMarker = addMarker(forestData[i].latitude,forestData[i].longitude,forestData[i].name,
             'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' +
             (i + 1) + '|7CC37C|000000');
