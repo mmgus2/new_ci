@@ -128,7 +128,7 @@
                     <p class="text-muted">Victoria has many forests and hundreds of recreation sites.They are closer to nature and wonderful getaways from the hustle bustle of the city.In this site, we aim to provide you with the information of such hidden gems.You can explore through the functions of location,activities and information to gain the knowledge of such places and how to land there.
                     </p>
                     <p class="text-muted"> This is one stop place to have everything you need for the next forest travel.Explore the comforts of nature packed with adventures.</p>
-                    <p><a class="btn btn-default" href="#" role="button">Our Journey &raquo;</a></p>
+                    <p><a class="btn btn-default" href="<?php echo base_url() ?>aboutus" role="button">Our Journey &raquo;</a></p>
                 </div>
 
             </div>
