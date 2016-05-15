@@ -26,8 +26,8 @@
                         <table class="table-responsive">
                             <tr>
                                 <td valign="top" style="padding: 10px;">
-                                    <img  src="<?php echo base_url() ?>assets/img/forest_images/<?php echo $allforests[$i]['id'] ?>.png"
-                                          class="img-responsive img_src img_alt" alt="<?php echo $allforests[$i]['name'] ?>" >
+                                    <img  src="../../assets/img/forest_images/<?php echo $allforests[$i]['id'] ?>.png"
+                                          class="img_src img_alt" alt="<?php echo $allforests[$i]['name'] ?>" >
                                 </td>
                                 <td valign="top" style="padding: 10px;">
                                     <h4 class="name"><?php echo $allforests[$i]['name'] ?></h4>
@@ -45,7 +45,7 @@
                                     </p>
                                     <p>
                                         <a class="btn btn-default download"
-                                           href="<?php echo base_url() ?>assets/forest_map/<?php echo $allforests[$i]['id'] ?>.pdf"
+                                           href="../../assets/forest_map/<?php echo $allforests[$i]['id'] ?>.pdf"
                                            role="button" download>Download Map &raquo;
                                         </a>&nbsp;
                                         <!--a class="btn btn-default review"

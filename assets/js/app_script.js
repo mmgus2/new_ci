@@ -3,8 +3,8 @@
  */
 $(document).ready(function() {
     //initialise base url for ajax request
-    var baseUrl = window.location.protocol + "//" + window.location.host + "/";
-    //var baseUrl = "http://localhost/index.php/Ajax/";
+    //var baseUrl = window.location.protocol + "//" + window.location.host + "/";
+    var baseUrl = "http://localhost/index.php/";
 
     //define forest class
     function Forest (){
@@ -193,7 +193,8 @@ $(document).ready(function() {
                         userLongitude = place.geometry.location.lng();
 
                         //initiate selected address and show it in the page
-                        informLocation("Your selected location:&nbsp;",place.formatted_address);
+                        informLocation("Your selected location:&nbsp;",
+                            place.formatted_address + '. ', 'Do you want to enter other location?');
 
                         //clear activity and reset activity button - LATER
 
@@ -208,7 +209,7 @@ $(document).ready(function() {
                         $('.forest_section').show();
 
                         enableMenu();
-                        scrollToImageList();
+                        //scrollToImageList();
 
                         return;
                     }
@@ -242,7 +243,7 @@ $(document).ready(function() {
 
         //initialise map with user estimated location and add marker
         createMap(latitude,longitude);
-        addMarker(latitude,longitude,'<b>Your estimated location!</b>');
+        addMarker(latitude,longitude,'<b>Your location!</b>');
 
         //set max distance data
         setMaxDistance(latitude,longitude);
@@ -251,7 +252,7 @@ $(document).ready(function() {
         $('.forest_section').show();
 
         enableMenu();
-        scrollToImageList();
+        //scrollToImageList();
     }
 
     //display address estimation to the page
@@ -262,20 +263,20 @@ $(document).ready(function() {
             dataType: 'json',
             success: function (data) {
                 if (data) {
-                    informLocation('Your estimated current location:&nbsp;',
-                        data.results[1].formatted_address);
+                    informLocation('Your current location:&nbsp;',
+                        data.results[1].formatted_address + '. ', 'Do you want to enter other location?');
                 }
             }
         });
     }
 
     //inform of user current location
-    function informLocation(message,address){
-        $('#input_info').removeClass();
-        $('#input_info').addClass("alert alert-success");
-        html = message + '<strong>' + address + '</strong>';
+    function informLocation(message1,address, message2){
+        $('#info_container').removeClass("alert alert-danger");
+        $('#info_container').addClass("alert alert-success");
+        html = message1 + '<strong>' + address + '</strong>' + message2;
         $('#input_info').html(html);
-        $('#input_info').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
+        $('#info_container').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
     }
 
     //set max distance data
@@ -352,6 +353,9 @@ $(document).ready(function() {
             if (this.index || this.index == 0){
                 triggerSearch(this.index);
             }
+
+            //hide iframe
+            $('#iframe_container').hide('slow');
         });
         return marker;
     }
@@ -419,10 +423,10 @@ $(document).ready(function() {
 
     //alert if geolocation is failed
     function alertLocation(message){
-        $('#input_info').removeClass();
-        $('#input_info').addClass("alert alert-danger");
+        $('#info_container').removeClass("alert alert-success");
+        $('#info_container').addClass("alert alert-danger");
         $('#input_info').text(message);
-        $('#input_info').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
+        $('#info_container').show().animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
     }
 
     //function that respond to activity button
@@ -462,6 +466,10 @@ $(document).ready(function() {
 
     //display forest marker on the map and on the image list
     function displayForest(variable){
+        //animate the list info container
+        $('#list_info_container').animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
+        
+        
         //get the selected unit
         var unit = $("select#unit option:selected").val();
         var unitText = $("select#unit option:selected").text();
@@ -660,23 +668,23 @@ $(document).ready(function() {
             }
 
             if (type == 'site'){
-                popupInfo += '<p><a href="http://maps.google.com/maps?saddr=' + userLatitude + ',' + userLongitude +
+                /*popupInfo += '<p><a href="http://maps.google.com/maps?saddr=' + userLatitude + ',' + userLongitude +
                     '&daddr=' +  data[i].latitude + ',' +  data[i].longitude +
-                    '" target="_blank" class="btn btn-success">Get direction</a></p>'
-                /*popupInfo += '<p><button class="btn btn-success" ' +
+                    '" target="_blank" class="btn btn-success">Get direction</a></p>'*/
+                popupInfo += '<p><button class="btn btn-success" ' +
                     'onclick="getDirection(' + userLatitude + ',' + userLongitude + ',' +
                                             data[i].latitude + ',' +  data[i].longitude +')">' +
-                    'Get Direction</button></p>';*/
+                    'Get Direction</button></p>';
             }
 
             var marker_link = '';
             if(type == 'forest'){
-                marker_link = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + (i + 1) +
+                marker_link = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + /*(i + 1) +*/
                     '|7CC37C|000000';
             }
 
             if(type == 'site'){
-                marker_link = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + (i + 1) +
+                marker_link = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + /*(i + 1) +*/
                     '|FFDE00|000000';
             }
 
@@ -686,6 +694,12 @@ $(document).ready(function() {
             markers.push(marker);
 
             map.fitBounds(bounds);
+
+            if(type == 'site' && markers[0]){
+                //show the first site info window if the site/s exist
+                infoWindow.setContent(popupInfo);
+                infoWindow.open(map, markers[0]);
+            }
         }
     }
 
@@ -706,10 +720,6 @@ $(document).ready(function() {
 
     //get site from specific forest
     window.getSites = function (i) {
-        //re-center the map and show info window for the forest
-        google.maps.event.trigger(markers[i], 'click');
-        map.setZoom(12);
-        map.setCenter(markers[i].getPosition());
 
         var unit = $("select#unit option:selected").val();
         var unitText = $("select#unit option:selected").text();
@@ -723,11 +733,14 @@ $(document).ready(function() {
         //hide forest image list
         $('.forest_section').hide('slow');
 
+        //hide iframe
+        $('#iframe_container').hide('slow');
+
         //show the return to forest button
         $('#return_forest').show('slow');
 
         //scroll to menu section
-        scrollToMenu();
+        //scrollToMenu();
 
         //clear forest marker if exist before
         if(forestMarker){
@@ -780,8 +793,11 @@ $(document).ready(function() {
         $('#menu_container').show('slow');
         //show forest image list
         $('.forest_section').show('slow');
+        if(forestMarker){
+            forestMarker.setMap(null);
+        }
         drawMapMarker(forestData,'forest',null);
-        scrollToMap();
+        //scrollToMap();
     }
 
     function enableMenu(){
@@ -826,11 +842,11 @@ $(document).ready(function() {
     }
     
     //scroll to image list section
-    function scrollToImageList(){
+    /*function scrollToImageList(){
         $('html, body').animate({
             scrollTop: $(".forest_section").offset().top
         }, "slow");
-    }
+    }*/
 
     //scroll to menu
     function scrollToMenu(){
@@ -907,7 +923,7 @@ $(document).ready(function() {
                           'distance'
                         ],
             item: item,
-            page: 6,
+            page: 3,
             plugins: [
                 ListPagination(paginationOptions)
             ]
@@ -928,6 +944,9 @@ $(document).ready(function() {
         map.setCenter(markers[i].getPosition());
 
         scrollToMap();
+
+        //hide iframe
+        $('#iframe_container').hide('slow');
     };
 
     window.triggerSearch = function (index) {
@@ -938,7 +957,13 @@ $(document).ready(function() {
         forestList.search(name);
 
         //focus to the top of map
-        scrollToMap();
+        //scrollToMap();
+    }
+
+    window.getDirection = function(srcLat, srcLng, destLat, destLng){
+        alert('You are about to leave this page');
+        window.open('http://maps.google.com/maps?saddr=' + srcLat + ',' + srcLng +
+            '&daddr=' +  destLat + ',' +  destLng);
     }
 
 })

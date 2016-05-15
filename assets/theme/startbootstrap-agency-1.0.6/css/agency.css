@@ -838,12 +838,16 @@ ul.social-buttons li a:active {
 
 ::-moz-selection {
     text-shadow: none;
-    background: #7CC37C
+    background: #7CC37C;
+    /*additional css*/
+    color: white;
 }
 
 ::selection {
     text-shadow: none;
-    background: #7CC37C
+    background: #7CC37C;
+    /*additional css*/
+    color: white;
 }
 
 img::selection {
@@ -982,7 +986,8 @@ body {
 }
 
 .img-button {
-    opacity: 0.8;
+    opacity: 0.7;
+    cursor: pointer;
 }
 
 .img-button:hover{

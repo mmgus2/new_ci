@@ -27,13 +27,13 @@
     <div class="parallax-window" data-parallax="scroll" data-image-src="../../assets/img/distance_header.jpg">
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in">Where do you want to go?</div>
+                <div class="intro-lead-in">Find forest near you</div>
             </div>
         </div>
     </div>
 </header>
 <!--Menu Section-->
-<section id="menu_section" class="bg-light-gray">
+<section id="menu_map" class="bg-light-gray">
     <div class="container">
         <!--div class="row">
             <div class="col-sm-12 text-left">
@@ -42,23 +42,19 @@
         </div-->
         <!--div class="panel panel-default"-->
             <div class="row" style="margin: 10px 0;">
-                <div class="col-sm-10 col-sm-offset-1">
-                    <div id="input_info" hidden="true"></div>
+                <div id="info_container" class="col-sm-10 col-sm-offset-1" hidden="true">
+                    <div id="input_info" style="text-align: center;"></div>
+                    <br />
+                    <input class="form-control" id="input_loc"
+                           placeholder="Enter your location" type="text">
                 </div>
             </div>
-        <div id = "return_forest" hidden="true">
-            <div class="row" style="margin: 10px 0;">
-                <div class="col-sm-10 col-sm-offset-1">
+            <div id = "return_forest" hidden="true" class="row" style="margin: 10px 0;">
+                <div class="col-sm-10 col-sm-offset-1" style="text-align: center">
                     <button class="btn btn-success" onclick="backToForest()">Return to Forest List</button>
                 </div>
             </div>
-        </div>
         <div id="menu_container">
-            <div class="row" style="margin: 10px 0;">
-                <div class="col-sm-10 col-sm-offset-1">
-                    <input class="form-control" id="input_loc" placeholder="Enter your address" type="text">
-                </div>
-            </div>
             <div class="row">
                 <div class="col-sm-10 col-sm-offset-1">
                     <hr />
@@ -110,6 +106,7 @@
                              alt="<?php echo $activity[$i]["activity_name"] ?>"
                              class="img-responsive img-button img-responsive-icon" id="<?php echo $activity[$i]["activity_id"] ?>"
                              onclick="acceptActivity(this)"
+                             style="margin: 0 auto"
                         >
                     </td>
                     <?php
@@ -132,72 +129,40 @@
                 </div>
         </div>
     </div>
-</section>
-
-<!--Pictures Forest Section-->
-<section id="portfolio" class="bg-light-gray forest_section" hidden="true">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <strong><span id="list_info"</span></strong>
-                <hr>
-            </div>
-        </div>
-        <div id="forest_list" hidden="true">
-            <div class="row row-centered">
-                <div class="col-sm-3 col-centered">
-                    <input class="search form-control" placeholder="Search forest" id="search_list">
-                </div>
-                <div class="col-sm-3 col-centered">
-                    <button class="btn btn-success sort" data-sort="forest_name">sort by name</button>
-                    <button class="btn btn-success sort" data-sort="distance">sort by distance</button>
-                </div>
-            </div>
-            <hr>
-            <!--div class="row" style="text-align: center"-->
-                <ul class="list list-inline row"></ul>
-            <!--/div-->
+    <!-- Map Section and list -->
+    <div id="map_section" class="bg-light-gray">
+        <div class="container">
             <div class="row">
-                <div class="col-sm-12" style="text-align: center;">
-                    <ul class="pagination"></ul>
+                <div id="list_info_container" class="col-sm-12 alert alert-warning">
+                    <span id="list_info"</span>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- Map Section -->
-<section id="map_section" class="bg-light-gray">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="fa-border" id="map"
-                     style="width: 100%; height: 600px;
+            <div class="row">
+                <div class="col-sm-11">
+                    <div class="fa-border" id="map"
+                         style="width: 100%; height: 600px;
                      background:url(../../assets/img/ajax-loader.gif) no-repeat center center;">
-                    <!--img src="../../assets/img/ajax-loader.gif" style="display:block; margin:auto auto;" /-->
+                        <!--img src="../../assets/img/ajax-loader.gif" style="display:block; margin:auto auto;" /-->
+                    </div>
                 </div>
-            </div>
-        </div>
-        <br />
-        <div class="row text-left">
-            <div class="col-md-12">
-                <strong>Legends</strong>
-                <hr>
-                <ul class="list-inline">
-                    <li>
-                        <img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|7CC37C|000000"
-                             alt="Forest legend"
-                        >
-                        <p>Forest</p>
-                    </li>
-                    <li>
-                        <img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|FFDE00|000000"
-                             alt="Recreation site legend"
-                        >
-                        <p>Recreation Site</p>
-                    </li>
-                    <?php
-                    //for ($i = 0; $i < sizeof($activity); $i++){
+                <div class="col-sm-1">
+                    <strong>Legends</strong>
+                    <hr>
+                    <ul style="margin-top: 10px; list-style-type:none; padding-left: 0;">
+                        <li>
+                            <img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|7CC37C|000000"
+                                 alt="Forest legend"
+                            >
+                            <p>Forest</p>
+                        </li>
+                        <li>
+                            <img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|FFDE00|000000"
+                                 alt="Recreation site legend"
+                            >
+                            <p>Recreation Site</p>
+                        </li>
+                        <?php
+                        //for ($i = 0; $i < sizeof($activity); $i++){
                         ?>
                         <!--li>
                             <img src="../../assets/img/buttons/<?php //echo $activity[$i]["activity_id"] ?>.png"
@@ -208,15 +173,48 @@
                             <p><?php //echo $activity[$i]["activity_name"] ?></p>
                         </li-->
                         <?php
-                    //}
-                    ?>
-                </ul>
+                        //}
+                        ?>
+                    </ul>
+                </div>
+            </div>
+            <br />
+            <div class="row" id="iframe_container" hidden="true">
+                <div class="col-sm-12">
+                    <iframe id="iframe" width="100%" height="600">
+                    </iframe>
+                </div>
             </div>
         </div>
-        <div class="row" id="iframe_container" hidden="true">
-            <div class="col-sm-12">
-                <iframe id="iframe" width="100%" height="600">
-                </iframe>
+    </div>
+</section>
+
+<!--Pictures Forest Section-->
+<section id="portfolio" class="bg-light-gray forest_section" hidden="true">
+    <div class="container">
+        <div class="col-sm-12">
+            <div id="forest_list" hidden="true">
+                <div class="row row-centered">
+                    <div class="col-sm-6 col-centered">
+                        <input class="search form-control" placeholder="Search forest" id="search_list">
+                    </div>
+                </div>
+                <br />
+                <div class="row row-centered">
+                    <div class="col-sm-6 col-centered" style="text-align: center">
+                        <button class="btn btn-success sort" data-sort="forest_name">sort by name</button>
+                        <button class="btn btn-success sort" data-sort="distance">sort by distance</button>
+                    </div>
+                </div>
+                <hr>
+                <!--div class="row" style="text-align: center"-->
+                <ul class="list list-inline row"></ul>
+                <!--/div-->
+                <div class="row">
+                    <div class="col-sm-12" style="text-align: center;">
+                        <ul class="pagination"></ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
