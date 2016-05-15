@@ -965,5 +965,13 @@ $(document).ready(function() {
         window.open('http://maps.google.com/maps?saddr=' + srcLat + ',' + srcLng +
             '&daddr=' +  destLat + ',' +  destLng);
     }
-
+    
+    //when no image displayed in forest list image
+    $('#search_list').on('keyup', function (e) {
+        if($('.list').children().length === 0){
+            $('.not_found').css('display', 'block');
+        } else {
+            $('.not_found').css('display', 'none');
+        }
+    })
 })

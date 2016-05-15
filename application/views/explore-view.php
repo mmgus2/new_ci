@@ -209,6 +209,7 @@
                 <hr>
                 <!--div class="row" style="text-align: center"-->
                 <ul class="list list-inline row"></ul>
+                <span class="not_found">No forest exist with that name</span>
                 <!--/div-->
                 <div class="row">
                     <div class="col-sm-12" style="text-align: center;">
