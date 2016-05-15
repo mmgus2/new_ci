@@ -193,7 +193,7 @@ $(document).ready(function() {
                         userLongitude = place.geometry.location.lng();
 
                         //initiate selected address and show it in the page
-                        informLocation("Your selected location:&nbsp;",
+                        informLocation("Your current location:&nbsp;",
                             place.formatted_address + '. ', 'Do you want to enter other location?');
 
                         //clear activity and reset activity button - LATER
