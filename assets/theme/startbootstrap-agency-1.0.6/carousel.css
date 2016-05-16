@@ -19,7 +19,8 @@
 
 /* Declare heights because of positioning of img element */
 .carousel .item {
-  height: 700px;
+  /*height: 700px;*/
+  height: auto;
   background-color: #777;
 }
 .carousel-inner > .item > img {
