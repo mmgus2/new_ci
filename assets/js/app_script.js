@@ -961,7 +961,7 @@ $(document).ready(function() {
     }
 
     window.getDirection = function(srcLat, srcLng, destLat, destLng){
-        alert('You are about to leave this page');
+        alert('You are about to leave this page.');
         window.open('http://maps.google.com/maps?saddr=' + srcLat + ',' + srcLng +
             '&daddr=' +  destLat + ',' +  destLng);
     }
