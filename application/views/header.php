@@ -29,6 +29,8 @@
     <!-- Custom stylesheet -->
     <link rel="stylesheet" href="../../assets/css/rangeslider.css">
     <link rel="stylesheet" href="../../assets/css/dataTables.bootstrap.min.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/icon">
+    <link rel="icon" href="favicon.ico" type="image/icon">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
