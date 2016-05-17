@@ -14,6 +14,8 @@
         $('#search_list').addClear({
             onClear: function () {
                 forestList.search();
+                //hide the no not_found class
+                $('.not_found').css('display', 'none');
             }
         });
 
