@@ -13,13 +13,28 @@ class Database_model extends CI_Model {
     {
         if (isset($arg))
         {
-            $sql = "select f.forest_id as forest_id, forest_name, latitude, longitude, forest_description
+            /*$sql = "select f.forest_id as forest_id, forest_name, latitude, longitude, forest_description
                 from forest f, forest_activity fa
                 where f.forest_id = fa.forest_id
                 and activity_id in ?
                 group by forest_id
                 order by forest_name";
-            $query = $this->db->query($sql, array($arg));
+            $query = $this->db->query($sql, array($arg));*/
+            $activity_id = '';
+            for($i = 0; $i < sizeof($arg); $i++){
+                if($i = 0){
+                    $activity_id += 'activity_id = ' + $arg[$i] + ' ';
+                } else {
+                    $activity_id += 'AND activity_id = ' + $arg[$i]  + ' ';
+                }
+            }
+            $sql = "select f.forest_id as forest_id, forest_name, latitude, longitude, forest_description
+                from forest f, forest_activity fa
+                where f.forest_id = fa.forest_id
+                and $activity_id
+                group by forest_id
+                order by forest_name";
+            $query = $this->db->query($sql);
         }
         else
         {
