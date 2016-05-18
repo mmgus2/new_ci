@@ -536,6 +536,8 @@ $(document).ready(function() {
                         $('#forest_list').show();
                         //show forest image list
                         showForestImage();
+                        //hide no forest message
+                        $('.not_found').css('display', 'none');
                         //draw on map
                         drawMapMarker(forestData,"forest",null);
                     } else {
