@@ -51,7 +51,7 @@ class Review extends CI_Controller {
         $this->load->view('header');
         //$this->load->view('menu');
         $this->load->view('review-view',$data);
-        $this->load->view('footer');
+        //$this->load->view('footer');
 
     }
 }
