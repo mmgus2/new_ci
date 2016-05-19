@@ -25,16 +25,16 @@
         <p>The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and any or all Agreements: "Client", “You” and “Your” refers to you, the person accessing this website and accepting the Company’s terms and conditions. "The Company", “Ourselves”, “We”, “Our” and "Us", refers to our Company. “Party”, “Parties”, or “Us”, refers to both the Client and ourselves, or either the Client or ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner, whether by formal meetings of a fixed duration, or any other means, for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services/products, in accordance with and subject to, prevailing law of Australia. Any use of the above terminology or other words in the singular, plural, capitalisation and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p>
 
         <h2>Cookies</h2>
-        <p>We employ the use of cookies. By using <a title="Delta Solutions" href="http://xploreforest.tk">Delta Solutions</a>'s website you consent to the use of cookies in accordance with Delta Solutions’s privacy policy.</p>
+        <p>We employ the use of cookies. By using <a title="Delta Solutions" href="http://xploreforest.me">Delta Solutions</a>'s website you consent to the use of cookies in accordance with Delta Solutions’s privacy policy.</p>
         <p>Most of the modern day interactive web sites use cookies to enable us to retrieve user details for each visit. Cookies are used in some areas of our site to enable the functionality of this area and ease of use for those people visiting. Some of our affiliate / advertising partners may also use cookies.</p>
 
         <h2>License</h2>
-        <p>Unless otherwise stated, Delta Solutions and/or it’s licensors own the intellectual property rights for all material on Delta Solutions All intellectual property rights are reserved. You may view and/or print pages from http://xploreforest.tk for your own personal use subject to restrictions set in these terms and conditions.</p>
+        <p>Unless otherwise stated, Delta Solutions and/or it’s licensors own the intellectual property rights for all material on Delta Solutions All intellectual property rights are reserved. You may view and/or print pages from http://xploreforest.me for your own personal use subject to restrictions set in these terms and conditions.</p>
         <p>You must not:</p>
         <ul>
-            <li>Republish material from http://xploreforest.tk</li>
-            <li>Sell, rent or sub-license material from http://xploreforest.tk</li>
-            <li>Reproduce, duplicate or copy material from http://xploreforest.tk</li>
+            <li>Republish material from http://xploreforest.me</li>
+            <li>Sell, rent or sub-license material from http://xploreforest.me</li>
+            <li>Reproduce, duplicate or copy material from http://xploreforest.me</li>
         </ul>
         <p>Redistribute content from Delta Solutions (unless content is specifically made for redistribution).</p>
 
