@@ -62,6 +62,11 @@
                     <hr />
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1" style="text-align: center">
+                    <h4 style="color: black">Specify your travel distance</h4>
+                </div>
+            </div>
             <div class="row" style="margin: 10px 0;">
                 <div class="col-sm-8 col-sm-offset-1" >
                     <input type="range" min="0" step="1" id="range_slider" disabled>&nbsp;
@@ -76,6 +81,11 @@
             <div class="row">
                 <div class="col-sm-10 col-sm-offset-1">
                     <hr />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1" style="text-align: center">
+                    <h4 style="color: black">Refine by activity</h4>
                 </div>
             </div>
             <!--div class="row row-centered" style="margin: 10px 0; pointer-events: none; color: grey;"
