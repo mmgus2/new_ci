@@ -22,7 +22,8 @@
     @font-face {
         font-family: 'weather';
         src: url('../../assets/fonts/artill_clean_icons.otf');
-        src: url('../../assets/fonts/artill_clean_icons.otf?#iefix') format('embedded-opentype'),
+        /*src: url('../../assets/fonts/artill_clean_icons.otf?#ief') format('embedded-opentype'),*/
+        src: url('../../assets/fonts/artill_clean_icons.otf') format('embedded-opentype'),
         url('../../assets/fonts/artill_clean_icons.otf') format('woff'),
         url('../../assets/fonts/artill_clean_icons.otf') format('truetype'),
         url('../../assets/fonts/artill_clean_icons.otf') format('svg');
