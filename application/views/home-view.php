@@ -32,6 +32,9 @@
             <img class="third-slide" src="../../assets/theme/startbootstrap-agency-1.0.6/img/Header/HeaderImage-1.jpg" alt="Third slide">
             <div class="container">
                 <div class="carousel-caption">
+                    <!--h1>Give us your Feedback</h1>
+                    <p>Tell us your opinion about places, activities and more.</p>
+                    <p><a class="btn btn-lg btn-primary" href="<?php echo base_url();?>Information" role="button">Info</a></p-->
                     <h1>Give us your Feedback</h1>
                     <p>Tell us your opinion about places, activities and more.</p>
                     <p><a class="btn btn-lg btn-primary" href="<?php echo base_url();?>Information" role="button">Info</a></p>

@@ -468,6 +468,7 @@ $(document).ready(function() {
     function displayForest(variable){
         //animate the list info container
         $('#list_info_container').animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
+        $('#list_info_img_container').animate({opacity: '0.5'},"fast").animate({opacity: '1'},"fast");
         
         
         //get the selected unit
@@ -534,6 +535,7 @@ $(document).ready(function() {
                         message += '.';
                         $('#list_info').html(message);
                         $('#forest_list').show();
+                        $('#list_info_img').html(message);
                         //show forest image list
                         showForestImage();
                         //hide no forest message
@@ -574,6 +576,7 @@ $(document).ready(function() {
                         }
                         message += '.';
                         $('#list_info').html(message);
+                        $('#list_info_img').html(message);
                     }
                 }
             }

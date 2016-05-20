@@ -204,6 +204,9 @@
 <!--Pictures Forest Section-->
 <section id="portfolio" class="bg-light-gray forest_section" hidden="true">
     <div class="container">
+        <div id="list_info_img_container" class="col-sm-12 alert alert-warning">
+            <span id="list_info_img"</span>
+        </div>
         <div class="col-sm-12">
             <div id="forest_list" hidden="true">
                 <div class="row row-centered">
